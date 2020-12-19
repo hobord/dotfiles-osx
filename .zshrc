@@ -113,6 +113,9 @@ alias ll='ls -G -l'
 alias ta='tmux attach -d -t'
 alias vim='nvim'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
+setopt complete_aliases
+#complete -F __start_config config 
+
 
 alias k='kubectl'
 alias d='docker'
