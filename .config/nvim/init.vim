@@ -53,19 +53,24 @@ set path+=**
 "set wildmenu
 " 
  
-nnoremap <M-Left> :bp<CR> 
-nnoremap <M-Right> :bn<CR>
-nnoremap <C-left> <C-w><C-h>
-nnoremap <C-down> <C-w><C-j>
-nnoremap <C-up> <C-w><C-k>
-nnoremap <C-right> <C-w><C-l>
+map <M-Left> :bp<CR> 
+map <M-Right> :bn<CR>
+map <C-left> <C-w><C-h>
+map <C-down> <C-w><C-j>
+map <C-up> <C-w><C-k>
+map <C-right> <C-w><C-l>
+map <C-t><up> :tabr<cr>
+map <C-t><down> :tabl<cr>
+map <C-t><left> :tabp<cr>
+map <C-t><right> :tabn<cr>
+map <C-t>n :tabnew<cr>
 
 " Copy/Paste ctrl+c / ctrl+v
 map <C-c> "cy
 nnoremap <C-v> "cP`]
 
-nnoremap <C-t> :FloatermToggle<CR>
-let g:floaterm_autoinsert=0
+"nnoremap <C-t> :FloatermToggle<CR>
+"let g:floaterm_autoinsert=0
 nnoremap <M-b> :Vista finder<CR>
 "nnoremap <C-B> :Vista!!<CR>
 nnoremap <C-f> :Files<CR>
