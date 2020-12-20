@@ -53,8 +53,8 @@ set path+=**
 "set wildmenu
 " 
  
-"nnoremap <C-Left> :bp<CR> 
-"nnoremap <C-Right> :bn<CR>
+nnoremap <M-Left> :bp<CR> 
+nnoremap <M-Right> :bn<CR>
 nnoremap <C-left> <C-w><C-h>
 nnoremap <C-down> <C-w><C-j>
 nnoremap <C-up> <C-w><C-k>
