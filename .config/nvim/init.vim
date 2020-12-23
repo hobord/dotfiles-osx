@@ -66,6 +66,9 @@ map <C-t><right> :tabn<cr>
 map <C-t>n :tabnew<cr>
 map <leader>tc :tabclose<cr>
 
+inoremap <C-l> <C-o>w
+inoremap <C-h> <C-o>b
+
 " Copy/Paste ctrl+c / ctrl+v
 map <C-c> "cy
 nnoremap <C-v> "cP`]
@@ -128,10 +131,14 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
 " Deugger
-nnoremap <F5> :GoDebugStart<CR>
-nnoremap <F8> :GoDebugContinue<CR>
-nnoremap <F9> :GoDebugBreakpoint<CR>
-nnoremap <F10> :GoDebugNext<CR>
+"nnoremap <F5> :GoDebugStart<CR>
+"nnoremap <F8> :GoDebugContinue<CR>
+"nnoremap <F9> :GoDebugBreakpoint<CR>
+"nnoremap <F10> :GoDebugNext<CR>
+
+let g:vimspector_enable_mappings = 'HUMAN'
+
+
 
 " vim-airline
 set laststatus=2
@@ -327,4 +334,31 @@ noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 
+" LuaTree plugin
+let g:lua_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "",
+    \   'renamed': "➜",
+    \   'untracked': "★"
+    \   },
+    \ 'folder': {
+    \   'default': "",
+    \   'open': "",
+    \   'symlink': "",
+    \   }
+    \ }
+
+nnoremap <C-n> :LuaTreeToggle<CR>
+nnoremap <leader>r :LuaTreeRefresh<CR>
+nnoremap <leader>n :LuaTreeFindFile<CR>
+" LuaTreeOpen and LuaTreeClose are also available if you need them
+
+set termguicolors " this variable must be enabled for colors to be applied properly
+
+" a list of groups can be found at `:help lua_tree_highlight`
+"highlight LuaTreeFolderIcon guibg=blue
 
