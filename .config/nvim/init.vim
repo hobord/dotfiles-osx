@@ -55,10 +55,10 @@ set path+=**
  
 map <M-Left> :bp<CR> 
 map <M-Right> :bn<CR>
-map <C-left> <C-w><C-h>
-map <C-down> <C-w><C-j>
-map <C-up> <C-w><C-k>
-map <C-right> <C-w><C-l>
+map <C-left> <C-w>h  
+map <C-down> <C-w>j
+map <C-up> <C-w>k
+map <C-right> <C-w>l
 map <C-t><up> :tabr<cr>
 map <C-t><down> :tabl<cr>
 map <C-t><left> :tabp<cr>
