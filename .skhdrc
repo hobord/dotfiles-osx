@@ -102,9 +102,9 @@ alt + shift + ctrl - 3: yabai -m window --display  3; yabai -m display --focus 3
 # focus monitor
 alt + shift + ctrl - left : yabai -m display --focus prev
 alt + shift + ctrl - right : yabai -m display --focus next
-#alt - 1  : yabai -m display --focus 1
-#alt - 2  : yabai -m display --focus 2
-#alt - 3  : yabai -m display --focus 3
+alt + shift + ctrl + cmd - 1  : yabai -m display --focus 1
+alt + shift + ctrl + cmd - 2  : yabai -m display --focus 2
+alt + shift + ctrl + cmd - 3  : yabai -m display --focus 3
 
 # toggle window zoom
 alt - d : yabai -m window --toggle zoom-parent
