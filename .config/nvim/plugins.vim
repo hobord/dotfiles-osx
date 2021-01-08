@@ -30,7 +30,7 @@ Plug 'junegunn/fzf.vim'
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+"Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -39,6 +39,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'mbbill/undotree'
 Plug 'Lokaltog/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'tpope/vim-git'
@@ -71,12 +72,12 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'voldikss/vim-floaterm'
 
-Plug 'kyazdani42/nvim-web-devicons'
+"Plug 'kyazdani42/nvim-web-devicons'
 "Plug 'romgrk/barbar.nvim'
 
 " InfluxDB
-Plug 'mattn/webapi-vim'
-Plug 'gianarb/vim-flux'
+"Plug 'mattn/webapi-vim'
+"Plug 'gianarb/vim-flux'
 
 call plug#end()
 

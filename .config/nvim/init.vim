@@ -53,8 +53,10 @@ set path+=**
 "set wildmenu
 " 
  
-map <M-Left> :bp<CR> 
-map <M-Right> :bn<CR>
+"map <M-Left> :bp<CR> 
+"map <M-Right> :bn<CR>
+map <C-PageUp> :bp<CR> 
+map <C-PageDown> :bn<CR>
 map <C-left> <C-w>h  
 map <C-down> <C-w>j
 map <C-up> <C-w>k
@@ -65,9 +67,11 @@ map <C-t><left> :tabp<cr>
 map <C-t><right> :tabn<cr>
 map <C-t>n :tabnew<cr>
 map <leader>tc :tabclose<cr>
+map <C-s> <esc>:w<cr>
+imap <C-s> <esc>:w<cr>
 
-inoremap <C-l> <C-o>w
-inoremap <C-h> <C-o>b
+"inoremap <C-l> <C-o>w
+"noremap <C-h> <C-o>b
 
 " Copy/Paste ctrl+c / ctrl+v
 map <C-c> "cy
@@ -335,26 +339,26 @@ noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 
 " LuaTree plugin
-let g:lua_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★"
-    \   },
-    \ 'folder': {
-    \   'default': "",
-    \   'open': "",
-    \   'symlink': "",
-    \   }
-    \ }
+"let g:lua_tree_icons = {
+"    \ 'default': '',
+"    \ 'symlink': '',
+"    \ 'git': {
+"    \   'unstaged': "✗",
+"    \   'staged': "✓",
+"    \   'unmerged': "",
+"    \   'renamed': "➜",
+"    \   'untracked': "★"
+"    \   },
+"    \ 'folder': {
+"    \   'default': "",
+"    \   'open': "",
+"    \   'symlink': "",
+"    \   }
+"    \ }
 
-nnoremap <C-n> :LuaTreeToggle<CR>
-nnoremap <leader>r :LuaTreeRefresh<CR>
-nnoremap <leader>n :LuaTreeFindFile<CR>
+"nnoremap <C-n> :LuaTreeToggle<CR>
+"nnoremap <leader>r :LuaTreeRefresh<CR>
+"nnoremap <leader>n :LuaTreeFindFile<CR>
 " LuaTreeOpen and LuaTreeClose are also available if you need them
 
 set termguicolors " this variable must be enabled for colors to be applied properly

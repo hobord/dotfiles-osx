@@ -93,16 +93,18 @@ shift + alt - j : yabai -m window --warp prev || yabai -m window --warp last
 shift + alt - k : yabai -m window --warp next || yabai -m window --warp first
 
 # send window to desktop and follow focus
-shift + alt - 1 : yabai -m window --display  1; yabai -m display --focus 1
-shift + alt - 2 : yabai -m window --display  2; yabai -m display --focus 2
-shift + alt - 3 : yabai -m window --display  3; yabai -m display --focus 3
+alt + shift + ctrl - down : yabai -m window --display  next; yabai -m display --focus next
+alt + shift + ctrl - up : yabai -m window --display  prev; yabai -m display --focus prev
+alt + shift + ctrl - 1: yabai -m window --display  1; yabai -m display --focus 1
+alt + shift + ctrl - 2: yabai -m window --display  2; yabai -m display --focus 2
+alt + shift + ctrl - 3: yabai -m window --display  3; yabai -m display --focus 3
 
 # focus monitor
 alt + shift + ctrl - left : yabai -m display --focus prev
 alt + shift + ctrl - right : yabai -m display --focus next
-alt - 1  : yabai -m display --focus 1
-alt - 2  : yabai -m display --focus 2
-alt - 3  : yabai -m display --focus 3
+#alt - 1  : yabai -m display --focus 1
+#alt - 2  : yabai -m display --focus 2
+#alt - 3  : yabai -m display --focus 3
 
 # toggle window zoom
 alt - d : yabai -m window --toggle zoom-parent

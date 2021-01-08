@@ -121,6 +121,7 @@ alias k='kubectl'
 alias d='docker'
 alias dc="docker-compose"
 alias drmi="docker rmi \$(docker images | grep \"<none>\" | awk '{print \$3}')"
+alias drm="docker rm \$(docker ps -a|grep Exited| awk '{print \$1}')" 
 alias dps='docker ps --format "table {{.ID}} {{.Status}} {{.Names}}"'
 
 alias node='docker run -it --rm -w=/workspace -v $(pwd):/workspace node bash'
@@ -162,5 +163,5 @@ export LC_CTYPE=en_US.UTF-8
 alias sshapp5p='ssh root@app5p.forexpros.com'
 alias sshapp16='ssh root@app16.forexpros.com'
 alias sshapp18='ssh root@app18.forexpros.com'
-
+alias sshapp4='ssh root@app4p.forexpros.com'
 
