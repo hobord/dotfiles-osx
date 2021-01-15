@@ -22,7 +22,11 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 
-"Plug 'majutsushi/tagbar'
+" Neovim Tree shitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+
+Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -41,9 +45,15 @@ Plug 'mbbill/undotree'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdcommenter'
+Plug 'szw/vim-maximizer'
+Plug 'junegunn/vim-peekaboo'
+Plug 'Yilin-Yang/vim-markbar'
+
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'tpope/vim-git'
 Plug 'airblade/vim-gitgutter'
+
 Plug 'kdheepak/lazygit.nvim'
 
 Plug 'ekalinin/Dockerfile.vim'

@@ -108,14 +108,14 @@ source $ZSH/oh-my-zsh.sh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH=~/Applications/:$PATH
 export PATH=~/go/bin/:$PATH
+export VISUAL=nvim;
+export EDITOR=nvim;
 
 alias ll='ls -G -l'
 alias ta='tmux attach -d -t'
 alias vim='nvim'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
-setopt complete_aliases
 #complete -F __start_config config 
-
 
 alias k='kubectl'
 alias d='docker'
@@ -130,6 +130,7 @@ alias node10='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:10 bas
 alias golang='docker run -it --rm -w=/workspace -v $(pwd):/workspace -v ~/.vimrc:/home/gropher/.vimrc hobord/golang-dev:vim'
 alias mysql='docker run -it --rm -w=/workspace -v $(pwd):/workspace mysql:5.7 bash'
 alias rust='docker run -it --rm -w=/workspace -v $(pwd):/workspace rust bash'
+alias composer="php /usr/local/bin/composer.phar"
 
 function kubesh() { kubectl exec -ti $@ -- sh; }
 function kubebash() { kubectl exec -ti $@ -- bash; }
@@ -137,8 +138,9 @@ alias ksetns="kubectl config set-context --current --namespace"
 source <(kubectl completion zsh)
 complete -F __start_kubectl k
 
-
 alias gc='gcloud'
+
+setopt complete_aliases
 
 DEFAULT_USER="balazs"
 
@@ -164,4 +166,5 @@ alias sshapp5p='ssh root@app5p.forexpros.com'
 alias sshapp16='ssh root@app16.forexpros.com'
 alias sshapp18='ssh root@app18.forexpros.com'
 alias sshapp4='ssh root@app4p.forexpros.com'
-
+alias sshtvc4='ssh root@tvc4.forexpros.com'
+alias sshweb215='ssh root@web215.forexpros.com'

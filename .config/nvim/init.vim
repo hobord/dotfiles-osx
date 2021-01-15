@@ -11,7 +11,7 @@ set smartindent
 set hidden
 
 set number
-set relativenumber
+"set relativenumber
 set signcolumn=yes
 "set cuc
  
@@ -77,19 +77,53 @@ imap <C-s> <esc>:w<cr>
 map <C-c> "cy
 nnoremap <C-v> "cP`]
 
+ 
 "nnoremap <C-t> :FloatermToggle<CR>
 "let g:floaterm_autoinsert=0
-nnoremap <M-b> :Vista finder<CR>
+"nnoremap <M-b> :Vista finder<CR>
 "nnoremap <C-B> :Vista!!<CR>
-nnoremap <C-f> :Files<CR>
+"nnoremap <C-f> :Files<CR>
 nnoremap <leader>r :Rg<CR>
-nnoremap <M-g> :LazyGit<CR>
+"nnoremap <M-g> :LazyGit<CR>
 "nnoremap <C-b> :TagbarToggle<CR>
 nnoremap <C-h> :UndotreeToggle<CR>
-
+nnoremap <leader>t :TagbarToggle<CR>
 command! LF FloatermNew lf
 command! Vifm FloatermNew vifm
-"command! Lgit FloatermNew lazygit
+command! Lgit FloatermNew lazygit
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fr <cmd>lua require'telescope.builtin'.lsp_references{}<cr>
+nnoremap <leader>fs <cmd>lua require'telescope.builtin'.lsp_document_symbols{}<cr>
+
+" Markbar
+" only display alphabetic marks a-i and A-I
+let g:markbar_marks_to_display = 'abcdefghiABCDEFGHI'
+" width of a vertical split markbar
+let g:markbar_width = 80
+let g:markbar_peekaboo_width = 80
+" indentation for lines of context
+let g:markbar_context_indent_block = '  '
+" number of lines of context to retrieve per mark
+let g:markbar_num_lines_context = 3
+" markbar-local mappings
+let g:markbar_jump_to_mark_mapping  = '<CR>'
+let g:markbar_next_mark_mapping     = 'n'
+let g:markbar_previous_mark_mapping = 'N'
+let g:markbar_rename_mark_mapping   = '<F2>'
+let g:markbar_reset_mark_mapping    = 'r'
+let g:markbar_delete_mark_mapping   = '<Del>'
+" open/close markbar mappings
+nmap <Leader>m  <Plug>ToggleMarkbar
+nmap <Leader>mo <Plug>OpenMarkbar
+nmap <Leader>mc <Plug>CloseMarkbar
+
+lua require'lspconfig'.intelephense.setup{
+            \ on_attach=require'completion'.on_attach
+            \ } 
 
 " autocompletion
 "let g:deoplete#enable_at_startup = 1
@@ -105,6 +139,7 @@ let g:completion_chain_complete_list = {
       \    {'complete_items': ['lsp', 'tags']},
       \  ]}
 
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 " vim go
 " disable open browser after posting snippet
@@ -187,6 +222,7 @@ let g:go_auto_type_info = 1
 "    root_dir = lspconfig.util.root_pattern('.git', '.mod');
 lua << EOF
 require'lspconfig'.gopls.setup{
+on_attach=require'completion'.on_attach
 }
 EOF
 set completeopt=menuone,noinsert,noselect
@@ -199,11 +235,11 @@ let g:diagnostic_insert_delay = 1
 
 
 "nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 "nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+"nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+"nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
@@ -224,7 +260,7 @@ fun! GotoWindow(id)
 endfun
 
 " Debugger remaps
-nnoremap <leader>m :MaximizerToggle!<CR>
+"nnoremap <leader>m :Maximizeruoggle!<CR>
 nnoremap <leader>dd :call vimspector#Launch()<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
 nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
@@ -255,7 +291,6 @@ if executable('flux-lsp')
         \ })
 endif
 autocmd FileType flux nmap gd <plug>(lsp-definition)
-
 
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 omnifunc=v:lua.vim.lsp.omnifunc
 " foldmethod=syntax
