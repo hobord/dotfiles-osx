@@ -116,6 +116,7 @@ alias ta='tmux attach -d -t'
 alias vim='nvim'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
 #complete -F __start_config config 
+alias lzg='lazygit'
 
 alias k='kubectl'
 alias d='docker'
@@ -162,9 +163,5 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # ssh aliases
-alias sshapp5p='ssh root@app5p.forexpros.com'
-alias sshapp16='ssh root@app16.forexpros.com'
-alias sshapp18='ssh root@app18.forexpros.com'
-alias sshapp4='ssh root@app4p.forexpros.com'
-alias sshtvc4='ssh root@tvc4.forexpros.com'
-alias sshweb215='ssh root@web215.forexpros.com'
+[[ ! -f ~/.aliases_ssh.zsh ]] || source ~/.aliases_ssh.zsh
+

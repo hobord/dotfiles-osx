@@ -77,7 +77,13 @@ imap <C-s> <esc>:w<cr>
 map <C-c> "cy
 nnoremap <C-v> "cP`]
 
- 
+" Close Buffer + keep window 
+command! BW :bn|:bd#
+
+" EasyAlign
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 "nnoremap <C-t> :FloatermToggle<CR>
 "let g:floaterm_autoinsert=0
 "nnoremap <M-b> :Vista finder<CR>
@@ -121,59 +127,44 @@ nmap <Leader>m  <Plug>ToggleMarkbar
 nmap <Leader>mo <Plug>OpenMarkbar
 nmap <Leader>mc <Plug>CloseMarkbar
 
-lua require'lspconfig'.intelephense.setup{
-            \ on_attach=require'completion'.on_attach
-            \ } 
+source $HOME/.config/nvim/golang.vim
+source $HOME/.config/nvim/php.vim
 
 " autocompletion
 "let g:deoplete#enable_at_startup = 1
+set completeopt=menu,menuone,noselect
+set shortmess+=c
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
-autocmd BufEnter * lua require'completion'.on_attach()
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-" Or combine with lsp
-let g:completion_chain_complete_list = {
-      \ 'default': [
-      \    {'complete_items': ['lsp', 'tags']},
-      \  ]}
+"autocmd BufEnter * lua require'compe'.on_attach()
+"autocmd BufEnter * lua require'completion'.on_attach()
+"" Or combine with lsp
+"let g:completion_chain_complete_list = {
+      "\ 'default': [
+      "\    {'complete_items': ['lsp', 'tags']},
+      "\  ]}
+
+
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable' || 'disable' || 'always'
+let g:compe.allow_prefix_unmatch = v:false
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.nvim_lsp = v:true
+
+"let g:vsnip_snippet_dir=
+let g:vsnip_snippet_dirs = ['~/.config/nvim/snippets']
+
+let g:vsnip_filetypes = {}
+"let g:vsnip_filetypes.javascriptreact = ['javascript']
+"let g:vsnip_filetypes.typescriptreact = ['typescript']
 
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-
-" vim go
-" disable open browser after posting snippet
-let g:go_play_open_browser = 0
-" enable goimports
-let g:go_gpls_enabled = 1
-let g:go_fmt_command = "goimports"
-let g:go_imports_mode = "gopls"
-let g:go_imports_autosave = 1
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_def_mapping_enabled = 0
-
-" enable additional highlighting
-
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
-" Deugger
-"nnoremap <F5> :GoDebugStart<CR>
-"nnoremap <F8> :GoDebugContinue<CR>
-"nnoremap <F9> :GoDebugBreakpoint<CR>
-"nnoremap <F10> :GoDebugNext<CR>
 
 let g:vimspector_enable_mappings = 'HUMAN'
 
@@ -185,47 +176,10 @@ let g:bufferline_echo = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'dark'
 
-" tagbar
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds' : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-
-" Status line types/signatures.
-let g:go_auto_type_info = 1
 
 
 "lua require("lsp_config")
 "    root_dir = lspconfig.util.root_pattern('.git', '.mod');
-lua << EOF
-require'lspconfig'.gopls.setup{
-on_attach=require'completion'.on_attach
-}
-EOF
-set completeopt=menuone,noinsert,noselect
 nnoremap <silent> <F2> :lua vim.lsp.buf.rename()<CR>
 command! Rename lua vim.lsp.buf.rename()
 let g:diagnostic_enable_virtual_text = 1
@@ -234,23 +188,17 @@ let g:diagnostic_auto_popup_while_jump = 1
 let g:diagnostic_insert_delay = 1
 
 
-"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-"nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-"nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-"nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-"nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-"nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
+nnoremap <leader>vdc :lua vim.lsp.buf.declaration()<CR>
 nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>vtd :lua vim.lsp.buf.type_definition()<CR>
 nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>vds :lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <leader>vws: lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>vsd :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
 
@@ -292,7 +240,6 @@ if executable('flux-lsp')
 endif
 autocmd FileType flux nmap gd <plug>(lsp-definition)
 
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 omnifunc=v:lua.vim.lsp.omnifunc
 " foldmethod=syntax
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=indent
@@ -401,3 +348,6 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 " a list of groups can be found at `:help lua_tree_highlight`
 "highlight LuaTreeFolderIcon guibg=blue
 
+" Minimap color
+hi MinimapCurrentLine ctermfg=Green guifg=#50FA7B guibg=#32302f
+let g:minimap_highlight = 'MinimapCurrentLine'
