@@ -106,8 +106,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 export PATH=~/Applications/:$PATH
 export PATH=~/go/bin/:$PATH
+export PATH=/usr/local/opt/libpq/bin/:$PATH
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export VISUAL=nvim;
 export EDITOR=nvim;
 
@@ -117,6 +120,7 @@ alias vim='nvim'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
 #complete -F __start_config config 
 alias lzg='lazygit'
+alias gui='gitui'
 
 alias k='kubectl'
 alias d='docker'

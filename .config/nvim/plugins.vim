@@ -4,6 +4,7 @@ call plug#begin()
 
 Plug 'fatih/vim-go'
 
+Plug 'mfussenegger/nvim-dap'
 Plug 'neovim/nvim-lspconfig'
 "Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-compe'
@@ -16,6 +17,7 @@ Plug 'nvim-lua/lsp-status.nvim'
 
 " Debuggers
 Plug 'puremourning/vimspector'
+Plug 'nvim-telescope/telescope-vimspector.nvim'
 Plug 'szw/vim-maximizer'
 
 " telescope requirements...
@@ -57,9 +59,16 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-git'
+Plug 'motemen/git-vim'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'kdheepak/lazygit.nvim'
+
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion'
+
+Plug 'kosayoda/nvim-lightbulb'
 
 Plug 'ekalinin/Dockerfile.vim'
 "Plug 'plasticboy/vim-markdown'
@@ -74,6 +83,9 @@ Plug 'sheerun/vim-polyglot'
 
 "Plug 'morhetz/gruvbox'
 Plug 'gruvbox-community/gruvbox'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'kristijanhusak/vim-hybrid-material'
 
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'

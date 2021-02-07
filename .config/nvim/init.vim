@@ -22,10 +22,14 @@ set encoding=utf-8
 set splitbelow
 set splitright
 set clipboard=unnamedplus
- 
+  
 set undodir=/tmp
 set backupdir=~/backup
- 
+
+" spell
+set spell spelllang=en_us
+set nospell
+
 colorscheme gruvbox
 set background=dark
 "let g:solarized_termcolors = 256  " New line!!
@@ -45,16 +49,11 @@ set backspace=indent,eol,start
  
 " higlight search
 :noremap <F4> :set hlsearch! hlsearch?<CR>
-"lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
+lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
  
 " find in subdirectories
 set path+=**
-" Display all found files in tabs
-"set wildmenu
-" 
  
-"map <M-Left> :bp<CR> 
-"map <M-Right> :bn<CR>
 map <C-PageUp> :bp<CR> 
 map <C-PageDown> :bn<CR>
 map <C-S-left> <C-w>h  
@@ -68,8 +67,13 @@ map <C-t><right> :tabn<cr>
 map <C-t>n :tabnew<cr>
 map <leader>tc :tabclose<cr>
 map <C-s> <esc>:w<cr>
-imap <C-s> <esc>:w<cr>
-
+inoremap <C-s> <esc>:w<cr>i
+inoremap II <Esc>I
+inoremap AA <Esc>A
+inoremap OO <Esc>O
+inoremap CC <Esc>C
+inoremap SS <Esc>S
+inoremap UU <Esc>ui
 "inoremap <C-l> <C-o>w
 "noremap <C-h> <C-o>b
 
@@ -79,6 +83,9 @@ nnoremap <C-v> "cP`]
 
 " Close Buffer + keep window 
 command! BW :bn|:bd#
+
+" Remove higlight after search
+nnoremap <leader>n :noh<cr>
 
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
@@ -95,15 +102,29 @@ nnoremap <leader>r :Rg<CR>
 nnoremap <C-h> :UndotreeToggle<CR>
 nnoremap <leader>t :TagbarToggle<CR>
 command! LF FloatermNew lf
-command! Vifm FloatermNew vifm
+command! Vifm FloatermNew --name=vifm --title=vifm --height=0.8 --width=0.9 --autoclose=2 vifm
 command! Lgit FloatermNew lazygit
+command! Gitui FloatermNew --name=gitui --title=gitui --height=0.8 --width=0.9 --autoclose=2 gitui
+command! Reload :source ~/.config/nvim/init.vim 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+noremap <leader>gis :lua require'telescope.builtin'.git_status{}<cr>
+noremap <leader>gic :lua require'telescope.builtin'.git_commits{}<cr>
+noremap <leader>gicb :lua require'telescope.builtin'.git_bcommits{}<cr>
+noremap <leader>gib :lua require'telescope.builtin'.git_branches{}<cr>
+nnoremap <leader>fb :lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ color_devicons = true }))<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fr <cmd>lua require'telescope.builtin'.lsp_references{}<cr>
 nnoremap <leader>fs <cmd>lua require'telescope.builtin'.lsp_document_symbols{}<cr>
+nnoremap <leader>fws <cmd>lua require'telescope.builtin'.lsp_workspace_symbols{}<cr>
+nnoremap <leader>fm <cmd>lua require'telescope.builtin'.marks{}<cr>
+nnoremap <leader>f <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<cr>
+nnoremap <Leader>ff :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ color_devicons = true }))<cr>
+"lua require('telescope').extensions.vimspector.configurations()
+
+nmap <Leader>m  :MinimapToggle<cr>
+nmap <leader>gd :Gdiff<cr>
+
 
 " Markbar
 " only display alphabetic marks a-i and A-I
@@ -123,39 +144,50 @@ let g:markbar_rename_mark_mapping   = '<F2>'
 let g:markbar_reset_mark_mapping    = 'r'
 let g:markbar_delete_mark_mapping   = '<Del>'
 " open/close markbar mappings
-nmap <Leader>m  <Plug>ToggleMarkbar
-nmap <Leader>mo <Plug>OpenMarkbar
-nmap <Leader>mc <Plug>CloseMarkbar
+"nmap <Leader>m  <Plug>ToggleMarkbar
+"nmap <Leader>mo <Plug>OpenMarkbar
+"nmap <Leader>mc <Plug>CloseMarkbar
 
 source $HOME/.config/nvim/golang.vim
+source $HOME/.config/nvim/python.vim
 source $HOME/.config/nvim/php.vim
 
 " autocompletion
-"let g:deoplete#enable_at_startup = 1
 set completeopt=menu,menuone,noselect
 set shortmess+=c
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"autocmd BufEnter * lua require'compe'.on_attach()
-"autocmd BufEnter * lua require'completion'.on_attach()
-"" Or combine with lsp
-"let g:completion_chain_complete_list = {
-      "\ 'default': [
-      "\    {'complete_items': ['lsp', 'tags']},
-      "\  ]}
 
-
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable' || 'disable' || 'always'
-let g:compe.allow_prefix_unmatch = v:false
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.nvim_lsp = v:true
+lua << EOF
+  require'compe'.setup {
+    enabled = true;
+    autocomplete = true;
+    debug = false;
+    min_length = 1;
+    preselect = 'enable';
+    throttle_time = 80;
+    source_timeout = 200;
+    incomplete_delay = 400;
+    max_abbr_width = 100;
+    max_kind_width = 100;
+    max_menu_width = 100;
+    source = {
+      path = true;
+      buffer = true;
+      calc = true;
+      vsnip = true;
+      nvim_lsp = true;
+      nvim_lua = true;
+      spell = true;
+      tags = true;
+      snippets_nvim = true;
+      vim_dadbod_completion = true
+    };
+  }
+EOF
+" Sql Compe
+autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
 "let g:vsnip_snippet_dir=
 let g:vsnip_snippet_dirs = ['~/.config/nvim/snippets']
@@ -230,21 +262,9 @@ nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
-autocmd BufRead,BufNewFile *.flux set filetype=flux
-if executable('flux-lsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'flux lsp',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'flux-lsp']},
-        \ 'whitelist': ['flux'],
-        \ })
-endif
-autocmd FileType flux nmap gd <plug>(lsp-definition)
 
 " foldmethod=syntax
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=indent
-autocmd Filetype python setlocal foldmethod=indent
-"omnifunc=pythoncomplete#Complete
 let g:indentLine_char = '⦙'
 let g:indentLine_enabled = 0
 " :IndentLinesToggle
@@ -292,11 +312,11 @@ let g:airline_symbols.linenr = ''
 " Easy motion
 "
 " <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+"map  <Leader>f <Plug>(easymotion-bd-f)
+"nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
-nmap <Leader>s <Plug>(easymotion-overwin-f2)
+"nmap <Leader>s <Plug>(easymotion-overwin-f2)
 
 " Move to line
 map <Leader>l <Plug>(easymotion-bd-jk)
