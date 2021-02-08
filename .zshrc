@@ -116,7 +116,9 @@ export EDITOR=nvim;
 
 alias ll='ls -G -l'
 alias ta='tmux attach -d -t'
+alias tma='tmux a'
 alias vim='nvim'
+alias vims='nvim -S Session.vim'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
 #complete -F __start_config config 
 alias lzg='lazygit'

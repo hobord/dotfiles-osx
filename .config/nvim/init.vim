@@ -33,8 +33,8 @@ set nospell
 colorscheme gruvbox
 set background=dark
 "let g:solarized_termcolors = 256  " New line!!
-set guifont=Fira\ Code
- 
+set guifont=FuraCode
+highlight Comment cterm=italic gui=italic 
  
 " fix scroll black background issue
 set t_ut=
@@ -71,6 +71,7 @@ inoremap <C-s> <esc>:w<cr>i
 inoremap II <Esc>I
 inoremap AA <Esc>A
 inoremap OO <Esc>O
+inoremap oo <Esc>o
 inoremap CC <Esc>C
 inoremap SS <Esc>S
 inoremap UU <Esc>ui
@@ -171,6 +172,7 @@ lua << EOF
     max_abbr_width = 100;
     max_kind_width = 100;
     max_menu_width = 100;
+    documentation = true;
     source = {
       path = true;
       buffer = true;
@@ -200,7 +202,11 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 let g:vimspector_enable_mappings = 'HUMAN'
 
-
+" Enable auto correct when buff enter.
+augroup ILoveCorrections
+    autocmd!
+    autocmd BufEnter * EnableAutocorrect
+augroup END
 
 " vim-airline
 set laststatus=2
