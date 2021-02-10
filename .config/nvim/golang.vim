@@ -30,7 +30,7 @@ let g:go_auto_sameids = 1
 " Status line types/signatures.
 let g:go_auto_type_info = 1
 
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=syntax omnifunc=v:lua.vim.lsp.omnifunc
 
 " Deugger
 "nnoremap <F5> :GoDebugStart<CR>
@@ -67,7 +67,6 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 
-"lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
 lua << EOF
 require'lspconfig'.gopls.setup{
     on_attach=require'compe'.on_attach

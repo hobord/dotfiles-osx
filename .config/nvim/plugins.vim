@@ -25,11 +25,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/telescope.nvim'
 
-" Snippets
+" Snipets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-
-Plug 'sedm0784/vim-you-autocorrect'
 
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -85,7 +83,6 @@ Plug 'sheerun/vim-polyglot'
 
 "Plug 'morhetz/gruvbox'
 Plug 'gruvbox-community/gruvbox'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 

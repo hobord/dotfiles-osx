@@ -9,6 +9,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set hidden
+set nofoldenable
 
 set number
 "set relativenumber
@@ -126,6 +127,8 @@ nnoremap <Leader>ff :lua require'telescope.builtin'.find_files(require('telescop
 nmap <Leader>m  :MinimapToggle<cr>
 nmap <leader>gd :Gdiff<cr>
 
+"lua require('lspfuzzy').setup {}
+
 
 " Markbar
 " only display alphabetic marks a-i and A-I
@@ -203,10 +206,10 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 let g:vimspector_enable_mappings = 'HUMAN'
 
 " Enable auto correct when buff enter.
-augroup ILoveCorrections
-    autocmd!
-    autocmd BufEnter * EnableAutocorrect
-augroup END
+"augroup ILoveCorrections
+    "autocmd!
+    "autocmd BufEnter * EnableAutocorrect
+"augroup END
 
 " vim-airline
 set laststatus=2
