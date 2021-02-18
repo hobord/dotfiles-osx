@@ -48,7 +48,7 @@ set visualbell
 set fileencoding=utf-8
 set backspace=indent,eol,start
  
-" higlight search
+" highlight search
 :noremap <F4> :set hlsearch! hlsearch?<CR>
 lua require('telescope').setup({defaults = {file_sorter = require('telescope.sorters').get_fzy_sorter}})
  
@@ -79,7 +79,7 @@ inoremap UU <Esc>ui
 "inoremap <C-l> <C-o>w
 "noremap <C-h> <C-o>b
 
-" Copy/Paste ctrl+c / ctrl+v
+" Copy/Paste ctrl+c / ctrl+V
 map <C-c> "cy
 nnoremap <C-v> "cP`]
 
@@ -152,10 +152,6 @@ let g:markbar_delete_mark_mapping   = '<Del>'
 "nmap <Leader>mo <Plug>OpenMarkbar
 "nmap <Leader>mc <Plug>CloseMarkbar
 
-source $HOME/.config/nvim/golang.vim
-source $HOME/.config/nvim/python.vim
-source $HOME/.config/nvim/php.vim
-
 " autocompletion
 set completeopt=menu,menuone,noselect
 set shortmess+=c
@@ -196,11 +192,28 @@ autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 
 "let g:vsnip_snippet_dir=
 let g:vsnip_snippet_dirs = ['~/.config/nvim/snippets']
+lua << EOF
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+EOF
+
+    "vim.api.nvim_set_keymap(
+  "'i', '<CR>',
+  "table.concat{
+    "'pumvisible()',
+    "'? complete_info()["selected"] != "-1"',
+    "'? compe#confirm(lexima#expand("<LT>CR>", "i"))',
+    "': "<C-g>u".lexima#expand("<LT>CR>", "i")',
+    "': v:lua.Util.check_html_char() ? lexima#expand("<LT>CR>", "i")."<ESC>O"',
+    "': lexima#expand("<LT>CR>", "i")'
+  "},
+  "{ silent = true, expr = true }
+")
 
 let g:vsnip_filetypes = {}
 "let g:vsnip_filetypes.javascriptreact = ['javascript']
 "let g:vsnip_filetypes.typescriptreact = ['typescript']
-
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -271,6 +284,10 @@ nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
+
+source $HOME/.config/nvim/golang.vim
+source $HOME/.config/nvim/python.vim
+source $HOME/.config/nvim/php.vim
 
 " foldmethod=syntax
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab

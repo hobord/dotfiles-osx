@@ -27,7 +27,7 @@ Plug 'nvim-lua/telescope.nvim'
 
 " Snipets
 Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+"Plug 'hrsh7th/vim-vsnip-integ'
 
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

@@ -69,10 +69,15 @@ let g:tagbar_type_go = {
 
 lua << EOF
 require'lspconfig'.gopls.setup{
-    on_attach=require'compe'.on_attach
+    capabilities = capabilities,
+    on_attach = on_attach,
+    init_options = {
+      usePlaceholders = true,
+    },
 }
 EOF
 
+    "on_attach=require'compe'.on_attach,
 
 " Dap (DebugAdapterProtocol)
 lua << EOF
