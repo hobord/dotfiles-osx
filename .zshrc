@@ -107,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export PATH=~/nvim-osx64/bin/:$PATH
 export PATH=~/Applications/:$PATH
 export PATH=~/go/bin/:$PATH
 export PATH=~/.cargo/bin:/$PATH
