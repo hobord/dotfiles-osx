@@ -57,6 +57,8 @@ set path+=**
  
 map <C-PageUp> :bp<CR> 
 map <C-PageDown> :bn<CR>
+map <C-S-PageUp> :BufferLineMovePrev<CR> 
+map <C-S-PageDown> :BufferLineMoveNext<CR>
 map <C-S-left> <C-w>h  
 map <C-S-down> <C-w><down>
 map <C-S-up> <C-w><up>
@@ -72,7 +74,7 @@ inoremap <C-s> <esc>:w<cr>i
 inoremap II <Esc>I
 inoremap AA <Esc>A
 inoremap OO <Esc>O
-inoremap oo <Esc>o
+"inoremap oo <Esc>o
 inoremap CC <Esc>C
 inoremap SS <Esc>S
 inoremap UU <Esc>ui
@@ -80,8 +82,8 @@ inoremap UU <Esc>ui
 "noremap <C-h> <C-o>b
 
 " Copy/Paste ctrl+c / ctrl+V
-map <C-c> "cy
-nnoremap <C-v> "cP`]
+"map <C-c> "cy
+"nnoremap <C-v> "cP`]
 
 " Close Buffer + keep window 
 command! BW :bn|:bd#
@@ -95,12 +97,8 @@ nmap ga <Plug>(EasyAlign)
 
 "nnoremap <C-t> :FloatermToggle<CR>
 "let g:floaterm_autoinsert=0
-"nnoremap <M-b> :Vista finder<CR>
-"nnoremap <C-B> :Vista!!<CR>
 "nnoremap <C-f> :Files<CR>
 nnoremap <leader>r :Rg<CR>
-"nnoremap <M-g> :LazyGit<CR>
-"nnoremap <C-b> :TagbarToggle<CR>
 nnoremap <C-h> :UndotreeToggle<CR>
 nnoremap <leader>t :TagbarToggle<CR>
 command! LF FloatermNew lf
@@ -123,6 +121,16 @@ nnoremap <leader>fm <cmd>lua require'telescope.builtin'.marks{}<cr>
 nnoremap <leader>f <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find{}<cr>
 nnoremap <Leader>ff :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ color_devicons = true }))<cr>
 "lua require('telescope').extensions.vimspector.configurations()
+
+nnoremap <leader>lf <cmd>lua require'lspsaga.provider'.lsp_finder()<cr>
+nnoremap <leader>lh <cmd>lua require('lspsaga.hover').render_hover_doc()<cr>
+nnoremap <leader>la <cmd>lua require('lspsaga.codeaction').code_action()<cr>
+nnoremap <leader>lsh <cmd>lua require('lspsaga.signaturehelp').signature_help()<cr>
+nnoremap <leader>lrn <cmd>lua require('lspsaga.rename').rename()<cr>
+"- scroll down hover doc or scroll in definition preview
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+"- scroll up hover doc
+nnoremap <silent> <C-v> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 
 nmap <Leader>m  :MinimapToggle<cr>
 nmap <leader>gd :Gdiff<cr>
@@ -158,34 +166,9 @@ set shortmess+=c
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-lua << EOF
-  require'compe'.setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 1;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = true;
-    source = {
-      path = true;
-      buffer = true;
-      calc = true;
-      vsnip = true;
-      nvim_lsp = true;
-      nvim_lua = true;
-      spell = true;
-      tags = true;
-      snippets_nvim = true;
-      vim_dadbod_completion = true
-    };
-  }
-EOF
+lua require('compe-setup')
+lua require('lspkind').init()
+
 " Sql Compe
 autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni
 autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
@@ -195,25 +178,21 @@ let g:vsnip_snippet_dirs = ['~/.config/nvim/snippets']
 lua << EOF
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 EOF
-
-    "vim.api.nvim_set_keymap(
-  "'i', '<CR>',
-  "table.concat{
-    "'pumvisible()',
-    "'? complete_info()["selected"] != "-1"',
-    "'? compe#confirm(lexima#expand("<LT>CR>", "i"))',
-    "': "<C-g>u".lexima#expand("<LT>CR>", "i")',
-    "': v:lua.Util.check_html_char() ? lexima#expand("<LT>CR>", "i")."<ESC>O"',
-    "': lexima#expand("<LT>CR>", "i")'
-  "},
-  "{ silent = true, expr = true }
-")
 
 let g:vsnip_filetypes = {}
 "let g:vsnip_filetypes.javascriptreact = ['javascript']
 "let g:vsnip_filetypes.typescriptreact = ['typescript']
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -366,34 +345,12 @@ noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 
-" LuaTree plugin
-"let g:lua_tree_icons = {
-"    \ 'default': '',
-"    \ 'symlink': '',
-"    \ 'git': {
-"    \   'unstaged': "✗",
-"    \   'staged': "✓",
-"    \   'unmerged': "",
-"    \   'renamed': "➜",
-"    \   'untracked': "★"
-"    \   },
-"    \ 'folder': {
-"    \   'default': "",
-"    \   'open': "",
-"    \   'symlink': "",
-"    \   }
-"    \ }
-
-"nnoremap <C-n> :LuaTreeToggle<CR>
-"nnoremap <leader>r :LuaTreeRefresh<CR>
-"nnoremap <leader>n :LuaTreeFindFile<CR>
-" LuaTreeOpen and LuaTreeClose are also available if you need them
-
 set termguicolors " this variable must be enabled for colors to be applied properly
-
-" a list of groups can be found at `:help lua_tree_highlight`
-"highlight LuaTreeFolderIcon guibg=blue
 
 " Minimap color
 hi MinimapCurrentLine ctermfg=Green guifg=#50FA7B guibg=#32302f
 let g:minimap_highlight = 'MinimapCurrentLine'
+
+lua require('gitsigns').setup()
+lua require('bufferline-setup')
+lua require('galaxyline-setup')

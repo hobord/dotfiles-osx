@@ -6,14 +6,14 @@ Plug 'fatih/vim-go'
 
 Plug 'mfussenegger/nvim-dap'
 Plug 'neovim/nvim-lspconfig'
-"Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-compe'
 "Plug 'kristijanhusak/completion-tags'
 "Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/lsp-status.nvim'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'onsails/lspkind-nvim'
 "Plug 'tjdevries/nlua.nvim'
 "Plug 'tjdevries/lsp_extensions.nvim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Debuggers
 Plug 'puremourning/vimspector'
@@ -27,7 +27,7 @@ Plug 'nvim-lua/telescope.nvim'
 
 " Snipets
 Plug 'hrsh7th/vim-vsnip'
-"Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -43,7 +43,11 @@ Plug 'kyazdani42/nvim-web-devicons' " for file icons
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'bling/vim-airline'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+"Plug 'bling/vim-arline'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+
 Plug 'tpope/vim-fugitive'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'mbbill/undotree'
@@ -54,15 +58,16 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'szw/vim-maximizer'
 Plug 'junegunn/vim-peekaboo'
 Plug 'Yilin-Yang/vim-markbar'
+Plug 'akinsho/nvim-bufferline.lua'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-git'
 Plug 'motemen/git-vim'
-Plug 'airblade/vim-gitgutter'
-
-Plug 'kdheepak/lazygit.nvim'
+"Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
+"Plug 'kdheepak/lazygit.nvim'
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
