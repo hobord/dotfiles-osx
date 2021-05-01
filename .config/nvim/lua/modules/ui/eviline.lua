@@ -153,7 +153,6 @@ gls.mid[2] = {
 gls.right[0] = {
   WhiteSpace = {
     provider = 'WhiteSpace',
-    highlight = {colors.green,colors.bg,'bold'}
   }
 }
 gls.right[1] = {
