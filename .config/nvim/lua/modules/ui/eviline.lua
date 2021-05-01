@@ -18,6 +18,12 @@ gls.left[1] = {
   },
 }
 gls.left[2] = {
+  BufNo = {
+    provider = 'BufferNumber',
+    highlight = {colors.bg,colors.bg,'bold'},
+  },
+}
+gls.left[3] = {
   ViMode = {
     provider = function()
       -- auto change color according the vim mode
@@ -30,11 +36,11 @@ gls.left[2] = {
                           rm = colors.cyan, ['r?'] = colors.cyan,
                           ['!']  = colors.red,t = colors.red}
       vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()] ..' guibg='..colors.bg)
-      return vim.fn.mode()..':  '
+      return vim.fn.mode()..': '
     end,
   },
 }
-gls.left[4] ={
+gls.left[4] = {
   FileIcon = {
     provider = 'FileIcon',
     condition = condition.buffer_not_empty,
@@ -137,6 +143,19 @@ gls.mid[1] = {
   }
 }
 
+gls.mid[2] = {
+  ShowVistaInfo = {
+    provider = 'VistaPlugin',
+    highlight = {colors.yellow,colors.bg,'bold'}
+  }
+}
+
+gls.right[0] = {
+  WhiteSpace = {
+    provider = 'WhiteSpace',
+    highlight = {colors.green,colors.bg,'bold'}
+  }
+}
 gls.right[1] = {
   FileEncode = {
     provider = 'FileEncode',
@@ -192,7 +211,7 @@ gls.right[6] = {
 gls.right[7] = {
   RainbowBlue = {
     provider = function() return ' ▊' end,
-    highlight = {colors.blue,colors.bg}
+    highlight = {colors.bg,colors.bg}
   },
 }
 

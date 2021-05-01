@@ -46,6 +46,13 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 })
 
 local enhance_attach = function(client,bufnr)
+  require('lsp_signature').on_attach({
+    bind = true,
+    handler_opts = {
+      border = "single"
+    }
+  })
+
   if client.resolved_capabilities.document_formatting then
     format.lsp_before_save()
   end
@@ -54,7 +61,7 @@ end
 
 lspconfig.gopls.setup {
   cmd = {"gopls","--remote=auto"},
-  --on_attach = enhance_attach,
+  on_attach = enhance_attach,
   capabilities = capabilities,
   init_options = {
     usePlaceholders=true,
