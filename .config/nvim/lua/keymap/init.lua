@@ -21,6 +21,8 @@ local plug_map = {
     ["n|tt"]            = map_cr('FloatermNew --name=unitest --autoclose=1 make test'):with_noremap():with_silent(),
     -- Plugin Vista
     ["n|<Leader>v"]     = map_cu('Vista!!'):with_noremap():with_silent(),
+    -- Plugin symbols_outline
+    ["n|<Leader>sp"]     = map_cu('SymbolsOutline'):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
     ["n|<leader>li"]    = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>ll"]    = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
@@ -33,7 +35,6 @@ local plug_map = {
     ["n|H"]             = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
     ["n|ga"]            = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
     --["v|ga"]          = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-    ["n|gi"]            = map_cr('Telescope lsp_implementations'):with_noremap():with_silent(),
     ["n|gd"]            = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
     ["n|Gd"]            = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
     ["n|gs"]            = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
@@ -53,8 +54,10 @@ local plug_map = {
     ["n|<Leader>fa"]    = map_cu('DashboardFindWord'):with_noremap():with_silent(),
     ["n|<Leader>fb"]    = map_cu('Telescope file_browser'):with_noremap():with_silent(),
     ["n|<Leader>ff"]    = map_cu('DashboardFindFile'):with_noremap():with_silent(),
-    ["n|<Leader>fg"]    = map_cu('Telescope git_files'):with_noremap():with_silent(),
-    ["n|<Leader>fw"]    = map_cu('Telescope live_grep'):with_noremap():with_silent(),
+    --["n|<Leader>fgi"]   = map_cu('Telescope git_files'):with_noremap():with_silent(),
+    ["n|<Leader>fg"]    = map_cu('Telescope live_grep'):with_noremap():with_silent(),
+    ["n|<Leader>fw"]    = map_cu('Telescope grep_string'):with_noremap():with_silent(),
+    ["n|<Leader>fm"]    = map_cr('Telescope lsp_implementations'):with_noremap():with_silent(),
     ["n|<Leader>fh"]    = map_cu('DashboardFindHistory'):with_noremap():with_silent(),
     ["n|<Leader>fl"]    = map_cu('Telescope loclist'):with_noremap():with_silent(),
     ["n|<Leader>fc"]    = map_cu('Telescope git_commits'):with_noremap():with_silent(),
@@ -64,7 +67,7 @@ local plug_map = {
     ["n|j"]             = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
     ["n|k"]             = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
     -- Plugin QuickRun
-    ["n|<Leader>r"]     = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
+    --["n|<Leader>r"]     = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
     -- Plugin hrsh7th/vim-eft
     ["n|;"]             = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),
     ["x|;"]             = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),

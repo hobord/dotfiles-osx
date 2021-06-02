@@ -2,20 +2,28 @@ local ui = {}
 local conf = require('modules.ui.config')
 
 ui['glepnir/zephyr-nvim'] = {
-  config = [[vim.cmd('colorscheme zephyr')]]
+  --config = [[vim.cmd('colorscheme zephyr')]]
 }
 ui[ 'tjdevries/gruvbuddy.nvim'] = {
   --config = [[require('colorbuddy').colorscheme('gruvbuddy')]],
   requires='tjdevries/colorbuddy.vim'
 }
-ui['marko-cerovac/material.nvim'] = {
-  --config = [[require('material').set()]]
-}
 ui['sainnhe/sonokai'] = {}
 ui['jsit/toast.vim'] = {}
+ui['savq/melange'] = {}
 ui['gruvbox-community/gruvbox'] = {
  --config = [[vim.cmd('colorscheme gruvbox')]]
 }
+
+ui['Th3Whit3Wolf/onebuddy'] = {
+  config = [[require('colorbuddy').colorscheme('onebuddy')]],
+  requires='tjdevries/colorbuddy.vim'
+}
+--ui['eddyekofo94/gruvbox-flat.nvim'] = {
+  --config = conf.gruvbox_flat
+--}
+
+ui['folke/tokyonight.nvim'] = {}
 
 ui['folke/which-key.nvim'] = {
   config = conf.which_key

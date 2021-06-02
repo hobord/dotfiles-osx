@@ -34,6 +34,7 @@ local def_map = {
     ["n|<Leader>ss"]     = map_cu('SessionSave'):with_noremap(),
     ["n|<Leader>sl"]     = map_cu('SessionLoad'):with_noremap(),
     ["n|<Leader>n"]      = map_cmd(':noh<CR>'),
+    ["n|<Leader>r"]      = map_cmd(':set relativenumber!<CR>'),
     ["n|<Leader>w"]      = map_cu('call EasyMotion#WB(1,2)'):with_noremap(),
     --["n|<Leader>l"]      = map_cu('call EasyMotion#JK(1,2)'):with_noremap(),
     --["n|<Leader>m"]      = map_cmd(':MinimapToggle<CR>'),

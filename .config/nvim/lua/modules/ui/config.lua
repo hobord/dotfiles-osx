@@ -37,7 +37,7 @@ function config.nvim_bufferline()
 end
 
 function config.dashboard()
-  local home = os.getenv('HOME')
+  --local home = os.getenv('HOME')
   vim.g.dashboard_footer_icon = '🐬 '
   --vim.g.dashboard_preview_command = 'cat'
   --vim.g.dashboard_preview_pipeline = 'lolcat -F 0.3'
@@ -92,6 +92,9 @@ function config.nvim_tree()
      untracked = "★",
     },
   }
+  require'nvim-tree.events'.on_nvim_tree_ready(function ()
+    vim.cmd("NvimTreeRefresh")
+  end)
 end
 
 function config._gitsigns()
@@ -99,6 +102,7 @@ function config._gitsigns()
     vim.cmd [[packadd plenary.nvim]]
   end
   require('gitsigns').setup {
+    current_line_blame = true,
     signs = {
       add = {hl = 'GitGutterAdd', text = '▋'},
       change = {hl = 'GitGutterChange',text= '▋'},

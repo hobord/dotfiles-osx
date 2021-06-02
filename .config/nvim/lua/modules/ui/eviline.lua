@@ -1,6 +1,7 @@
 local gl = require('galaxyline')
 local colors = require('galaxyline.theme').default
 local condition = require('galaxyline.condition')
+local buffer = require('galaxyline.provider_buffer')
 local gls = gl.section
 local buffer_not_empty = function()
   if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
@@ -9,7 +10,7 @@ local buffer_not_empty = function()
   return false
 end
 
-gl.short_line_list = {'NvimTree','vista','dbui','packer'}
+gl.short_line_list = {'NvimTree','vista','dbui','packer','symbols_outline'}
 
 gls.left[1] = {
   RainbowRed = {
@@ -19,8 +20,8 @@ gls.left[1] = {
 }
 gls.left[2] = {
   BufNo = {
-    provider = 'BufferNumber',
-    highlight = {colors.bg,colors.bg,'bold'},
+    provider = buffer.get_buffer_number,
+    highlight = {colors.blue,colors.bg,'bold'},
   },
 }
 gls.left[3] = {

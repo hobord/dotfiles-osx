@@ -20,6 +20,26 @@ tools['liuchengxu/vista.vim'] = {
   config = conf.vim_vista
 }
 
+tools['simrat39/symbols-outline.nvim'] = {
+  config = function ()
+    vim.g.symbols_outline = {
+    highlight_hovered_item = true,
+    show_guides = true,
+    auto_preview = true, --false, -- experimental
+    position = 'right',
+    keymaps = {
+        close = "<Esc>",
+        goto_location = "<Cr>",
+        focus_location = "o",
+        hover_symbol = "<C-space>",
+        rename_symbol = "r",
+        code_actions = "a",
+    },
+    lsp_blacklist = {},
+}
+  end
+}
+
 tools['brooth/far.vim'] = {
   cmd = {'Far','Farp'},
   config = function ()
@@ -27,6 +47,11 @@ tools['brooth/far.vim'] = {
   end
 }
 
+tools['sindrets/diffview.nvim'] = {
+  config = function ()
+    require'diffview'.setup{}
+  end
+}
 tools['iamcco/markdown-preview.nvim'] = {
   ft = 'markdown',
   config = function ()
@@ -47,6 +72,11 @@ tools['szw/vim-maximizer'] = {}
 tools['junegunn/vim-peekaboo'] = {}
 tools['Yilin-Yang/vim-markbar'] = {}
 tools['mbbill/undotree'] = {}
---tools['ThePrimeagen/git-worktree.nvim'] = {}
+tools['ThePrimeagen/git-worktree.nvim'] = {
+  requires = {{'nvim-telescope/telescope.nvim'}},
+  config = function ()
+    --require("telescope").load_extension("git_worktree")
+  end
+}
 
 return tools
