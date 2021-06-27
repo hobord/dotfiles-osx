@@ -36,6 +36,7 @@ local plug_map = {
     ["n|ga"]            = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
     --["v|ga"]          = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
     ["n|gd"]            = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
+    ["n|gD"]            = map_cu("lua require('goto-preview').goto_preview_definition()"):with_noremap():with_silent(),
     ["n|Gd"]            = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
     ["n|gs"]            = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
     ["n|gr"]            = map_cr('Lspsaga rename'):with_noremap():with_silent(),
@@ -63,6 +64,7 @@ local plug_map = {
     ["n|<Leader>fc"]    = map_cu('Telescope git_commits'):with_noremap():with_silent(),
     ["n|<Leader>ft"]    = map_cu('Telescope help_tags'):with_noremap():with_silent(),
     ["n|<Leader>fr"]    = map_cu("lua require'telescope.builtin'.lsp_references{}"):with_noremap():with_silent(),
+    ["n|<Leader>cb"]    = map_cu("lua require'dap'.toggle_breakpoint()"):with_noremap():with_nowait():with_silent(),
     -- Plugin acceleratedjk
     ["n|j"]             = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
     ["n|k"]             = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),

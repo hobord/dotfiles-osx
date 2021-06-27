@@ -1,6 +1,8 @@
 local editor = {}
 local conf = require('modules.editor.config')
 
+editor['svermeulen/vimpeccable'] = {}
+
 editor['Raimondi/delimitMate'] = {
   event = 'InsertEnter',
   config = conf.delimimate,

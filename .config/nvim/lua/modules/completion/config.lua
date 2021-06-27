@@ -107,6 +107,7 @@ function config.telescope()
   require'telescope'.load_extension('dotfiles')
   --require'telescope'.load_extension('todos')
   require'telescope'.load_extension('gosource')
+  require('telescope').load_extension('dap')
 end
 
 function config.vim_sonictemplate()

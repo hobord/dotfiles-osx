@@ -67,7 +67,7 @@ local function load_options()
     jumpoptions    = "stack";
     showmode       = false;
     shortmess      = "aoOTIcF";
-    scrolloff      = 2;
+    scrolloff      = 999;
     sidescrolloff  = 5;
     foldlevelstart = 99;
     ruler          = false;

@@ -7,6 +7,15 @@ tools['kristijanhusak/vim-dadbod-ui'] = {
   requires = {{'tpope/vim-dadbod',opt = true}}
 }
 
+tools['mfussenegger/nvim-dap'] = {
+  config = conf.dap
+}
+
+tools['rcarriga/nvim-dap-ui'] = {
+  requires = {{'mfussenegger/nvim-dap'}},
+  config = conf.dapui
+}
+
 tools['editorconfig/editorconfig-vim'] = {
   ft = { 'go','typescript','javascript','vim','rust','zig','c','cpp' }
 }
@@ -23,20 +32,20 @@ tools['liuchengxu/vista.vim'] = {
 tools['simrat39/symbols-outline.nvim'] = {
   config = function ()
     vim.g.symbols_outline = {
-    highlight_hovered_item = true,
-    show_guides = true,
-    auto_preview = true, --false, -- experimental
-    position = 'right',
-    keymaps = {
-        close = "<Esc>",
-        goto_location = "<Cr>",
-        focus_location = "o",
-        hover_symbol = "<C-space>",
-        rename_symbol = "r",
-        code_actions = "a",
-    },
-    lsp_blacklist = {},
-}
+      highlight_hovered_item = true,
+      show_guides = true,
+      auto_preview = true, --false, -- experimental
+      position = 'right',
+      keymaps = {
+          close = "<Esc>",
+          goto_location = "<Cr>",
+          focus_location = "o",
+          hover_symbol = "<C-space>",
+          rename_symbol = "r",
+          code_actions = "a",
+      },
+      lsp_blacklist = {},
+  }
   end
 }
 

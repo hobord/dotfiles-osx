@@ -3,58 +3,30 @@ local stdin = uv.new_pipe(true)
 local stdout = uv.new_pipe(false)
 local stderr = uv.new_pipe(false)
 
-local check_same = function(tbl1,tbl2)
-  if #tbl1 ~= #tbl2 then return end
-  for k,v in ipairs(tbl1) do
-    if v ~= tbl2[k] then
-      return true
-    end
-  end
-  return false
+function go_organize_imports_sync(timeoutms)
+    --local context = {source = {organizeImports = true}}
+    --vim.validate {context = {context, 't', true}}
+
+    --local params = vim.lsp.util.make_range_params()
+    --params.context = context
+
+    --local method = 'textDocument/codeAction'
+    --local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
+
+    ---- imports is indexed with clientid so we cannot rely on index always is 1
+    --for _, v in next, resp, nil do
+      --local result = v.result
+      --if result and result[1] then
+        --local edit = result[1].edit
+        --vim.lsp.util.apply_workspace_edit(edit)
+      --end
+    --end
+    -- Always do formating
+    vim.lsp.buf.formatting()
 end
 
 local golines_format = function()
-  if api.nvim_buf_get_option(0,'filetype') ~= 'go' then return end
-  local old_lines = api.nvim_buf_get_lines(0,0,-1,true)
-  local file = api.nvim_buf_get_name(0)
-
-  local handle, pid = uv.spawn("golines", {
-    stdio = {stdin, stdout, stderr},
-    args = {"--max-len=80",file}
-  }, function(code, signal) -- on exit
-  end)
-
-  uv.read_start(stdout, vim.schedule_wrap(function(err, data)
-    assert(not err, err)
-    if data then
-      local content = {}
-      local index = 1
-      for s in data:gmatch("[^\n]+") do
-        table.insert(content,s)
-        if s == '}' or s == ')' or s:match('^import') or index == 1 then
-          table.insert(content,'')
-        end
-        index = index + 1
-      end
-      if not check_same(old_lines,content) then
-        api.nvim_buf_set_lines(0,0,#old_lines,false,content)
-        api.nvim_command('write')
-      end
-    end
-  end))
-
-
-  uv.read_start(stderr, function(err, data)
-    assert(not err, err)
-    if data then
-      print("stderr chunk", stderr, data)
-    end
-  end)
-
-  uv.shutdown(stdin, function()
-    uv.close(handle, function()
-    end)
-  end)
+  go_organize_imports_sync(1000)
 end
 
 return { golines_format = golines_format }
