@@ -18,11 +18,11 @@ local plug_map = {
     ["n|<leader>pc"]    = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait();
     -- Plugin Floaterm
     ["n|<Leader>t"]     = map_cu('FloatermToggle'):with_noremap():with_silent(),
-    ["n|tt"]            = map_cr('FloatermNew --name=unitest --autoclose=1 make test'):with_noremap():with_silent(),
+    ["n|tt"]            = map_cr('FloatermNew --width=0.8 --height=0.8 --name=unitest --autoclose=1 make test'):with_noremap():with_silent(),
     -- Plugin Vista
     ["n|<Leader>v"]     = map_cu('Vista!!'):with_noremap():with_silent(),
     -- Plugin symbols_outline
-    ["n|<Leader>sp"]     = map_cu('SymbolsOutline'):with_noremap():with_silent(),
+    ["n|<Leader>sp"]    = map_cu('SymbolsOutline'):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
     ["n|<leader>li"]    = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>ll"]    = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
@@ -54,7 +54,8 @@ local plug_map = {
     ["n|<Leader>bb"]    = map_cu('Telescope buffers'):with_noremap():with_silent(),
     ["n|<Leader>fa"]    = map_cu('DashboardFindWord'):with_noremap():with_silent(),
     ["n|<Leader>fb"]    = map_cu('Telescope file_browser'):with_noremap():with_silent(),
-    ["n|<Leader>ff"]    = map_cu('DashboardFindFile'):with_noremap():with_silent(),
+    ["n|<Leader>fB"]    = map_cu("lua require'telescope.builtin'.file_browser({depth=10,layout_config={preview_width=0.4}})"):with_noremap():with_silent(),
+    ["n|<Leader>ff"]    = map_cu('Telescope find_files find_command=rg,--hidden,--files'):with_noremap():with_silent(),
     --["n|<Leader>fgi"]   = map_cu('Telescope git_files'):with_noremap():with_silent(),
     ["n|<Leader>fg"]    = map_cu('Telescope live_grep'):with_noremap():with_silent(),
     ["n|<Leader>fw"]    = map_cu('Telescope grep_string'):with_noremap():with_silent(),

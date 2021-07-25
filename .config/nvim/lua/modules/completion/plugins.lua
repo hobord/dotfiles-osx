@@ -56,7 +56,8 @@ completion['hrsh7th/vim-vsnip'] = {
 }
 
 completion['nvim-telescope/telescope.nvim'] = {
-  cmd = 'Telescope',
+  --cmd = 'Telescope',
+  opt = false,
   config = conf.telescope,
   requires = {
     {'nvim-telescope/telescope-dap.nvim'},

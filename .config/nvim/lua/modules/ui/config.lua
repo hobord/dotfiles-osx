@@ -76,11 +76,11 @@ function config.nvim_tree()
   vim.g.nvim_tree_indent_markers = 1
   vim.g.nvim_tree_auto_open = 1
   vim.g.nvim_tree_lsp_diagnostics = 1
-  vim.g.nvim_tree_bindings = {
-    ["l"] = ":lua require'nvim-tree'.on_keypress('edit')<CR>",
-    ["s"] = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
-    ["i"] = ":lua require'nvim-tree'.on_keypress('split')<CR>",
-  }
+  --vim.g.nvim_tree_bindings = {
+    --["l"] = ":lua require'nvim-tree'.on_keypress('edit')<CR>",
+    --["s"] = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
+    --["i"] = ":lua require'nvim-tree'.on_keypress('split')<CR>",
+  --}
   vim.g.nvim_tree_icons = {
     default =  '',
     symlink =  '',

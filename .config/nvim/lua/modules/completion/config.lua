@@ -67,7 +67,7 @@ function config.nvim_compe()
       vsnip = true;
       nvim_lsp = true;
       nvim_lua = true;
-      spell = true;
+      spell = false;
       tags = true;
       snippets_nvim = true;
       vim_dadbod_completion = true
@@ -88,13 +88,27 @@ function config.telescope()
   require('telescope').setup {
     defaults = {
       prompt_prefix = '🔭 ',
-      prompt_position = 'top',
+      layout_strategy = "horizontal",
+      layout_config = {
+        prompt_position = "top",
+        preview_width = 0.7,
+        horizontal = {
+          mirror = false,
+        }
+      },
       selection_caret = " ",
       sorting_strategy = 'ascending',
-      results_width = 0.6,
       file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
       grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
       qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+    },
+    pickers = {
+      buffers = {
+        sort_lastused = true,
+        layout_config = {
+          preview_width = 0.4,
+        }
+      },
     },
     extensions = {
         fzy_native = {
@@ -108,6 +122,7 @@ function config.telescope()
   --require'telescope'.load_extension('todos')
   require'telescope'.load_extension('gosource')
   require('telescope').load_extension('dap')
+  --require('telescope').load_extension('builtin')
 end
 
 function config.vim_sonictemplate()
