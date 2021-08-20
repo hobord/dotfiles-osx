@@ -77,7 +77,7 @@ lspconfig.gopls.setup {
   }
 }
 
-lspconfig.pyls.setup{}
+--lspconfig.pyls.setup{}
 
 lspconfig.sumneko_lua.setup {
   cmd = {

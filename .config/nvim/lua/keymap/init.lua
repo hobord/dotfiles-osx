@@ -13,16 +13,17 @@ local plug_map = {
     --["n|mf"]          = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap();
     ["n|gb"]            = map_cr("BufferLinePick"):with_noremap():with_silent(),
     -- Packer
-    ["n|<leader>pu"]    = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait();
-    ["n|<leader>pi"]    = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait();
-    ["n|<leader>pc"]    = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait();
+    ["n|<leader>pu"]    = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait(),
+    ["n|<leader>pi"]    = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
+    ["n|<leader>pc"]    = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
     -- Plugin Floaterm
-    ["n|<Leader>t"]     = map_cu('FloatermToggle'):with_noremap():with_silent(),
+    ["n|<Leader>t"]     = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
+    --["n|<Leader>t"]     = map_cu('FloatermToggle'):with_noremap():with_silent(),
     ["n|tt"]            = map_cr('FloatermNew --width=0.8 --height=0.8 --name=unitest --autoclose=1 make test'):with_noremap():with_silent(),
     -- Plugin Vista
     ["n|<Leader>v"]     = map_cu('Vista!!'):with_noremap():with_silent(),
     -- Plugin symbols_outline
-    ["n|<Leader>sp"]    = map_cu('SymbolsOutline'):with_noremap():with_silent(),
+    ["n|gn"]            = map_cu('SymbolsOutline'):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
     ["n|<leader>li"]    = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>ll"]    = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
@@ -35,9 +36,9 @@ local plug_map = {
     ["n|H"]             = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
     ["n|ga"]            = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
     --["v|ga"]          = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-    ["n|gd"]            = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
+    ["n|<C-h>"]         = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
     ["n|gD"]            = map_cu("lua require('goto-preview').goto_preview_definition()"):with_noremap():with_silent(),
-    ["n|Gd"]            = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
+    ["n|gd"]            = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
     ["n|gs"]            = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
     ["n|gr"]            = map_cr('Lspsaga rename'):with_noremap():with_silent(),
     ["n|gu"]            = map_cr('Telescope lsp_references'):with_noremap():with_silent(),
@@ -46,26 +47,32 @@ local plug_map = {
     ["n|<Leader>cw"]    = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>ce"]    = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
     ["n|<Leader>ct"]    = map_args("Template"),
-    ["n|<Leader>tf"]    = map_cu('DashboardNewFile'):with_noremap():with_silent(),
+    --["n|<Leader>tf"]    = map_cu('DashboardNewFile'):with_noremap():with_silent(),
+    ["n|<C-j>"]         = map_cu('Telescope jumplist'):with_noremap():with_silent(),
     -- Plugin nvim-tree
     ["n|<Leader>e"]     = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
     ["n|<Leader>F"]     = map_cr('NvimTreeFindFile'):with_noremap():with_silent(),
     -- Plugin Telescope
     ["n|<Leader>bb"]    = map_cu('Telescope buffers'):with_noremap():with_silent(),
-    ["n|<Leader>fa"]    = map_cu('DashboardFindWord'):with_noremap():with_silent(),
-    ["n|<Leader>fb"]    = map_cu('Telescope file_browser'):with_noremap():with_silent(),
-    ["n|<Leader>fB"]    = map_cu("lua require'telescope.builtin'.file_browser({depth=10,layout_config={preview_width=0.4}})"):with_noremap():with_silent(),
+    --["n|<Leader>fa"]    = map_cu('DashboardFindWord'):with_noremap():with_silent(),
+    --["n|<Leader>fb"]    = map_cu('Telescope file_browser'):with_noremap():with_silent(),
+    ["n|<Leader>fb"]    = map_cu("lua require'telescope.builtin'.file_browser({depth=10,layout_config={preview_width=0.4}})"):with_noremap():with_silent(),
     ["n|<Leader>ff"]    = map_cu('Telescope find_files find_command=rg,--hidden,--files'):with_noremap():with_silent(),
     --["n|<Leader>fgi"]   = map_cu('Telescope git_files'):with_noremap():with_silent(),
     ["n|<Leader>fg"]    = map_cu('Telescope live_grep'):with_noremap():with_silent(),
     ["n|<Leader>fw"]    = map_cu('Telescope grep_string'):with_noremap():with_silent(),
-    ["n|<Leader>fm"]    = map_cr('Telescope lsp_implementations'):with_noremap():with_silent(),
-    ["n|<Leader>fh"]    = map_cu('DashboardFindHistory'):with_noremap():with_silent(),
+    ["n|<Leader>fi"]    = map_cr('Telescope lsp_implementations'):with_noremap():with_silent(),
+    --["n|<Leader>fh"]    = map_cu('DashboardFindHistory'):with_noremap():with_silent(),
     ["n|<Leader>fl"]    = map_cu('Telescope loclist'):with_noremap():with_silent(),
     ["n|<Leader>fc"]    = map_cu('Telescope git_commits'):with_noremap():with_silent(),
     ["n|<Leader>ft"]    = map_cu('Telescope help_tags'):with_noremap():with_silent(),
     ["n|<Leader>fr"]    = map_cu("lua require'telescope.builtin'.lsp_references{}"):with_noremap():with_silent(),
-    ["n|<Leader>cb"]    = map_cu("lua require'dap'.toggle_breakpoint()"):with_noremap():with_nowait():with_silent(),
+    ["n|<C-t>b"]    = map_cu("lua require'dap'.toggle_breakpoint()"):with_noremap():with_nowait():with_silent(),
+    ["n|<C-t>d"]    = map_cu("lua require'dapui'.toggle()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader>ds"]    = map_cu("lua require'dap'.continue()"):with_noremap():with_nowait():with_silent(),
+    ["n|<C-c>"]    = map_cu("lua require'dap'.step_over()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader>i"]    = map_cu("lua require'dap'.step_into()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader>o"]    = map_cu("lua require'dap'.step_out()"):with_noremap():with_nowait():with_silent(),
     -- Plugin acceleratedjk
     ["n|j"]             = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
     ["n|k"]             = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),

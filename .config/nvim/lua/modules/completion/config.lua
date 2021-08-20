@@ -91,6 +91,8 @@ function config.telescope()
       layout_strategy = "horizontal",
       layout_config = {
         prompt_position = "top",
+        width = 0.9,
+        height = 0.9,
         preview_width = 0.7,
         horizontal = {
           mirror = false,
@@ -106,7 +108,7 @@ function config.telescope()
       buffers = {
         sort_lastused = true,
         layout_config = {
-          preview_width = 0.4,
+          --preview_width = 0.4,
         }
       },
     },

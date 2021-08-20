@@ -7,6 +7,9 @@ tools['kristijanhusak/vim-dadbod-ui'] = {
   requires = {{'tpope/vim-dadbod',opt = true}}
 }
 
+
+--tools['vim-delve'] = {}
+
 tools['mfussenegger/nvim-dap'] = {
   config = conf.dap
 }
@@ -76,6 +79,17 @@ tools['motemen/git-vim'] = {}
 tools['tpope/vim-fugitive'] = {}
 
 tools['voldikss/vim-floaterm'] = {}
+tools['numtostr/FTerm.nvim'] = {
+  config = function () 
+	  require("FTerm").setup({
+	    dimensions = {
+	      height = 0.9,
+	      width = 0.9,
+	      border = 'single'
+	    }
+	  })
+  end
+}
 
 tools['szw/vim-maximizer'] = {}
 tools['junegunn/vim-peekaboo'] = {}
