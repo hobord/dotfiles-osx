@@ -23,14 +23,14 @@ local plug_map = {
     -- Plugin Vista
     ["n|<Leader>v"]     = map_cu('Vista!!'):with_noremap():with_silent(),
     -- Plugin symbols_outline
-    ["n|gn"]            = map_cu('SymbolsOutline'):with_noremap():with_silent(),
+    ["n|<C-f>"]         = map_cu('SymbolsOutline'):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
-    ["n|<leader>li"]    = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
-    ["n|<leader>ll"]    = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
-    ["n|<leader>lr"]    = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
+    --["n|<leader>li"]    = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
+    --["n|<leader>ll"]    = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
+    --["n|<leader>lr"]    = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>xx"]    = map_cr("LspTroubleToggle"):with_noremap():with_silent():with_nowait(),
-    ["n|<C-f>"]         = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>"):with_silent():with_noremap():with_nowait(),
-    ["n|<C-b>"]         = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>"):with_silent():with_noremap():with_nowait(),
+    --["n|<C-f>"]         = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>"):with_silent():with_noremap():with_nowait(),
+    --["n|<C-b>"]         = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>"):with_silent():with_noremap():with_nowait(),
     ["n|[e"]            = map_cr('Lspsaga diagnostic_jump_next'):with_noremap():with_silent(),
     ["n|]e"]            = map_cr('Lspsaga diagnostic_jump_prev'):with_noremap():with_silent(),
     ["n|H"]             = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
@@ -49,7 +49,7 @@ local plug_map = {
     ["n|<Leader>ce"]    = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
     ["n|<Leader>ct"]    = map_args("Template"),
     --["n|<Leader>tf"]    = map_cu('DashboardNewFile'):with_noremap():with_silent(),
-    ["n|<C-j>"]         = map_cu('Telescope jumplist'):with_noremap():with_silent(),
+    ["n|<Leader>j"]     = map_cu('Telescope jumplist'):with_noremap():with_silent(),
     -- Plugin nvim-tree
     ["n|<Leader>e"]     = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
     ["n|<Leader>F"]     = map_cr('NvimTreeFindFile'):with_noremap():with_silent(),

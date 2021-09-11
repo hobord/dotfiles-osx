@@ -13,7 +13,7 @@ function config.nvim_bufferline()
     options = {
       modified_icon = '✥',
       buffer_close_icon = '',
-      mappings = true,
+      --mappings = true,
       numbers = "ordinal",
       left_trunc_marker = '',
       right_trunc_marker = '',
@@ -22,6 +22,16 @@ function config.nvim_bufferline()
       diagnostics_indicator = function(count, level)
         return "("..count..")"
       end,
+      offsets = {
+        {
+          filetype = "NvimTree",
+          text = function()
+            return vim.fn.getcwd()
+          end,
+          highlight = "Directory",
+          text_align = "left"
+        }
+      },
       show_buffer_close_icons = true,
       show_close_icon = true,
       show_tab_indicators = true,

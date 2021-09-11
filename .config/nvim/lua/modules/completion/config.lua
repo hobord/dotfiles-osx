@@ -5,12 +5,27 @@ function config.nvim_lsp()
 end
 
 function config.lsp_signature()
-  require('lsp_signature').on_attach()
+  require('lsp_signature').on_attach({
+    bind = true,
+    handler_opts = {
+      border = "single",
+      floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+      fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
+      hint_enable = true, -- virtual hint enable
+      hint_prefix = " ",  -- Panda for parameter
+      hint_scheme = "String",
+      use_lspsaga = true,  -- set to true if you want to use lspsaga popup
+      hi_parameter = "Search", -- how your parameter will be highlight
+      max_width = 120,
+      toggle_key = '<M-x>', -- nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+    },
+
+  })
 end
 
 function config.lsp_trouble()
   require('trouble').setup {
-    height = 10, -- height of the trouble list
+    height = 15, -- height of the trouble list
     icons = true, -- use dev-icons for filenames
     mode = "workspace", -- "workspace" or "document"
     fold_open = "", -- icon used for open folds
@@ -30,7 +45,7 @@ function config.lsp_trouble()
     },
     indent_lines = true, -- add an indent guide below the fold icons
     auto_open = false, -- automatically open the list when you have diagnostics
-    auto_close = false, -- automatically close the list when you have no diagnostics
+    auto_close = true, -- automatically close the list when you have no diagnostics
     auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back
     signs = {
         -- icons / text used for a diagnostic
@@ -108,7 +123,7 @@ function config.telescope()
       buffers = {
         sort_lastused = true,
         layout_config = {
-          --preview_width = 0.4,
+          --preview_width = -1.4,
         }
       },
     },

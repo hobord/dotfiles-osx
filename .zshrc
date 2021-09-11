@@ -175,3 +175,4 @@ export LC_CTYPE=en_US.UTF-8
 # ssh aliases
 [[ ! -f ~/.aliases_ssh.zsh ]] || source ~/.aliases_ssh.zsh
 
+export PATH="/usr/local/opt/curl/bin:$PATH"

@@ -51,7 +51,14 @@ editor['tpope/vim-surround'] = {}
 editor['junegunn/vim-easy-align'] = {}
 editor['mg979/vim-visual-multi'] = {}
 
-editor['Lokaltog/vim-easymotion'] = {}
+--editor['Lokaltog/vim-easymotion'] = {}
+editor['phaazon/hop.nvim'] = {
+  as = 'hop',
+  config = function()
+    -- you can configure Hop the way you like here; see :h hop-config
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+  end
+}
 editor['scrooloose/nerdcommenter'] = {}
 
 return editor
