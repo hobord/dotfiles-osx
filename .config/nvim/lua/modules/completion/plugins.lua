@@ -64,8 +64,17 @@ completion['nvim-telescope/telescope.nvim'] = {
     {'nvim-lua/popup.nvim', opt = true},
     {'nvim-lua/plenary.nvim', opt = true},
     {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
+    {'nvim-telescope/telescope-frecency.nvim'},
+    {'tami5/sqlite.lua'}
   }
 }
+
+--completion['nvim-telescope/telescope-frecency.nvim'] = {
+  --config = function()
+    --require"telescope".load_extension("frecency")
+  --end,
+  --requires = {"tami5/sqlite.lua"}
+--}
 
 completion['glepnir/smartinput.nvim'] = {
   ft = 'go',

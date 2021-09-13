@@ -104,7 +104,7 @@ local function load_options()
     linebreak      = true;
     number         = true;
     relativenumber = true;
-    colorcolumn    = "80";
+    colorcolumn    = "0";
     foldenable     = true;
     signcolumn     = "yes";
     conceallevel   = 2;

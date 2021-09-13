@@ -37,6 +37,7 @@ local def_map = {
     ["n|<Leader>r"]      = map_cmd(':set relativenumber!<CR>'),
     ["n|<Leader>w"]      = map_cu('HopWord'):with_noremap(),
     ["n|<C-j>"]          = map_cu('HopChar1'):with_noremap(),
+    ["n|<Leader>l"]      = map_cu('HopLine'):with_noremap(),
     --["n|<Leader>w"]      = map_cu('call EasyMotion#WB(1,2)'):with_noremap(),
     --["n|<Leader>l"]      = map_cu('call EasyMotion#JK(1,2)'):with_noremap(),
     --["n|<Leader>m"]      = map_cmd(':MinimapToggle<CR>'),

@@ -9,8 +9,6 @@ local plug_map = {
     -- EasyAlign
     ["x|ga"]            = map_cmd('<Plug>(EasyAlign)');
     ["i|<Tab>"]         = map_cmd([[compe#confirm({'keys': "\<Tab>", 'mode': 'n', 'select': v:true})]]):with_expr():with_noremap():with_silent(),
-    -- person keymap
-    --["n|mf"]          = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap();
     ["n|gb"]            = map_cr("BufferLinePick"):with_noremap():with_silent(),
     -- Packer
     ["n|<leader>pu"]    = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait(),
@@ -57,7 +55,9 @@ local plug_map = {
     ["n|<Leader>bb"]    = map_cu('Telescope buffers'):with_noremap():with_silent(),
     --["n|<Leader>fa"]    = map_cu('DashboardFindWord'):with_noremap():with_silent(),
     --["n|<Leader>fb"]    = map_cu('Telescope file_browser'):with_noremap():with_silent(),
-    ["n|<Leader>fb"]    = map_cu("lua require'telescope.builtin'.file_browser({depth=10,layout_config={preview_width=0.4}})"):with_noremap():with_silent(),
+    ["n|<Leader><Leader>z"] = map_cu("ZenMode"):with_noremap():with_silent(),
+    ["n|<Leader><Leader>n"] = map_cu("lua require('telescope').extensions.frecency.frecency()"):with_noremap():with_silent(),
+    ["n|<Leader>fb"]    = map_cu("lua require'telescope.builtin'.file_browser()"):with_noremap():with_silent(),
     ["n|<Leader>ff"]    = map_cu('Telescope find_files find_command=rg,--hidden,--files'):with_noremap():with_silent(),
     --["n|<Leader>fgi"]   = map_cu('Telescope git_files'):with_noremap():with_silent(),
     ["n|<Leader>fg"]    = map_cu('Telescope live_grep'):with_noremap():with_silent(),
@@ -68,12 +68,12 @@ local plug_map = {
     ["n|<Leader>fc"]    = map_cu('Telescope git_commits'):with_noremap():with_silent(),
     ["n|<Leader>ft"]    = map_cu('Telescope help_tags'):with_noremap():with_silent(),
     ["n|<Leader>fr"]    = map_cu("lua require'telescope.builtin'.lsp_references{}"):with_noremap():with_silent(),
-    ["n|<C-t>b"]    = map_cu("lua require'dap'.toggle_breakpoint()"):with_noremap():with_nowait():with_silent(),
-    ["n|<C-t>d"]    = map_cu("lua require'dapui'.toggle()"):with_noremap():with_nowait():with_silent(),
+    ["n|<C-t>b"]        = map_cu("lua require'dap'.toggle_breakpoint()"):with_noremap():with_nowait():with_silent(),
+    ["n|<C-t>d"]        = map_cu("lua require'dapui'.toggle()"):with_noremap():with_nowait():with_silent(),
     ["n|<Leader>ds"]    = map_cu("lua require'dap'.continue()"):with_noremap():with_nowait():with_silent(),
-    ["n|<C-c>"]    = map_cu("lua require'dap'.step_over()"):with_noremap():with_nowait():with_silent(),
-    ["n|<Leader>i"]    = map_cu("lua require'dap'.step_into()"):with_noremap():with_nowait():with_silent(),
-    ["n|<Leader>o"]    = map_cu("lua require'dap'.step_out()"):with_noremap():with_nowait():with_silent(),
+    ["n|<C-c>"]         = map_cu("lua require'dap'.step_over()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader>i"]     = map_cu("lua require'dap'.step_into()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader>o"]     = map_cu("lua require'dap'.step_out()"):with_noremap():with_nowait():with_silent(),
     -- Plugin acceleratedjk
     ["n|j"]             = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
     ["n|k"]             = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),

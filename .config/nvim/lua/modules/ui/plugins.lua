@@ -52,10 +52,10 @@ ui['glepnir/indent-guides.nvim'] = {
   event = 'BufRead',
 }
 
-ui['akinsho/nvim-bufferline.lua'] = {
-  config = conf.nvim_bufferline,
-  requires = {'kyazdani42/nvim-web-devicons'}
-}
+--ui['akinsho/nvim-bufferline.lua'] = {
+  --config = conf.nvim_bufferline,
+  --requires = {'kyazdani42/nvim-web-devicons'}
+--}
 
 ui['kyazdani42/nvim-tree.lua'] = {
   cmd = {'NvimTreeToggle','NvimTreeOpen'},
@@ -69,4 +69,27 @@ ui['lewis6991/gitsigns.nvim'] = {
   requires = {'nvim-lua/plenary.nvim',opt=true}
 }
 
+ui['folke/zen-mode.nvim'] = {
+  config = function()
+    require("zen-mode").setup {
+      window = {
+        options = {
+          list = false,
+          wrap = false,
+        }
+      },
+      plugins = {
+        options = {
+          enabled = true,
+          list = false,
+          wrap = false,
+          ruler = false, -- disables the ruler text in the cmd line area
+          showcmd = false, -- disables the command in the last line of the screen
+          colorcolumn = 0,
+        },
+        gitsigns = { enabled = true },
+      }
+    }
+  end
+}
 return ui
