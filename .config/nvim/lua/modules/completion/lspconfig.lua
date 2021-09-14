@@ -118,6 +118,14 @@ lspconfig.gopls.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
   init_options = {
+    analyses = {
+      unusedparams = true,
+      fieldalignment = true,
+      nilness = true,
+      shadow = true,
+      unusedwrite = true,
+    },
+    staticcheck = true,
     usePlaceholders=true,
     completeUnimported=true,
   }

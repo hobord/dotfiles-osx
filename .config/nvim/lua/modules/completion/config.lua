@@ -148,6 +148,24 @@ function config.telescope()
           preview_width = 0.6
         },
       },
+      lsp_references = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          vertical = {
+            mirror = true,
+          }
+        },
+      },
+      lsp_implementations = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          vertical = {
+            mirror = true,
+          }
+        },
+      },
       frecency = {
         layout_config = {
           preview_width = 0.5
