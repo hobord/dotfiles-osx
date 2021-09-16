@@ -24,6 +24,9 @@ completion['hrsh7th/nvim-compe'] = {
 completion['onsails/lspkind-nvim'] = {}
 
 completion['rmagatti/goto-preview'] = {
+  requires = {
+    'nvim-lua/plenary.nvim',
+  },
   config = function()
     require('goto-preview').setup{
       width = 120;
@@ -61,20 +64,13 @@ completion['nvim-telescope/telescope.nvim'] = {
   config = conf.telescope,
   requires = {
     {'nvim-telescope/telescope-dap.nvim'},
-    {'nvim-lua/popup.nvim', opt = true},
-    {'nvim-lua/plenary.nvim', opt = true},
-    {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
+    {'nvim-lua/popup.nvim'},
+    {'nvim-lua/plenary.nvim'},
+    {'nvim-telescope/telescope-fzy-native.nvim'},
     {'nvim-telescope/telescope-frecency.nvim'},
     {'tami5/sqlite.lua'}
   }
 }
-
---completion['nvim-telescope/telescope-frecency.nvim'] = {
-  --config = function()
-    --require"telescope".load_extension("frecency")
-  --end,
-  --requires = {"tami5/sqlite.lua"}
---}
 
 completion['glepnir/smartinput.nvim'] = {
   ft = 'go',
