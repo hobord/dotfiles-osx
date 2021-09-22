@@ -19,6 +19,10 @@ tools['rcarriga/nvim-dap-ui'] = {
   config = conf.dapui
 }
 
+tools['vim-test/vim-test'] = {
+
+}
+
 tools['editorconfig/editorconfig-vim'] = {
   ft = { 'go','typescript','javascript','vim','rust','zig','c','cpp' }
 }

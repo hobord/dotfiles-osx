@@ -68,10 +68,10 @@ local plug_map = {
     ["n|<Leader>fc"]    = map_cu('Telescope git_commits'):with_noremap():with_silent(),
     ["n|<Leader>ft"]    = map_cu('Telescope help_tags'):with_noremap():with_silent(),
     ["n|<Leader>fr"]    = map_cu("lua require'telescope.builtin'.lsp_references{}"):with_noremap():with_silent(),
-    ["n|<Leader>bb"]        = map_cu("lua require'dap'.toggle_breakpoint()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader><Leader>b"]        = map_cu("lua require'dap'.toggle_breakpoint()"):with_noremap():with_nowait():with_silent(),
     ["n|<Leader><Leader>d"]        = map_cu("lua require'dapui'.toggle()"):with_noremap():with_nowait():with_silent(),
-    ["n|<Leader>ds"]    = map_cu("lua require'dap'.continue()"):with_noremap():with_nowait():with_silent(),
-    ["n|<C-c>"]         = map_cu("lua require'dap'.step_over()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader><Leader>s"]    = map_cu("lua require'dap'.continue()"):with_noremap():with_nowait():with_silent(),
+    ["n|<Leader>n"]         = map_cu("lua require'dap'.step_over()"):with_noremap():with_nowait():with_silent(),
     ["n|<Leader>i"]     = map_cu("lua require'dap'.step_into()"):with_noremap():with_nowait():with_silent(),
     ["n|<Leader>o"]     = map_cu("lua require'dap'.step_out()"):with_noremap():with_nowait():with_silent(),
     -- Plugin acceleratedjk

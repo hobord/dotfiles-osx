@@ -110,6 +110,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export PATH=~/nvim-osx64/bin/:$PATH
 export PATH=~/Applications/:$PATH
 export PATH=~/go/bin/:$PATH
+export PATH=~/bin/:$PATH
 export PATH=~/.cargo/bin:/$PATH
 export PATH=/usr/local/opt/libpq/bin/:$PATH
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
