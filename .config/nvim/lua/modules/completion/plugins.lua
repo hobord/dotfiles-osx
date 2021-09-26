@@ -21,6 +21,57 @@ completion['hrsh7th/nvim-compe'] = {
   config = conf.nvim_compe,
 }
 
+--completion["hrsh7th/nvim-cmp"] = {
+  --event = "InsertEnter", -- for lazyload
+  --requires = {
+    --{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+    --{ "f3fora/cmp-spell", after = "nvim-cmp" },
+    --{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+    --{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+    --{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
+    --{ "quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp" },
+  --},
+  --config = function()
+    --local cmp = require'cmp'
+    --cmp.setup({
+    --snippet = {
+      --expand = function(args)
+        ---- For `vsnip` user.
+        --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
+
+        ---- For `luasnip` user.
+        ---- require('luasnip').lsp_expand(args.body)
+
+        ---- For `ultisnips` user.
+        ---- vim.fn["UltiSnips#Anon"](args.body)
+      --end,
+    --},
+    --mapping = {
+      --['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      --['<C-f>'] = cmp.mapping.scroll_docs(4),
+      --['<C-Space>'] = cmp.mapping.complete(),
+      --['<C-e>'] = cmp.mapping.close(),
+      --['<CR>'] = cmp.mapping.confirm({ select = true }),
+    --},
+    --sources = {
+      --{ name = 'nvim_lsp' },
+
+      ---- For vsnip user.
+      --{ name = 'vsnip' },
+
+      ---- For luasnip user.
+      ---- { name = 'luasnip' },
+
+      ---- For ultisnips user.
+      ---- { name = 'ultisnips' },
+
+      --{ name = 'buffer' },
+      --{ name = 'path' },
+    --}
+  --})
+  --end,
+--}
+
 completion['onsails/lspkind-nvim'] = {}
 
 completion['rmagatti/goto-preview'] = {

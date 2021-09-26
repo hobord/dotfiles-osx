@@ -127,7 +127,7 @@ function config.dapui()
       position = "right", -- Can be "left" or "right"
     },
     tray = {
-      open_on_start = true,
+      -- open_on_start = true,
       elements = {
         "repl"
       },

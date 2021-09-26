@@ -109,6 +109,7 @@ function config.telescope()
         prompt_position = "top",
         width = 0.9,
         height = 0.9,
+        preview_width = 0.5,
         horizontal = {
           mirror = false,
         }
@@ -118,6 +119,12 @@ function config.telescope()
       file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
       grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
       qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+      mappings = {
+        n = {
+          ["<c-j>"] = require"telescope.actions".preview_scrolling_down,
+          ["<c-k>"] = require"telescope.actions".preview_scrolling_up,
+        },
+      },
     },
     pickers = {
       buffers = {
