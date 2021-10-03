@@ -109,7 +109,6 @@ function config.telescope()
         prompt_position = "top",
         width = 0.9,
         height = 0.9,
-        preview_width = 0.5,
         horizontal = {
           mirror = false,
         }
@@ -176,6 +175,11 @@ function config.telescope()
       frecency = {
         layout_config = {
           preview_width = 0.5
+        },
+      },
+      git_bcommits = {
+        layout_config = {
+          preview_width = 0.7
         },
       }
     },

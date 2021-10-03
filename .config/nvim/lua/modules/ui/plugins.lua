@@ -8,12 +8,18 @@ ui['glepnir/zephyr-nvim'] = {
   --config = [[require('colorbuddy').colorscheme('gruvbuddy')]],
   --requires='tjdevries/colorbuddy.vim'
 --}
---ui['sainnhe/sonokai'] = {}
+ui['sainnhe/sonokai'] = {
+  config = function ()
+    --vim.g.sonokai_style = 'andromeda'
+    vim.g.sonokai_enable_italic = 1
+    vim.g.sonokai_disable_italic_comment = 1
+  end
+}
 --ui['jsit/toast.vim'] = {}
 --ui['savq/melange'] = {}
---ui['gruvbox-community/gruvbox'] = {
+ui['gruvbox-community/gruvbox'] = {
  --config = [[vim.cmd('colorscheme gruvbox')]]
---}
+}
 
 --ui['Th3Whit3Wolf/onebuddy'] = {
   --config = [[require('colorbuddy').colorscheme('onebuddy')]],

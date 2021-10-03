@@ -46,7 +46,7 @@ editor['kana/vim-niceblock']  = {
   opt = true
 }
 
-editor['jiangmiao/auto-pairs'] = {}
+--editor['jiangmiao/auto-pairs'] = {}
 editor['tpope/vim-surround'] = {}
 editor['junegunn/vim-easy-align'] = {}
 editor['mg979/vim-visual-multi'] = {}

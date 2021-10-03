@@ -79,7 +79,7 @@ local function load_options()
     helpheight     = 12;
     previewheight  = 12;
     showcmd        = false;
-    cmdheight      = 2;
+    cmdheight      = 1;
     cmdwinheight   = 5;
     equalalways    = false;
     laststatus     = 2;
@@ -88,6 +88,7 @@ local function load_options()
     listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
     pumblend       = 10;
     winblend       = 10;
+    fdc            = '4';
     --t_ZH           = "^[[3m";
     --t_ZR           = "^[[23m";
   }
