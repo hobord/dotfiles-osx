@@ -90,6 +90,39 @@ tools['simrat39/symbols-outline.nvim'] = {
   end
 }
 
+tools["AckslD/nvim-neoclip.lua"] = {
+  requires = {'tami5/sqlite.lua', module = 'sqlite'},
+  config = function()
+    require('neoclip').setup({
+      history = 1000,
+      enable_persistant_history = false,
+      db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+      filter = nil,
+      preview = true,
+      default_register = '"',
+      content_spec_column = false,
+      on_paste = {
+        set_reg = false,
+      },
+      keys = {
+        i = {
+          select = '<cr>',
+          paste = '<c-p>',
+          paste_behind = '<c-k>',
+          custom = {},
+        },
+        n = {
+          select = '<cr>',
+          paste = 'p',
+          paste_behind = 'P',
+          custom = {},
+        },
+      },
+    })
+  end,
+}
+
+
 tools['brooth/far.vim'] = {
   cmd = {'Far','Farp'},
   config = function ()

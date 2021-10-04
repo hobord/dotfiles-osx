@@ -14,6 +14,7 @@ local plug_map = {
     ["n|<leader>pu"]    = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait(),
     ["n|<leader>pi"]    = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
     ["n|<leader>pc"]    = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
+    ["n|<M-p>"]         = map_cr("Telescope neoclip unnamed"):with_silent():with_noremap():with_nowait(),
     -- Plugin Floaterm
     ["n|<Leader>t"]     = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
     --["n|<Leader>t"]     = map_cu('FloatermToggle'):with_noremap():with_silent(),
