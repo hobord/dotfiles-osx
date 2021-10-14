@@ -19,8 +19,7 @@ lspkind.init({
     -- 'codicons' for codicon preset (requires vscode-codicons font)
     --
     -- default: 'default'
-    --preset = 'codicons',
-
+    preset = 'codicons',
 
     -- override preset symbols
     --

@@ -8,13 +8,13 @@ ui['glepnir/zephyr-nvim'] = {
   --config = [[require('colorbuddy').colorscheme('gruvbuddy')]],
   --requires='tjdevries/colorbuddy.vim'
 --}
-ui['sainnhe/sonokai'] = {
-  config = function ()
+--ui['sainnhe/sonokai'] = {
+  --config = function ()
     --vim.g.sonokai_style = 'andromeda'
-    vim.g.sonokai_enable_italic = 1
-    vim.g.sonokai_disable_italic_comment = 1
-  end
-}
+    --vim.g.sonokai_enable_italic = 1
+    --vim.g.sonokai_disable_italic_comment = 1
+  --end
+--}
 --ui['jsit/toast.vim'] = {}
 --ui['savq/melange'] = {}
 ui['gruvbox-community/gruvbox'] = {
@@ -29,14 +29,14 @@ ui['eddyekofo94/gruvbox-flat.nvim'] = {
   config = conf.gruvbox_flat
 }
 
-ui['folke/tokyonight.nvim'] = {}
+--ui['folke/tokyonight.nvim'] = {}
 --ui['projekt0n/github-nvim-theme'] = {
   --config = [[require('github-theme').setup({
     --themeStyle = "dimmed",
     --colors = {hint = "orange", error = "#ff0000"},
   --})]]
 --}
-ui['EdenEast/nightfox.nvim'] = {}
+--ui['EdenEast/nightfox.nvim'] = {}
 ui['Murtaza-Udaipurwala/gruvqueen'] = {
     --config = [[vim.cmd('colorscheme gruvqueen')]]
 }

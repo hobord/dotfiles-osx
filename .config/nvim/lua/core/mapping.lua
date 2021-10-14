@@ -55,7 +55,8 @@ local def_map = {
     --["n|<Leader>m"]       = map_cmd(':MinimapToggle<CR>'),
     --["n|<Leader>gd"]      = map_cmd(':Gdiff<CR>'),
   -- Insert
-    ["i|<C-n>"]             = map_cmd("compe#complete()"):with_expr():with_silent():with_noremap(),
+    --["i|<C-n>"]             = map_cmd("compe#complete()"):with_expr():with_silent():with_noremap(),
+    --["i|<Tab>"]         = map_cmd([[compe#confirm({'keys': "\<Tab>", 'mode': 'n', 'select': v:true})]]):with_expr():with_noremap():with_silent(),
     ["i|<C-@>"]             = map_cmd('<ESC>'),
     ["i|<C-w>"]             = map_cmd('<C-[>diwa'):with_noremap(),
     --["i|<C-h>"]           = map_cmd('<BS>'):with_noremap(),

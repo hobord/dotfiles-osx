@@ -1,5 +1,5 @@
 {
-	"ingle import": {
+	"single import": {
 		"prefix": "im",
 		"body": "import \"${1:package}\"",
 		"description": "Snippet for import statement"

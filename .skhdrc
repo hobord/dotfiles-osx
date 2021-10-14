@@ -76,6 +76,13 @@
 # A REFERENCE ONLY, WHEN MAKING YOUR OWN CONFIGURATION..          #
 # ############################################################### #
 
+# Reset layout
+alt + shift + ctrl - l : yabai -m config layout bsp
+
+alt + shift + ctrl - f : yabai -m window --toggle float
+alt + shift + ctrl - s : yabai -m window --toggle split
+#alt + shift + ctrl - t : yabai -m window --toggle sticky
+
 # focus window
 alt - h : yabai -m window --focus prev || yabai -m window --focus last
 alt - l : yabai -m window --focus next || yabai -m window --focus first

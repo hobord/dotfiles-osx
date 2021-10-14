@@ -7,8 +7,7 @@ require('keymap.config')
 
 local plug_map = {
     -- EasyAlign
-    ["x|ga"]            = map_cmd('<Plug>(EasyAlign)');
-    ["i|<Tab>"]         = map_cmd([[compe#confirm({'keys': "\<Tab>", 'mode': 'n', 'select': v:true})]]):with_expr():with_noremap():with_silent(),
+    ["x|ga"]            = map_cmd('<Plug>(EasyAlign)'),
     --["n|gb"]            = map_cr("BufferLinePick"):with_noremap():with_silent(),
     -- Packer
     ["n|<leader>pu"]    = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait(),
