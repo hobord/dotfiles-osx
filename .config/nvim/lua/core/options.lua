@@ -88,7 +88,7 @@ local function load_options()
     listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
     pumblend       = 10;
     winblend       = 10;
-    fdc            = '4';
+    fdc            = '0'; -- 4
     --t_ZH           = "^[[3m";
     --t_ZR           = "^[[23m";
   }
@@ -127,13 +127,16 @@ local function load_options()
       },
       cache_enabled = 0
     }
-    vim.g.python_host_prog = '/usr/bin/python'
-    vim.g.python3_host_prog = '/usr/local/bin/python3'
+    vim.g.python_host_prog = 'python'
+    vim.g.python3_host_prog = 'python3'
   end
+
   for name, value in pairs(global_local) do
     vim.o[name] = value
   end
+
   bind_option(bw_local)
 end
 
 load_options()
+
