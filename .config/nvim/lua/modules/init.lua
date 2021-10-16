@@ -229,6 +229,15 @@ require('packer').startup(function(use)
     config = require('modules.tools.diffview').setup
   }
 
+
+  local function file_exists(name)
+    local f=io.open(name,"r")
+    if f~=nil then io.close(f) return true else return false end
+  end
+  if not file_exists(vim.fn.stdpath('config').."/plugin/packer_compiled.lua") then
+    require('packer').sync()
+  end
+
 end)
 
 require('modules.mapping')
