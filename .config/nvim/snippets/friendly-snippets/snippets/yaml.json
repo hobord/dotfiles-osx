@@ -1,0 +1,151 @@
+{
+    "api_version": {
+        "prefix": "api",
+        "body": [
+            "apiVersion: ${api}",
+            "$0"
+        ],
+        "description": "apiVersion"
+    },
+    "api":{
+        "prefix": "apiVersion_v1",
+        "description": "Api v1",
+        "body": "apiVersion: v1"
+    },
+    
+    "ports_svc":{
+        "prefix": "ports_svc",
+        "description": "ports in services",
+        "body": "ports:\n- name: ${name: Port Name}\n  port: ${port: Port}\n  targetPort: ${target: Target port}"
+    },
+    "service_complete":{
+        "prefix": "service_complete",
+        "description": "template for a complete kubernetes service",
+        "body": "kind: Service\napiVersion: v1\nmetadata:\n  name: ${name: Service Name}\nspec:\n  selector:\n    app: ${selector: Selector Label}\n  type: ${type: LoadBalancer | ClusterIP | NodePort}\n  ports:\n  - name: ${portName: name-of-the-port}\n    port: ${port: 80}\n    targetPort: ${targetPort: 8080}"
+    },
+    "job":{
+        "prefix": "job",
+        "description": "kubernetes job",
+        "body": "apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: ${name: name}\nspec:\n  template:\n    metadata:\n      name: ${name: name}\n    spec:\n      containers:"
+    },
+    "secret_for_registry":{
+        "body": "//kubectl create secret docker-registry NAME --docker-username=user --docker-password=password --docker-email=email [--docker-server=string] [--from-literal=key1=value1] [--dry-run] \n// dockerconfigjson is a base64 encoded string:  cat ~/.docker/config.json | base64 -w 0 \napiVersion: v1\nkind: Secret\nmetadata:\n  name: ${name: Name_of_the_Secret}\ndata:\n  .dockerconfigjson: ${secret: secret}\ntype: kubernetes.io/dockerconfigjson",
+        "prefix": "secret_for_registry",
+        "description": "complete secret to connect to private registry" 
+    },
+    "secret_template":{
+        "prefix": "secret_template",
+        "description": "Template to generate an opaque secret",
+        "body": "apiVersion: v1\nkind: Secret\nmetadata:\n  name: ${name: secretName}\ndata:\n  ${key: secretKey}: ${value: BASE64_ENCODED_VALUE}\ntype: Opaque"
+    },
+    "namespace":{
+        "prefix": "namespace",
+        "description": "Template to create a namespace",
+        "body": "apiVersion: v1\nkind: Namespace\nmetadata:\n	name: ${name: name}"
+    },
+        "serviceAccount":{
+        "prefix": "serviceAccount",
+        "description": "Template to create a ServiceAccount",
+        "body": "apiVersion: v1\nkind: ServiceAccount\nmetadata:\n	name: ${name: name}"
+    },
+     "deployment" :{
+        "prefix": "deployment_simple",
+        "description": "Simple deployment template",
+        "body": "apiVersion: extensions/v1beta1\nkind: Deployment\nmetadata:\n  name: ${name:Enter deployment name}\nspec:\n  replicas: ${replicas:Enter the number of replicas}\n  template:\n    metadata:\n      labels:\n        editor: vscode\n    spec:\n      containers:\n      - name: ${name}\n        image: ${image:Enter containers image}"
+    },
+    "deployment_complete":{
+        "prefix": "deployment_complete",
+        "description": "template for a complete deployment",
+        "body": "apiVersion: extensions/v1beta1\nkind: Deployment\nmetadata:\n  name: ${name: my-name}\n  labels:\n    name: ${name: my-name}\nspec:\n  strategy:\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  template:\n    metadata:\n      labels:\n        name: ${name: my-name}\n    spec:\n      containers:\n      - image: ${image: ipedrazas/docmock}\n        name: ${name: my-name}\n        resources:\n          requests:\n            cpu: \"20m\"\n            memory: \"55M\"\n        livenessProbe:\n          httpGet:\n            path: /_status/healthz\n            port: 5000\n          initialDelaySeconds: 90\n          timeoutSeconds: 10\n        readinessProbe:\n          httpGet:\n            path: /_status/healthz\n            port: 5000\n          initialDelaySeconds: 30\n          timeoutSeconds: 10\n        env:\n        - name: ${ENVVARNAME: ENVVARNAME}\n          value: ${ENVVARVALUE: ENVVARVALUE}       \n        ports:\n        - containerPort: ${port: 5000}\n          name: ${name: my-name}\n        volumeMounts:\n        - mountPath: /data\n          name: data\n      volumes:\n        - name: data\n          emptyDir: {}\n      restartPolicy: Always\n      imagePullPolicy: Always"
+    },
+    "strategy": {
+        "prefix": "strategy",
+        "description": "strategy",
+        "body": "strategy:\n  "
+    },
+    "rollingUpdate": {
+        "prefix": "rollingUpdate",
+        "description": "rollingUpdate",
+        "body": "rollingUpdate:\n  maxSurge: 1\n  maxUnavailable: 1\ntype: RollingUpdate"
+    },
+     "name":{
+        "prefix": "name",
+        "description": "name",
+        "body": "name: ${name: name}"
+    },
+    "image":{
+        "prefix": "image",
+        "description": "image",
+        "body": "image: ${image: registry/user/image}"
+    },
+    "ports": {
+        "prefix": "ports",
+        "body": "ports:\n- name: ${name: Port Name}\n  port: ${port: Port}\n  protocol: TCP",
+        "description": "apiVersion"
+    },
+    "imagePullSecrets":{
+        "prefix": "imagePullSecrets",
+        "description": "Secret with registry credentials",
+        "body": "imagePullSecrets:\n  - name: ${secret: Secret with Registry credentials}" 
+    },
+    "volumeMounts":{
+        "prefix": "volumeMounts",
+        "description": "Entry for VolumeMounts",
+        "body": "volumeMounts:\n  - name: ${name: Name of the Volume}\n  mountPath: ${path: Path to mount}"
+    },
+    "volumes":{
+        "prefix": "volumes",
+        "description": "volumes",
+        "body": "volumes:\n  - name: ${name: name of the volume}\n  mountPath: ${path: Path to mount}"
+    },
+    "volumes_hostPath":{
+        "prefix": "volumes_hostPath",
+        "description": "Snippet for volumes hostPath",
+        "body": "volumes:\n  - name: ${name: Volume Name}\n  hostPath:\n    path: ${path: Path to mount}"
+    },
+    "command":{
+        "prefix": "command_container",
+        "description": "container command",
+        "body": "command:\n  - sleep\n  - \"3600\""
+    },
+    "imagePullPolicy": {
+        "prefix": "imagePullPolicy",
+        "description": "imagePullPolicy",
+        "body": "imagePullPolicy: Always"
+    },
+    "restartPolicy":{
+        "prefix": "restartPolicy",
+        "description": "restartPolicy",
+        "body": "restartPolicy: Never"
+    },
+    "containers": {
+        "prefix": "containers",
+        "description": "container",
+        "body": "containers:\n  - image: ${image: image}\n  name: ${name: my-name}\n  env:\n    - name: ${ENVVARNAME: ENVVARNAME}\n      value: ${ENVVARVALUE: ENVVARVALUE}"
+    },
+    "env_from_secret":{
+        "prefix": "env_from_secret",
+        "description": "Secret from secret",
+        "body": "env:\n  - name: ${envvar: ENV_VAR}\n    valueFrom:\n      secretKeyRef:\n        name: ${name: name}\n        key: ${key: key}"
+    },
+    "readiness_exec":{
+        "prefix": "readiness",
+        "description": "Template for readinessProbe exec",
+        "body": "livenessProbe:\n  exec:\n    command:\n      - /bin/my-script.sh\n  initialDelaySeconds: 60\n  timeoutSeconds: 10"
+    },
+    "configmap_file" :{
+        "prefix": "configmap_file",
+        "description": "Configmap that contains a file",
+        "body": "apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: myconfigmap\n  labels:\n    app: myapplication\ndata:\n  my-properties-file.yaml: |\n    # yaml file\n    key: value\n"
+    },
+    "configmap" :{
+        "prefix": "configmap",
+        "description": "Configmap with a key/value pair",
+        "body": "apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: myconfigmap\n  labels:\n    app: myapplication\ndata:\n  my-key: my-value\n"
+    },
+    "configmap_kv_file" :{
+        "prefix": "configmap_kv_file",
+        "description": "Configmap with a key/value pair and file",
+        "body": "apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: myconfigmap\n  labels:\n    app: myapplication\ndata:\n  my-key: my-value\n my-properties-file.yaml: |\n    # yaml file\n    key: value\n"
+    }
+}
