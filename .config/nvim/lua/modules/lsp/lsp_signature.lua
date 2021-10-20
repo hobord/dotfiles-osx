@@ -1,7 +1,7 @@
 local config = {}
 
 config.setup = function()
-  require('lsp_signature').on_attach({
+  require('lsp_signature').setup({
     bind = true,
     handler_opts = {
       border = "single",
@@ -13,10 +13,14 @@ config.setup = function()
       use_lspsaga = false,  -- set to true if you want to use lspsaga popup
       hi_parameter = "Search", -- how your parameter will be highlight
       max_width = 120,
-      toggle_key = '<M-x>', -- nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+      --toggle_key = '<M-x>', -- nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
     },
   })
 
+    vim.api.nvim_command('augroup lsp_signature')
+    vim.api.nvim_command('autocmd!')
+    vim.api.nvim_command('autocmd BufWinEnter * :lua require "lsp_signature".on_attach()')
+    vim.api.nvim_command('augroup END')
 end
 
 return config

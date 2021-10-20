@@ -78,7 +78,7 @@ require('packer').startup(function(use)
       {'nvim-telescope/telescope-fzy-native.nvim'},
       {'nvim-telescope/telescope-frecency.nvim'},
       {'tami5/sqlite.lua'},
-      --{'nvim-telescope/telescope-dap.nvim'},
+      {'nvim-telescope/telescope-dap.nvim'},
     },
     config = require('modules.ui.telescope').setup,
   }
@@ -121,6 +121,7 @@ require('packer').startup(function(use)
   use {
     'ray-x/lsp_signature.nvim',
     config = require('modules.lsp.lsp_signature').setup,
+    --after = 'glepnir/lspsaga.nvim',
   }
 
   use {
@@ -181,6 +182,11 @@ require('packer').startup(function(use)
   }
 
   use {
+    'L3MON4D3/LuaSnip',
+    config = require('modules.editor.luasnip').setup,
+  }
+
+  use {
     'hrsh7th/nvim-cmp',
     requires = {
       { "hrsh7th/cmp-nvim-lsp",   after = "nvim-cmp" },
@@ -188,11 +194,25 @@ require('packer').startup(function(use)
       { "hrsh7th/cmp-path",       after = "nvim-cmp" },
       { "hrsh7th/cmp-buffer",     after = "nvim-cmp" },
       { "onsails/lspkind-nvim" },
+      { 'L3MON4D3/LuaSnip' },
       --{'tzachar/cmp-tabnine',     after = 'nvim-cmp'},
       --{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
       --{ "quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp" },
     },
     config = require('modules.editor.cmp').setup,
+  }
+
+  use { 'saadparwaiz1/cmp_luasnip' }
+  
+  -- Debugger
+  use {
+    'mfussenegger/nvim-dap',
+    config = require('modules.dap').setup,
+  }
+  use {
+    'rcarriga/nvim-dap-ui',
+    requires = {{'mfussenegger/nvim-dap'}},
+    config = require('modules.dap.ui').setup,
   }
 
   --

@@ -47,7 +47,7 @@ config.setup = function()
       -- Enable virtual text, override spacing to 4
       virtual_text = true,
       signs = {
-        enable = true,
+        enable   = true,
         priority = 20
       },
       -- Disable a feature
@@ -60,17 +60,40 @@ config.setup = function()
     capabilities = capabilities,
     init_options = {
       analyses = {
-        unusedparams = true,
+        unusedparams   = true,
         fieldalignment = true,
-        nilness = true,
-        shadow = true,
-        unusedwrite = true,
+        nilness        = true,
+        shadow         = true,
+        unusedwrite    = true,
       },
-      staticcheck = true,
-      usePlaceholders=true,
-      completeUnimported=true,
+      staticcheck        = true,
+      usePlaceholders    = true,
+      completeUnimported = true,
     }
   }
+
+ lspconfig.pylsp.setup{}
+
+  --lspconfig.sumneko_lua.setup {
+    --cmd = {
+      --global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua-language-server",
+      --"-E",
+      --global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server/main.lua"
+    --};
+    --settings = {
+      --Lua = {
+        --diagnostics = {
+          --enable = true,
+          --globals = {"vim","packer_plugins"}
+        --},
+        --runtime = {version = "LuaJIT"},
+        --workspace = {
+          --library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
+        --},
+      --},
+    --}
+  --}
+
 
 end
 

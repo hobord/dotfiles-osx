@@ -35,9 +35,11 @@ config.setup = function()
   }
 
   require'nvim-tree'.setup {
-    lsp_diagnostics = true,
     indent_markers = 1,
     follow = 1,
+    diagnostics = {
+      enable = 1,
+    }
   }
 
   require'nvim-tree.events'.on_nvim_tree_ready(function ()
