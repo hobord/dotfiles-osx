@@ -8,7 +8,8 @@ config.setup = function()
 
   local luasnip = require("luasnip")
   local cmp = require'cmp'
-    cmp.setup({
+
+  cmp.setup({
     snippet = {
       expand = function(args)
         -- For `vsnip` user.
@@ -21,35 +22,37 @@ config.setup = function()
         -- vim.fn["UltiSnips#Anon"](args.body)
       end,
     },
+
     formatting = {
-      --format = require("lspkind").cmp_format({with_text = true, maxwidth = 50}),
       format = require"lspkind".cmp_format {
         with_text = true,
         menu = {
-          buffer = "[buf]",
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[api]",
-          path = "[path]",
-          luasnip = "[snip]",
-          --gh_issues = "[issues]",
+          buffer      = "[BUF]",
+          nvim_lsp    = "[LSP]",
+          nvim_lua    = "[API]",
+          path        = "[PATH]",
+          luasnip     = "[SNIP]",
+          cmp_tabnine = "[TN]",
         },
       },
     },
+
     mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      ["<Tab>"] = cmp.mapping(function(fallback)
+      ['<C-d>']     = cmp.mapping.scroll_docs(-4),
+      ['<C-f>']     = cmp.mapping.scroll_docs(4),
+      ['<C-X>'] = cmp.mapping.complete(),
+      ['<C-e>']     = cmp.mapping.close(),
+      ['<CR>']      = cmp.mapping.confirm({ select = true }),
+      ["<Tab>"]     = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
+        --elseif has_words_before() then
+          --cmp.complete()
         else
           fallback()
+          --vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
         end
       end, { "i", "s" }),
 
@@ -63,29 +66,25 @@ config.setup = function()
         end
       end, { "i", "s" }),
     },
+
     sources = {
-      { name = 'nvim_lsp' },
-
-      -- For vsnip user.
-      --{ name = 'vsnip' },
-
-      -- For luasnip user.
       { name = 'luasnip' },
-
-      -- For ultisnips user.
+      { name = 'cmp_tabnine' },
+      { name = 'nvim_lsp' },
+      --{ name = 'vsnip' },
       -- { name = 'ultisnips' },
-
       { name = 'buffer', keyword_length = 3 },
       { name = 'path' },
-      --{ name = 'cmp_tabnine' },
     },
 
     experimental = {
-      -- I like the new menu better! Nice work hrsh7th
       native_menu = false,
-
-      -- Let's play with this for a day or two
       ghost_text = true,
+    },
+
+    documentation = {
+      --border = { '', '', '', ' ', '', '', '', ' ' },
+      border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
     },
   })
 

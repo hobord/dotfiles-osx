@@ -25,6 +25,7 @@ local enhance_attach = function(client,bufnr)
 end
 
 config.setup = function()
+  local global = require 'core.global'
   local lspconfig = require 'lspconfig'
 
   function _G.reload_lsp()
@@ -72,27 +73,29 @@ config.setup = function()
     }
   }
 
- lspconfig.pylsp.setup{}
-
-  --lspconfig.sumneko_lua.setup {
-    --cmd = {
-      --global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua-language-server",
-      --"-E",
-      --global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server/main.lua"
-    --};
-    --settings = {
-      --Lua = {
-        --diagnostics = {
-          --enable = true,
-          --globals = {"vim","packer_plugins"}
-        --},
-        --runtime = {version = "LuaJIT"},
-        --workspace = {
-          --library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
-        --},
-      --},
-    --}
-  --}
+  lspconfig.pylsp.setup{}
+  lspconfig.dockerls.setup{}
+  lspconfig.graphql.setup{}
+  lspconfig.intelephense.setup{}
+  lspconfig.sumneko_lua.setup {
+    cmd = {
+      global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua-language-server",
+      "-E",
+      global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server/main.lua"
+    };
+    settings = {
+      Lua = {
+        diagnostics = {
+          enable = true,
+          globals = {"vim","packer_plugins"}
+        },
+        runtime = {version = "LuaJIT"},
+        workspace = {
+          library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
+        },
+      },
+    }
+  }
 
 
 end

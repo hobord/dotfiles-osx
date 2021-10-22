@@ -52,6 +52,13 @@ require('packer').startup(function(use)
   use 'junegunn/vim-peekaboo'
   use 'Yilin-Yang/vim-markbar'
 
+  use {
+    'rcarriga/nvim-notify',
+    config = function()
+      require("notify").setup({})
+    end
+  }
+
   -- Zen mode
   use {
     'folke/zen-mode.nvim',
@@ -106,6 +113,11 @@ require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
     config = require('modules.lsp.lspconfig').setup,
     --event = 'BufReadPre',
+  }
+
+  use {
+    'williamboman/nvim-lsp-installer',
+    requires = { {'neovim/nvim-lspconfig'} }
   }
 
   use {
@@ -186,6 +198,8 @@ require('packer').startup(function(use)
     config = require('modules.editor.luasnip').setup,
   }
 
+  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -195,7 +209,7 @@ require('packer').startup(function(use)
       { "hrsh7th/cmp-buffer",     after = "nvim-cmp" },
       { "onsails/lspkind-nvim" },
       { 'L3MON4D3/LuaSnip' },
-      --{'tzachar/cmp-tabnine',     after = 'nvim-cmp'},
+      {'tzachar/cmp-tabnine',     after = 'nvim-cmp'},
       --{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
       --{ "quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp" },
     },
