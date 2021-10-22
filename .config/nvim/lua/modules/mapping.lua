@@ -7,7 +7,7 @@ local map_cmd = bind.map_cmd
 local plug_map = {
     -- EasyAlign
     ["x|ga"]                = map_cmd('<Plug>(EasyAlign)'),
-    --["n|gb"]              = map_cr("BufferLinePick"):with_noremap():with_silent(),
+    ["n|<leader>/"]         = map_cr("BufferLinePick"):with_noremap():with_silent(),
     -- Packer
     ["n|<leader>pu"]        = map_cr("PackerUpdate"):with_silent():with_noremap():with_nowait(),
     ["n|<leader>pi"]        = map_cr("PackerInstall"):with_silent():with_noremap():with_nowait(),
