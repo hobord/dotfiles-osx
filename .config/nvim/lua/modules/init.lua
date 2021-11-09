@@ -14,11 +14,22 @@ require('packer').startup(function(use)
     config = require('modules.ui.bufferline').setup,
   }
 
+  -- conext info in footer
+  --use {
+    --"SmiteshP/nvim-gps",
+    --requires = {'nvim-treesitter/nvim-treesitter'},
+    --config = require('modules.ui.gps').setup,
+  --}
+
+
   -- Footer line with info
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
-    requires = {'kyazdani42/nvim-web-devicons'},
+    requires = {
+      {'kyazdani42/nvim-web-devicons'},
+      --{"SmiteshP/nvim-gps"},
+    },
     config = require('modules.ui.galaxyline').setup,
   }
 
@@ -30,6 +41,10 @@ require('packer').startup(function(use)
     cmd = {'NvimTreeToggle','NvimTreeOpen'},
   }
 
+  use {
+    'ThePrimeagen/harpoon',
+    requires = {'nvim-lua/plenary.nvim'},
+  }
   -- Guide lines for ident
   use {
     'glepnir/indent-guides.nvim',
@@ -70,7 +85,7 @@ require('packer').startup(function(use)
     'eddyekofo94/gruvbox-flat.nvim',
     config = require('modules.ui.gruvbox-flat').setup,
   }
-
+  --use 'rmehri01/onenord.nvim'
   --'glepnir/zephyr-nvim'
   --'gruvbox-community/gruvbox'
   --'folke/tokyonight.nvim'
@@ -145,11 +160,22 @@ require('packer').startup(function(use)
     'glepnir/lspsaga.nvim',
     cmd = 'Lspsaga',
   }
+
+  use {
+    'nvim-lua/lsp-status.nvim',
+    config = require('modules.lsp.lsp-status').setup,
+  }
   --
   -- EDITOR
   --
 
-  use 'scrooloose/nerdcommenter'
+  -- use 'scrooloose/nerdcommenter'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
   use 'junegunn/vim-easy-align'
   use 'mg979/vim-visual-multi'
   use 'tpope/vim-surround'
@@ -242,6 +268,9 @@ require('packer').startup(function(use)
   use 'tpope/vim-git'
   use 'motemen/git-vim'
   use 'tpope/vim-fugitive'
+  use {'pwntester/octo.nvim', config=function()
+    require"octo".setup()
+  end}
 
   use 'vim-test/vim-test'
 

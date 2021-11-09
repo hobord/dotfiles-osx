@@ -21,9 +21,15 @@ local plug_map = {
     ["n|<C-S-PageDown>"]    = map_cu('BufferLineMoveNext'),
     ["n|<Leader>w"]         = map_cu('HopWord'):with_noremap(),
     ["n|<C-g>"]             = map_cu('HopChar1'):with_noremap(),
-    ["n|<Leader>l"]         = map_cu('HopLine'):with_noremap(),
+    ["n|<Leader>h"]         = map_cu('lua require("harpoon.ui").nav_file(1)'):with_silent():with_noremap(),
+    ["n|<Leader>j"]         = map_cu('lua require("harpoon.ui").nav_file(2)'):with_silent():with_noremap(),
+    ["n|<Leader>k"]         = map_cu('lua require("harpoon.ui").nav_file(3)'):with_silent():with_noremap(),
+    ["n|<Leader>l"]         = map_cu('lua require("harpoon.ui").nav_file(4)'):with_silent():with_noremap(),
+    ["n|<Leader><Leader>a"] = map_cu('lua require("harpoon.mark").add_file()'):with_silent():with_noremap(),
+    ["n|<Leader><Leader>n"] = map_cu('lua require("harpoon.ui").toggle_quick_menu()'):with_silent():with_noremap(),
+    --["n|<Leader>l"]         = map_cu('HopLine'):with_noremap(),
     -- Plugin Vista
-    ["n|<Leader>v"]         = map_cu('Vista!!'):with_noremap():with_silent(),
+    --["n|<Leader>v"]         = map_cu('Vista!!'):with_noremap():with_silent(),
     -- Plugin symbols_outline
     ["n|<C-f>"]             = map_cu('SymbolsOutline'):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
@@ -36,7 +42,7 @@ local plug_map = {
     ["n|H"]                 = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
     ["n|<Leader>a"]         = map_cr("Telescope lsp_code_actions"):with_noremap():with_silent(),
     --["v|<Leader>a"]       = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-    ["n|<leader>h"]         = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
+    ["n|<leader>?"]         = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
     --["n|gD"]              = map_cu("lua require('goto-preview').goto_preview_definition()"):with_noremap():with_silent(),
     ["n|gd"]                = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
     ["n|<Leader>fs"]        = map_cr('Telescope lsp_dynamic_workspace_symbols'):with_noremap():with_silent(),
@@ -47,7 +53,7 @@ local plug_map = {
     ["n|gt"]                = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
     --["n|<Leader>cw"]      = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     --["n|<Leader>ce"]      = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
-    ["n|<Leader>j"]         = map_cu('Telescope jumplist'):with_noremap():with_silent(),
+    --["n|<Leader>j"]         = map_cu('Telescope jumplist'):with_noremap():with_silent(),
     -- Plugin nvim-tree
     ["n|<Leader>e"]         = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
     ["n|<Leader>F"]         = map_cr('NvimTreeFindFile'):with_noremap():with_silent(),

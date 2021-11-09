@@ -49,10 +49,14 @@ function autocmd.load_autocmds()
       {"BufNewFile,BufRead","*.toml"," setf toml"},
     };
 
-    --dap = {
-      --{"FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()"};
-    --};
+    dap = {
+      {"FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()"};
+    };
 
+    lsp = {
+      {"BufWritePre", "*.go", "lua vim.lsp.buf.formatting()"};
+    };
+    
     yank = {
       {"TextYankPost", [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]]};
     };

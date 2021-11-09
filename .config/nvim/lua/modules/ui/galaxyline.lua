@@ -35,12 +35,12 @@ config.setup = function()
       provider = function()
         local mode_icons = {
           n = "", i = "", v = "",
-          [''] = "", V="", 
-          c = "", no = "", s = "", 
-          S="", [''] = "", 
-          ic = "", R = "", Rv = "", 
-          cv = "", ce="",  r = "", 
-          rm = "",  ['r?'] = "", 
+          [''] = "", V="",
+          c = "", no = "", s = "",
+          S="", [''] = "",
+          ic = "", R = "", Rv = "",
+          cv = "", ce="",  r = "",
+          rm = "",  ['r?'] = "",
           ['!']  = "", t = ""
         }
         vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()] ..' guibg='..colors.bg)
@@ -96,6 +96,40 @@ config.setup = function()
       highlight = {colors.red,colors.bg},
     }
   }
+  --gls.left[12] = {
+    --nvimGPS = {
+      --provider = function()
+        --local gps = require("nvim-gps")
+        --return gps.get_location()
+      --end,
+      --condition = function()
+        --local gps = require("nvim-gps")
+        --return gps.is_available()
+      --end,
+      --highlight = {colors.fg,colors.bg}
+    --}
+  --}
+  gls.left[12] = {
+    TreeContext = {
+      provider = function()
+        if not packer_plugins["nvim-treesitter"] or packer_plugins["nvim-treesitter"].loaded == false then
+          return ""
+        end
+        local f = require'nvim-treesitter'.statusline({
+          indicator_size = 50,
+          --type_patterns = {"class", "function", "method", "interface", "type_spec", "table", "if_statement", "for_statement", "for_in_statement"}
+          type_patterns = {"class", "function", "method", "interface", "type_spec", "table"},
+          transform_fn = function(line) return line:gsub('%s*[%[%(%{]*%s*$', '') end,
+          separator = '',
+        })
+        local fun_name = string.format("%s", f) -- convert to string, it may be a empty ts node
+        if fun_name == "vim.NIL" then
+          return " "
+        end
+        return " " .. fun_name
+      end
+    }
+  }
 
   gls.mid[0] = {
     FileIcon = {
@@ -105,74 +139,81 @@ config.setup = function()
     },
   }
 
-  gls.mid[1] = {
-    ShowLspClient = {
-      --provider = 'GetLspClient',
-      provider = function ()
-        local msg = '  '
-        local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
-        local clients = vim.lsp.get_active_clients()
+  --gls.mid[1] = {
+    --ShowLspClient = {
+      ----provider = 'GetLspClient',
+      --provider = function ()
+        --local msg = '  '
+        --local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
+        --local clients = vim.lsp.get_active_clients()
 
-        if next(clients) == nil then
-          return msg
-        end
+        --if next(clients) == nil then
+          --return msg
+        --end
 
-        for _,client in ipairs(clients) do
-          local filetypes = client.config.filetypes
-          if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
-            msg = '  '-- client.name
-          end
-        end
+        --for _,client in ipairs(clients) do
+          --local filetypes = client.config.filetypes
+          --if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+            --msg = '  '-- client.name
+          --end
+        --end
 
-        return msg
-      end,
-      condition = function ()
-        local tbl = {['dashboard'] = true,['']=true}
-        if tbl[vim.bo.filetype] then
-          return false
-        end
-        return true
-      end,
-      --icon = ' : ',
-      highlight = {colors.yellow,colors.bg,'bold'}
-    }
-  }
-  gls.mid[3] = {
-    DiagnosticError = {
-      provider = 'DiagnosticError',
-      icon = '  ',
-      highlight = {colors.red,colors.bg}
-    }
-  }
-  gls.mid[4] = {
-    DiagnosticWarn = {
-      provider = 'DiagnosticWarn',
-      icon = '  ',
-      highlight = {colors.yellow,colors.bg},
-    }
-  }
+        --return msg
+      --end,
+      --condition = function ()
+        --local tbl = {['dashboard'] = true,['']=true}
+        --if tbl[vim.bo.filetype] then
+          --return false
+        --end
+        --return true
+      --end,
+      ----icon = ' : ',
+      --highlight = {colors.yellow,colors.bg,'bold'}
+    --}
+  --}
+  --gls.mid[3] = {
+    --DiagnosticError = {
+      --provider = 'DiagnosticError',
+      --icon = '  ',
+      --highlight = {colors.red,colors.bg}
+    --}
+  --}
+  --gls.mid[4] = {
+    --DiagnosticWarn = {
+      --provider = 'DiagnosticWarn',
+      --icon = '  ',
+      --highlight = {colors.yellow,colors.bg},
+    --}
+  --}
 
-  gls.mid[5] = {
-    DiagnosticHint = {
-      provider = 'DiagnosticHint',
-      icon = '  ',
-      highlight = {colors.cyan,colors.bg},
-    }
-  }
+  --gls.mid[5] = {
+    --DiagnosticHint = {
+      --provider = 'DiagnosticHint',
+      --icon = '  ',
+      --highlight = {colors.cyan,colors.bg},
+    --}
+  --}
 
-  gls.mid[6] = {
-    DiagnosticInfo = {
-      provider = 'DiagnosticInfo',
-      icon = '  ',
-      highlight = {colors.blue,colors.bg},
-    }
-  }
+  --gls.mid[6] = {
+    --DiagnosticInfo = {
+      --provider = 'DiagnosticInfo',
+      --icon = '  ',
+      --highlight = {colors.blue,colors.bg},
+    --}
+  --}
   gls.mid[7] = {
-    ShowVistaInfo = {
-      provider = 'VistaPlugin',
-      highlight = {colors.yellow,colors.bg,'bold'}
+    LspStatus = {
+      provider = function() return require('lsp-status').status() end,
+      highlight = {colors.fg,colors.bg}
     }
   }
+
+  --gls.mid[7] = {
+    --ShowVistaInfo = {
+      --provider = 'VistaPlugin',
+      --highlight = {colors.yellow,colors.bg,'bold'}
+    --}
+  --}
 
   gls.right[0] = {
     WhiteSpace = {

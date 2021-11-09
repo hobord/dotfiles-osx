@@ -20,7 +20,8 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
-local enhance_attach = function(client,bufnr)
+local enhance_attach = function(client, bufnr)
+  client.request("textDocument/formatting", {} , nil, vim.api.nvim_get_current_buf())
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
@@ -43,17 +44,21 @@ config.setup = function()
 
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-      -- Enable underline, use default values
       underline = true,
-      -- Enable virtual text, override spacing to 4
-      virtual_text = true,
+      virtual_text = false,
       signs = {
         enable   = true,
         priority = 20
       },
-      -- Disable a feature
       update_in_insert = false,
   })
+
+  local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+
+  for type, icon in pairs(signs) do
+    local hl = "LspDiagnosticsSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
 
   lspconfig.gopls.setup {
     cmd = {"gopls","--remote=auto"},
@@ -79,9 +84,7 @@ config.setup = function()
   lspconfig.intelephense.setup{}
   lspconfig.sumneko_lua.setup {
     cmd = {
-      global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua-language-server",
-      "-E",
-      global.home.."/.local/share/nvim/lspinstall/lua/sumneko-lua/extension/server/main.lua"
+     global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/macOS/lua-language-server"
     };
     settings = {
       Lua = {

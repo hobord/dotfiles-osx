@@ -40,7 +40,7 @@ config.setup = function()
     mapping = {
       ['<C-d>']     = cmp.mapping.scroll_docs(-4),
       ['<C-f>']     = cmp.mapping.scroll_docs(4),
-      ['<C-X>'] = cmp.mapping.complete(),
+      ['<C-n>']     = cmp.mapping.complete(),
       ['<C-e>']     = cmp.mapping.close(),
       ['<CR>']      = cmp.mapping.confirm({ select = true }),
       ["<Tab>"]     = cmp.mapping(function(fallback)
@@ -48,8 +48,8 @@ config.setup = function()
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        --elseif has_words_before() then
-          --cmp.complete()
+        elseif has_words_before() then
+          cmp.complete()
         else
           fallback()
           --vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
