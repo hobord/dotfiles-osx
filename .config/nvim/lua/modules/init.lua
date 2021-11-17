@@ -157,6 +157,21 @@ require('packer').startup(function(use)
   }
 
   use {
+    'rmagatti/goto-preview',
+    config = function()
+      require('goto-preview').setup {
+        width = 120; -- Width of the floating window
+        height = 15; -- Height of the floating window
+        border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"}; -- Border characters of the floating window
+        default_mappings = false; -- Bind default mappings
+        debug = false; -- Print debug information
+        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+      }
+    end
+  }
+
+  use {
     'glepnir/lspsaga.nvim',
     cmd = 'Lspsaga',
   }
@@ -250,9 +265,28 @@ require('packer').startup(function(use)
     config = require('modules.dap').setup,
   }
   use {
+    'leoluz/nvim-dap-go',
+    requires = {{'mfussenegger/nvim-dap'}},
+    config = function ()
+      require('dap-go').setup()
+    end
+  }
+  use {'theHamsta/nvim-dap-virtual-text'}
+  use {
     'rcarriga/nvim-dap-ui',
     requires = {{'mfussenegger/nvim-dap'}},
     config = require('modules.dap.ui').setup,
+  }
+  use {
+    "Pocco81/DAPInstall.nvim",
+    requires = {{'mfussenegger/nvim-dap'}},
+    config = function ()
+      local dap_install = require("dap-install")
+
+      dap_install.setup({
+        installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+      })
+    end
   }
 
   --
