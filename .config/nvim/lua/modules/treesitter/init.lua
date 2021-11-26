@@ -6,7 +6,7 @@ config.setup = function()
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
     ident = {
-      enable = true,
+      enable = false,
     },
     highlight = {
       enable = true,

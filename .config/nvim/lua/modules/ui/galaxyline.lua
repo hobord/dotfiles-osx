@@ -57,7 +57,7 @@ config.setup = function()
   }
   gls.left[6] = {
     GitIcon = {
-      provider = function() return '  ' end,
+      provider = function() return ' ' end,
       condition = condition.check_git_workspace,
       separator = ' ',
       separator_highlight = {'NONE',colors.bg},
@@ -96,81 +96,49 @@ config.setup = function()
       highlight = {colors.red,colors.bg},
     }
   }
-  --gls.left[12] = {
-    --nvimGPS = {
-      --provider = function()
-        --local gps = require("nvim-gps")
-        --return gps.get_location()
-      --end,
-      --condition = function()
-        --local gps = require("nvim-gps")
-        --return gps.is_available()
-      --end,
-      --highlight = {colors.fg,colors.bg}
-    --}
-  --}
-  gls.left[12] = {
-    TreeContext = {
-      provider = function()
-        if not packer_plugins["nvim-treesitter"] or packer_plugins["nvim-treesitter"].loaded == false then
-          return ""
-        end
-        local f = require'nvim-treesitter'.statusline({
-          indicator_size = 50,
-          --type_patterns = {"class", "function", "method", "interface", "type_spec", "table", "if_statement", "for_statement", "for_in_statement"}
-          type_patterns = {"class", "function", "method", "interface", "type_spec", "table"},
-          transform_fn = function(line) return line:gsub('%s*[%[%(%{]*%s*$', '') end,
-          separator = '',
-        })
-        local fun_name = string.format("%s", f) -- convert to string, it may be a empty ts node
-        if fun_name == "vim.NIL" then
-          return " "
-        end
-        return " " .. fun_name
-      end
-    }
-  }
+  -- gls.left[12] = {
+  --   nvimGPS = {
+  --     provider = function()
+  --       local gps = require("nvim-gps")
+  --       return gps.get_location()
+  --     end,
+  --     condition = function()
+  --       local gps = require("nvim-gps")
+  --       return gps.is_available()
+  --     end,
+  --     highlight = {colors.fg,colors.bg}
+  --   }
+  -- }
+  -- gls.left[12] = {
+  --   TreeContext = {
+  --     provider = function()
+  --       if not packer_plugins["nvim-treesitter"] or packer_plugins["nvim-treesitter"].loaded == false then
+  --         return ""
+  --       end
+  --       local f = require'nvim-treesitter'.statusline({
+  --         indicator_size = 50,
+  --         --type_patterns = {"class", "function", "method", "interface", "type_spec", "table", "if_statement", "for_statement", "for_in_statement"}
+  --         type_patterns = {"class", "function", "method", "interface", "type_spec", "table"},
+  --         transform_fn = function(line) return line:gsub('%s*[%[%(%{]*%s*$', '') end,
+  --         separator = '',
+  --       })
+  --       local fun_name = string.format("%s", f) -- convert to string, it may be a empty ts node
+  --       if fun_name == "vim.NIL" then
+  --         return " "
+  --       end
+  --       return " " .. fun_name
+  --     end
+  --   }
+  -- }
 
-  gls.mid[0] = {
-    FileIcon = {
-      provider = 'FileIcon',
-      condition = condition.buffer_not_empty,
-      highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
-    },
-  }
+  -- gls.mid[0] = {
+  --   FileIcon = {
+  --     provider = 'FileIcon',
+  --     condition = condition.buffer_not_empty,
+  --     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
+  --   },
+  -- }
 
-  --gls.mid[1] = {
-    --ShowLspClient = {
-      ----provider = 'GetLspClient',
-      --provider = function ()
-        --local msg = '  '
-        --local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
-        --local clients = vim.lsp.get_active_clients()
-
-        --if next(clients) == nil then
-          --return msg
-        --end
-
-        --for _,client in ipairs(clients) do
-          --local filetypes = client.config.filetypes
-          --if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
-            --msg = '  '-- client.name
-          --end
-        --end
-
-        --return msg
-      --end,
-      --condition = function ()
-        --local tbl = {['dashboard'] = true,['']=true}
-        --if tbl[vim.bo.filetype] then
-          --return false
-        --end
-        --return true
-      --end,
-      ----icon = ' : ',
-      --highlight = {colors.yellow,colors.bg,'bold'}
-    --}
-  --}
   --gls.mid[3] = {
     --DiagnosticError = {
       --provider = 'DiagnosticError',
@@ -201,10 +169,10 @@ config.setup = function()
       --highlight = {colors.blue,colors.bg},
     --}
   --}
-  gls.mid[7] = {
+  gls.left[13] = {
     LspStatus = {
-      provider = function() return require('lsp-status').status() end,
-      highlight = {colors.fg,colors.bg}
+      provider = function() return ' '..require('lsp-status').status() end,
+      highlight = {colors.fg, colors.bg}
     }
   }
 
@@ -218,6 +186,7 @@ config.setup = function()
   gls.right[0] = {
     WhiteSpace = {
       provider = 'WhiteSpace',
+      highlight = {colors.fg,colors.bg}
     }
   }
   gls.right[1] = {
@@ -247,7 +216,38 @@ config.setup = function()
       highlight = {colors.green,colors.bg,'bold'}
     }
   }
-  gls.right[5] = {
+  -- gls.right[5] = {
+  --   ShowLspClient = {
+  --     --provider = 'GetLspClient',
+  --     provider = function ()
+  --       local msg = '  '
+  --       local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
+  --       local clients = vim.lsp.get_active_clients()
+  --
+  --       if next(clients) == nil then
+  --         return msg
+  --       end
+  --
+  --       for _,client in ipairs(clients) do
+  --         local filetypes = client.config.filetypes
+  --         if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+  --           msg = '  '-- client.name
+  --         end
+  --       end
+  --
+  --       return msg
+  --     end,
+  --     condition = function ()
+  --       local tbl = {['dashboard'] = true,['']=true}
+  --       if tbl[vim.bo.filetype] then
+  --         return false
+  --       end
+  --       return true
+  --     end,
+  --     highlight = {colors.yellow,colors.bg,'bold'}
+  --   }
+  -- }
+  gls.right[6] = {
     LineInfo = {
       provider = 'LineColumn',
       separator = ' ',
@@ -255,7 +255,7 @@ config.setup = function()
       highlight = {colors.fg,colors.bg},
     },
   }
-  gls.right[6] = {
+  gls.right[7] = {
     PerCent = {
       provider = 'LinePercent',
       separator = ' ',
@@ -264,7 +264,7 @@ config.setup = function()
     }
   }
 
-  gls.right[7] = {
+  gls.right[8] = {
     FileSize = {
       provider = 'FileSize',
       condition = condition.buffer_not_empty,
@@ -272,7 +272,7 @@ config.setup = function()
     }
   }
 
-  gls.right[8] = {
+  gls.right[9] = {
     RainbowBlue = {
       provider = function() return ' ▊' end,
       highlight = {colors.bg,colors.bg}

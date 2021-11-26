@@ -136,6 +136,7 @@ local plug_map = {
     --["x|I"]               = map_cmd("v:lua.enhance_nice_block('I')"):with_expr(),
     --["x|gI"]              = map_cmd("v:lua.enhance_nice_block('gI')"):with_expr(),
     --["x|A"]               = map_cmd("v:lua.enhance_nice_block('A')"):with_expr(),
+    ["i|<C-Down>"]          = map_cmd('copilot#Accept("<CR>")'):with_noremap():with_silent():with_expr(),
   };
 
 bind.nvim_load_mapping(plug_map)

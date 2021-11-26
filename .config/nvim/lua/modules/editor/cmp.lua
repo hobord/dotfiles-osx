@@ -27,12 +27,13 @@ config.setup = function()
       format = require"lspkind".cmp_format {
         with_text = true,
         menu = {
-          buffer      = "[BUF]",
-          nvim_lsp    = "[LSP]",
-          nvim_lua    = "[API]",
-          path        = "[PATH]",
-          luasnip     = "[SNIP]",
-          cmp_tabnine = "[TN]",
+          buffer      = "  ",
+          nvim_lsp    = "  ",
+          nvim_lua    = "  ",
+          path        = "  ",
+          luasnip     = "  ",
+          cmp_tabnine = "  ",
+          copilot     = " ﯙ ",
         },
       },
     },
@@ -40,10 +41,18 @@ config.setup = function()
     mapping = {
       ['<C-d>']     = cmp.mapping.scroll_docs(-4),
       ['<C-f>']     = cmp.mapping.scroll_docs(4),
-      ['<C-n>']     = cmp.mapping.complete(),
+      ['<C-n>']     = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, {"i", "s"}),
       ['<C-e>']     = cmp.mapping.close(),
       ['<CR>']      = cmp.mapping.confirm({ select = true }),
-      ["<Tab>"]     = cmp.mapping(function(fallback)
+      ["<C-TAB>"]   = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -56,7 +65,7 @@ config.setup = function()
         end
       end, { "i", "s" }),
 
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
+      ["S-C-TAB"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -68,6 +77,7 @@ config.setup = function()
     },
 
     sources = {
+      { name = 'copilot' },
       { name = 'luasnip' },
       { name = 'cmp_tabnine' },
       { name = 'nvim_lsp' },

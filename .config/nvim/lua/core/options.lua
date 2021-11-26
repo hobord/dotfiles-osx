@@ -89,6 +89,7 @@ local function load_options()
     pumblend       = 10;
     winblend       = 10;
     fdc            = '0'; -- 4
+    matchpairs     = "(:),{:},[:],<:>"
     --t_ZH           = "^[[3m";
     --t_ZR           = "^[[23m";
   }

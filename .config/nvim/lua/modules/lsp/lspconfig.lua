@@ -78,12 +78,12 @@ config.setup = function()
     }
   }
 
-  lspconfig.pylsp.setup{}
+  -- lspconfig.pylsp.setup{}
+  lspconfig.pyright.setup{}
   lspconfig.dockerls.setup{}
   lspconfig.graphql.setup{}
   lspconfig.intelephense.setup{}
   lspconfig.tsserver.setup({
-    capabilities = capabilities,
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
@@ -99,6 +99,7 @@ config.setup = function()
         -- buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
         -- buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
         -- buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
+        on_attach(client, bufnr)
     end,
   })
   lspconfig.sumneko_lua.setup {

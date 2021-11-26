@@ -11,15 +11,14 @@ config.setup = function()
       right_trunc_marker = '',
       tab_size = 18,
       diagnostics = "nvim_lsp",
-      --diagnostics_indicator = function(count, level)
-        --return "("..count..")"
-      --end,
       diagnostics_indicator = function(count, level, diagnostics_dict, context)
-        local s = " "
+        local s=""
+
         for e, n in pairs(diagnostics_dict) do
           local sym = e == "error" and " "
             or (e == "warning" and " " or "" )
-          s = s .. n .. sym
+          -- s = s .. n .. sym
+          s = s .. sym
         end
         return s
       end,
@@ -46,6 +45,20 @@ config.setup = function()
       custom_areas = {
         right = function()
           local result = {}
+
+          local s = '  '
+          local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
+          local clients = vim.lsp.get_active_clients()
+
+          for _,client in ipairs(clients) do
+            local filetypes = client.config.filetypes
+            if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+              s = '  ' -- client.name
+            end
+          end
+
+          table.insert(result,{text=s, guifg="#7EA9A7"})
+
           local error = vim.lsp.diagnostic.get_count(0, [[Error]])
           local warning = vim.lsp.diagnostic.get_count(0, [[Warning]])
           local info = vim.lsp.diagnostic.get_count(0, [[Information]])

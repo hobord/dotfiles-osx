@@ -7,6 +7,18 @@ require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Colorschemes
+  use {
+    'eddyekofo94/gruvbox-flat.nvim',
+    config = require('modules.ui.gruvbox-flat').setup,
+  }
+  --use 'rmehri01/onenord.nvim'
+  --'glepnir/zephyr-nvim'
+  --'gruvbox-community/gruvbox'
+  --'folke/tokyonight.nvim'
+  --'EdenEast/nightfox.nvim'
+  --'Murtaza-Udaipurwala/gruvqueen'
+
   -- Buffer line
   use {
     'akinsho/nvim-bufferline.lua',
@@ -15,11 +27,11 @@ require('packer').startup(function(use)
   }
 
   -- conext info in footer
-  --use {
-    --"SmiteshP/nvim-gps",
-    --requires = {'nvim-treesitter/nvim-treesitter'},
-    --config = require('modules.ui.gps').setup,
-  --}
+  -- use {
+  --   "SmiteshP/nvim-gps",
+  --   requires = {'nvim-treesitter/nvim-treesitter'},
+    -- config = require('modules.ui.gps').setup,
+  -- }
 
 
   -- Footer line with info
@@ -28,7 +40,7 @@ require('packer').startup(function(use)
     branch = 'main',
     requires = {
       {'kyazdani42/nvim-web-devicons'},
-      --{"SmiteshP/nvim-gps"},
+      -- {"SmiteshP/nvim-gps"},
     },
     config = require('modules.ui.galaxyline').setup,
   }
@@ -70,7 +82,9 @@ require('packer').startup(function(use)
   use {
     'rcarriga/nvim-notify',
     config = function()
-      require("notify").setup({})
+      require("notify").setup({
+        background_colour = "#000000"
+      })
     end
   }
 
@@ -80,17 +94,6 @@ require('packer').startup(function(use)
     config = require('modules.ui.zen-mode').setup,
   }
 
-  -- Colorschemes
-  use {
-    'eddyekofo94/gruvbox-flat.nvim',
-    config = require('modules.ui.gruvbox-flat').setup,
-  }
-  --use 'rmehri01/onenord.nvim'
-  --'glepnir/zephyr-nvim'
-  --'gruvbox-community/gruvbox'
-  --'folke/tokyonight.nvim'
-  --'EdenEast/nightfox.nvim'
-  --'Murtaza-Udaipurwala/gruvqueen'
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -155,6 +158,8 @@ require('packer').startup(function(use)
     'simrat39/symbols-outline.nvim',
     config = require('modules.lsp.symbols-outline').setup,
   }
+
+  use {'stevearc/aerial.nvim'}
 
   use {
     'rmagatti/goto-preview',
@@ -250,6 +255,7 @@ require('packer').startup(function(use)
       { "hrsh7th/cmp-buffer",     after = "nvim-cmp" },
       { "onsails/lspkind-nvim" },
       { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
       {'tzachar/cmp-tabnine',     after = 'nvim-cmp'},
       --{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
       --{ "quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp" },
@@ -258,6 +264,23 @@ require('packer').startup(function(use)
   }
 
   use { 'saadparwaiz1/cmp_luasnip' }
+
+  -- use {
+  --   'romgrk/nvim-treesitter-context',
+  --   requires = {'nvim-treesitter/nvim-treesitter'},
+  --   config = function ()
+  --     require'treesitter-context'.setup{enable = true,}
+  --   end
+  -- }
+
+  use {
+    'andymass/vim-matchup',
+    requires = {'nvim-treesitter/nvim-treesitter'},
+  }
+  use { 
+    'mfussenegger/nvim-treehopper',
+    requires = {'nvim-treesitter/nvim-treesitter'},
+  }
   
   -- Debugger
   use {
