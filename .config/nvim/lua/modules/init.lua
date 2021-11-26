@@ -113,6 +113,7 @@ require('packer').startup(function(use)
     event = 'BufRead',
     after = 'telescope.nvim',
     config = require('modules.treesitter').setup,
+    run = ':TSUpdate',
   }
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -245,6 +246,7 @@ require('packer').startup(function(use)
   }
 
   use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  use {'github/copilot.vim'}
 
   use {
     'hrsh7th/nvim-cmp',
