@@ -39,20 +39,22 @@ config.setup = function()
     },
 
     mapping = {
-      ['<C-d>']     = cmp.mapping.scroll_docs(-4),
-      ['<C-f>']     = cmp.mapping.scroll_docs(4),
-      ['<C-n>']     = cmp.mapping(function(fallback)
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-e>'] = cmp.mapping.close(),
+
+      ['<c-j>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
-          cmp.select_next_item()
-        elseif has_words_before() then
-          cmp.complete()
+          cmp.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+          })
         else
           fallback()
         end
       end, {"i", "s"}),
-      ['<C-e>']     = cmp.mapping.close(),
-      ['<CR>']      = cmp.mapping.confirm({ select = true }),
-      ["<C-TAB>"]   = cmp.mapping(function(fallback)
+
+      ["<C-n>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -61,11 +63,10 @@ config.setup = function()
           cmp.complete()
         else
           fallback()
-          --vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
         end
       end, { "i", "s" }),
 
-      ["S-C-TAB"] = cmp.mapping(function(fallback)
+      ["<C-m>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -77,14 +78,12 @@ config.setup = function()
     },
 
     sources = {
-      { name = 'copilot' },
-      { name = 'luasnip' },
+      -- { name = 'copilot', keyword_length = 2 },
+      { name = 'luasnip', keyword_length = 2 },
       { name = 'cmp_tabnine' },
-      { name = 'nvim_lsp' },
-      --{ name = 'vsnip' },
-      -- { name = 'ultisnips' },
+      { name = 'nvim_lsp'},
       { name = 'buffer', keyword_length = 3 },
-      { name = 'path' },
+      { name = 'path', keyword_length = 3 },
     },
 
     experimental = {
@@ -93,7 +92,6 @@ config.setup = function()
     },
 
     documentation = {
-      --border = { '', '', '', ' ', '', '', '', ' ' },
       border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
     },
   })

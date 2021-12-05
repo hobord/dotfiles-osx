@@ -66,6 +66,9 @@ config.setup = function()
       },
     },
   }
+
+  require'nvim-treesitter.utils'
+  require'nvim-treesitter.query'
 end
 
 return config

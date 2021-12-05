@@ -2,10 +2,30 @@
 vim.cmd [[packadd packer.nvim]]
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 --vim._update_package_paths()
+require'packer'.init({
+  max_jobs=50
+})
 
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    event = 'BufRead',
+    after = 'telescope.nvim',
+    config = require('modules.treesitter').setup,
+    run = ':TSUpdate',
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+  }
+  use {
+    'nvim-treesitter/playground',
+    after = 'nvim-treesitter',
+  }
+
 
   -- Colorschemes
   use {
@@ -30,10 +50,20 @@ require('packer').startup(function(use)
   -- use {
   --   "SmiteshP/nvim-gps",
   --   requires = {'nvim-treesitter/nvim-treesitter'},
-    -- config = require('modules.ui.gps').setup,
+  --   after = 'nvim-treesitter',
+  --   config = require('modules.ui.gps').setup,
   -- }
+  --
 
-
+  use {
+    'romgrk/nvim-treesitter-context',
+    requires = {'nvim-treesitter/nvim-treesitter'},
+    after = 'nvim-treesitter',
+    config = function()
+      require('modules.ui.context').setup()
+    end,
+  }
+  --
   -- Footer line with info
   use {
     'glepnir/galaxyline.nvim',
@@ -90,6 +120,16 @@ require('packer').startup(function(use)
 
   -- Zen mode
   use {
+    'folke/twilight.nvim',
+    config = function()
+      require("twilight").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+  use {
     'folke/zen-mode.nvim',
     config = require('modules.ui.zen-mode').setup,
   }
@@ -106,22 +146,6 @@ require('packer').startup(function(use)
       {'nvim-telescope/telescope-dap.nvim'},
     },
     config = require('modules.ui.telescope').setup,
-  }
-
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    event = 'BufRead',
-    after = 'telescope.nvim',
-    config = require('modules.treesitter').setup,
-    run = ':TSUpdate',
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
-  use {
-    'nvim-treesitter/playground',
-    after = 'nvim-treesitter',
   }
 
   -- ---------------------------------------------
@@ -246,7 +270,12 @@ require('packer').startup(function(use)
   }
 
   use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
-  use {'github/copilot.vim'}
+  use {
+    'github/copilot.vim',
+    config = function()
+      vim.cmd('iunmap <Tab>')
+    end
+  }
 
   use {
     'hrsh7th/nvim-cmp',
