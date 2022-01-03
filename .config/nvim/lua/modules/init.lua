@@ -83,6 +83,15 @@ require('packer').startup(function(use)
     cmd = {'NvimTreeToggle','NvimTreeOpen'},
   }
 
+  -- use {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v1.x",
+  --   requires = { "MunifTanjim/nui.nvim" },
+  --   config = function ()
+  --     require("neo-tree").setup()
+  --   end
+  -- }
+  --
   use {
     'ThePrimeagen/harpoon',
     requires = {'nvim-lua/plenary.nvim'},
@@ -273,7 +282,7 @@ require('packer').startup(function(use)
   use {
     'github/copilot.vim',
     config = function()
-      -- vim.cmd('iunmap <Tab>')
+      vim.cmd('unmap! <Tab>')
     end
   }
 
@@ -392,4 +401,3 @@ require('packer').startup(function(use)
 end)
 
 require('modules.mapping')
-
