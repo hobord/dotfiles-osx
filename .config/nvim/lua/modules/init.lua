@@ -273,7 +273,7 @@ require('packer').startup(function(use)
   use {
     'github/copilot.vim',
     config = function()
-      vim.cmd('iunmap <Tab>')
+      -- vim.cmd('iunmap <Tab>')
     end
   }
 

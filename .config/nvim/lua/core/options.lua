@@ -13,7 +13,7 @@ end
 local function load_options()
   local global_local = {
     termguicolors  = true;
-    mouse          = "nv";
+    mouse          = "a"; -- nv";
     errorbells     = true;
     visualbell     = true;
     hidden         = true;
@@ -88,11 +88,11 @@ local function load_options()
     listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
     pumblend       = 10;
     winblend       = 10;
-    fdc            = '0'; -- 4
-    matchpairs     = "(:),{:},[:],<:>"
-    --t_ZH           = "^[[3m";
-    --t_ZR           = "^[[23m";
+    fdc            = '1'; -- 4
+    matchpairs     = "(:),{:},[:],<:>";
   }
+  --t_ZH           = "^[[3m";
+  --t_ZR           = "^[[23m";
 
   local bw_local  = {
     synmaxcol      = 2500;
@@ -114,6 +114,9 @@ local function load_options()
     conceallevel   = 2;
     concealcursor  = "niv";
   }
+
+  vim.g.copilot_no_tab_map = true;
+
 
   if global.is_mac then
     vim.g.clipboard = {

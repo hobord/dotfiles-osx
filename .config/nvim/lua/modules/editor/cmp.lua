@@ -41,12 +41,17 @@ config.setup = function()
     mapping = {
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-e>'] = cmp.mapping.close(),
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 
       ['<c-j>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
+            -- behavior = cmp.ConfirmBehavior.Insert,
+            behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           })
         else
@@ -80,8 +85,8 @@ config.setup = function()
     sources = {
       -- { name = 'copilot', keyword_length = 2 },
       { name = 'luasnip', keyword_length = 2 },
-      { name = 'cmp_tabnine' },
-      { name = 'nvim_lsp'},
+      { name = 'cmp_tabnine', keyword_length = 3 },
+      { name = 'nvim_lsp', keyword_length = 1 },
       { name = 'buffer', keyword_length = 3 },
       { name = 'path', keyword_length = 3 },
     },
