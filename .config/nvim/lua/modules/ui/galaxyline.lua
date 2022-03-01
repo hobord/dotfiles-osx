@@ -6,6 +6,7 @@ config.setup = function()
   local condition = require('galaxyline.condition')
   local buffer    = require('galaxyline.provider_buffer')
   local gls       = gl.section
+  -- local gps = require("nvim-gps")
 
   gl.short_line_list = {'NvimTree','vista','dbui','packer','symbols_outline'}
 
@@ -99,11 +100,9 @@ config.setup = function()
   -- gls.left[12] = {
   --   nvimGPS = {
   --     provider = function()
-  --       local gps = require("nvim-gps")
   --       return gps.get_location()
   --     end,
   --     condition = function()
-  --       local gps = require("nvim-gps")
   --       return gps.is_available()
   --     end,
   --     highlight = {colors.fg,colors.bg}
@@ -118,8 +117,8 @@ config.setup = function()
   --       local f = require'nvim-treesitter'.statusline({
   --         indicator_size = 50,
   --         --type_patterns = {"class", "function", "method", "interface", "type_spec", "table", "if_statement", "for_statement", "for_in_statement"}
-  --         type_patterns = {"class", "function", "method", "interface", "type_spec", "table"},
-  --         transform_fn = function(line) return line:gsub('%s*[%[%(%{]*%s*$', '') end,
+  --         type_patterns = {"class", "function", "method"},
+  --         -- transform_fn = function(line) return line:gsub('%s*[%[%(%{]*%s*$', '') end,
   --         separator = '',
   --       })
   --       local fun_name = string.format("%s", f) -- convert to string, it may be a empty ts node

@@ -11,7 +11,7 @@ config.setup = function()
     highlight = {
       enable = true,
     },
-    incremental_selection = { 
+    incremental_selection = {
       enable = true,
       keymaps = {
         init_selection = "gnn",
@@ -23,47 +23,43 @@ config.setup = function()
     textobjects = {
       select = {
         enable = true,
-        -- Automatically jump forward to textobj, similar to targets.vim 
+        -- Automatically jump forward to textobj, similar to targets.vim
         lookahead = true,
         keymaps = {
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
-          ["ai"] = "@conditional.outer",
-          ["ii"] = "@conditional.inner",
-          ["al"] = "@loop.outer",
-          ["il"] = "@loop.inner",
+          -- ["af"] = "@function.outer",
+          -- ["if"] = "@function.inner",
+          -- ["ac"] = "@class.outer",
+          -- ["ic"] = "@class.inner",
+          -- ["ai"] = "@conditional.outer",
+          -- ["ii"] = "@conditional.inner",
+          -- ["al"] = "@loop.outer",
+          -- ["il"] = "@loop.inner",
         },
       },
       move = {
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          ["]m"] = "@function.outer",
-          ["]]"] = "@class.outer",
+          ["]]"] = "@function.outer",
         },
         goto_next_end = {
-          ["]M"] = "@function.outer",
-          ["]["] = "@class.outer",
+          ["]["] = "@function.outer",
         },
         goto_previous_start = {
-          ["[m"] = "@function.outer",
-          ["[["] = "@class.outer",
+          ["[["] = "@function.outer",
         },
         goto_previous_end = {
-          ["[M"] = "@function.outer",
-          ["[]"] = "@class.outer",
+          ["[]"] = "@function.outer",
         },
       },
-      lsp_interop = {
-        enable = true,
-        border = 'none',
-        peek_definition_code = {
-          ["df"] = "@function.outer",
-          ["dF"] = "@class.outer",
-        },
-      },
+      -- lsp_interop = {
+      --   enable = true,
+      --   border = 'none',
+      --   peek_definition_code = {
+      --     ["df"] = "@function.outer",
+      --     ["dF"] = "@class.outer",
+      --   },
+      -- },
     },
   }
 

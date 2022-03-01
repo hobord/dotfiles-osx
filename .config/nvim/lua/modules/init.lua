@@ -49,11 +49,10 @@ require('packer').startup(function(use)
   -- conext info in footer
   -- use {
   --   "SmiteshP/nvim-gps",
+  --   opt = false,
   --   requires = {'nvim-treesitter/nvim-treesitter'},
-  --   after = 'nvim-treesitter',
   --   config = require('modules.ui.gps').setup,
   -- }
-  --
 
   use {
     'romgrk/nvim-treesitter-context',
@@ -75,6 +74,14 @@ require('packer').startup(function(use)
     config = require('modules.ui.galaxyline').setup,
   }
 
+
+  use {
+    'petertriho/nvim-scrollbar',
+    config = function()
+      require("scrollbar").setup()
+    end,
+  }
+
   -- Tree file manager
   use {
     'kyazdani42/nvim-tree.lua',
@@ -83,15 +90,19 @@ require('packer').startup(function(use)
     cmd = {'NvimTreeToggle','NvimTreeOpen'},
   }
 
-  -- use {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   branch = "v1.x",
-  --   requires = { "MunifTanjim/nui.nvim" },
-  --   config = function ()
-  --     require("neo-tree").setup()
-  --   end
-  -- }
-  --
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v1.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "kyazdani42/nvim-web-devicons",
+    },
+    config = function ()
+      require("neo-tree").setup()
+    end
+  }
+
   use {
     'ThePrimeagen/harpoon',
     requires = {'nvim-lua/plenary.nvim'},
@@ -152,6 +163,7 @@ require('packer').startup(function(use)
       {'nvim-telescope/telescope-fzy-native.nvim'},
       {'nvim-telescope/telescope-frecency.nvim'},
       {'tami5/sqlite.lua'},
+      {'nvim-telescope/telescope-file-browser.nvim'},
       {'nvim-telescope/telescope-dap.nvim'},
     },
     config = require('modules.ui.telescope').setup,
@@ -208,11 +220,6 @@ require('packer').startup(function(use)
         post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
       }
     end
-  }
-
-  use {
-    'glepnir/lspsaga.nvim',
-    cmd = 'Lspsaga',
   }
 
   use {
@@ -321,7 +328,32 @@ require('packer').startup(function(use)
     'mfussenegger/nvim-treehopper',
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
-  
+
+
+  use {
+    'https://github.com/booperlv/nvim-gomove',
+    config = function()
+      require("gomove").setup {}
+    end
+  }
+
+  use{ 'anuvyklack/pretty-fold.nvim',
+    config = function()
+      require('pretty-fold').setup{
+        keep_indentation = false,
+        fill_char = '━',
+        sections = {
+            left = {
+              '━ ', function() return string.rep('*', vim.v.foldlevel) end, ' ━┫', 'content', '┣'
+            },
+            right = {
+              '┫ ', 'number_of_folded_lines', ': ', 'percentage', ' ┣━━',
+            }
+        }
+      }
+      require('pretty-fold.preview').setup_keybinding()
+    end
+  }
   -- Debugger
   use {
     'mfussenegger/nvim-dap',
@@ -349,6 +381,13 @@ require('packer').startup(function(use)
       dap_install.setup({
         installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
       })
+    end
+  }
+
+  use {
+    'ray-x/go.nvim',
+    config = function()
+      require('go').setup()
     end
   }
 
@@ -389,6 +428,17 @@ require('packer').startup(function(use)
     config = require('modules.tools.diffview').setup
   }
 
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   local function file_exists(name)
     local f=io.open(name,"r")

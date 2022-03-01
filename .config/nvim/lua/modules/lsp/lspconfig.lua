@@ -23,6 +23,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 local enhance_attach = function(client, bufnr)
   client.request("textDocument/formatting", {} , nil, vim.api.nvim_get_current_buf())
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.o["foldmethod"]="expr"
 end
 
 config.setup = function()
@@ -53,15 +54,37 @@ config.setup = function()
       update_in_insert = false,
   })
 
-  local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+  local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
   for type, icon in pairs(signs) do
-    local hl = "DiagnosticsSign" .. type
+    local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
 
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+  })
+
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+  })
+
+  -- modify open_floating_preview to use the custom borders
+  local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+  local open_floating_preview_custom = function(contents, syntax, opts, ...)
+    opts = opts or {}
+    -- Ideally I would like to retrieve severity here, to use that border array or another one. 
+    opts.border = "rounded" 
+    opts.max_width = 60
+    opts.max_height = 20
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  end
+  vim.lsp.util.open_floating_preview = open_floating_preview_custom
+
   lspconfig.gopls.setup {
     cmd = {"gopls","--remote=auto"},
+    filetypes = {'go', 'gomod'},
+    root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
     on_attach = enhance_attach,
     capabilities = capabilities,
     init_options = {
@@ -104,7 +127,7 @@ config.setup = function()
   })
   lspconfig.sumneko_lua.setup {
     cmd = {
-     global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/macOS/lua-language-server"
+      global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
     };
     settings = {
       Lua = {

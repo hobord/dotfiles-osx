@@ -69,7 +69,6 @@ local function load_options()
     shortmess      = "aoOTIcF";
     scrolloff      = 999;
     sidescrolloff  = 5;
-    foldlevelstart = 99;
     ruler          = false;
     list           = false; -- show/hide spaces,tabs
     showtabline    = 2;
@@ -88,6 +87,11 @@ local function load_options()
     listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
     pumblend       = 10;
     winblend       = 10;
+    foldmethod     = "expr";
+    foldcolumn     = "2";
+    foldlevelstart = 99;
+    foldlevel      = 99;
+    wrap           = false;
     fdc            = '1'; -- 4
     matchpairs     = "(:),{:},[:],<:>";
   }
@@ -104,12 +108,13 @@ local function load_options()
     shiftwidth     = 2;
     softtabstop    = -1;
     breakindentopt = "shift:2,min:20";
-    wrap           = false;
     linebreak      = true;
     number         = true;
     relativenumber = true;
     colorcolumn    = "0";
     foldenable     = true;
+    foldlevelstart = 99;
+    foldlevel      = 99;
     signcolumn     = "yes";
     conceallevel   = 2;
     concealcursor  = "niv";
@@ -143,4 +148,5 @@ local function load_options()
 end
 
 load_options()
+vim.cmd('')
 

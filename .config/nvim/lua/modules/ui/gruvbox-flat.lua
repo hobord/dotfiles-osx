@@ -10,6 +10,7 @@ config.setup = function()
 
   -- Load the colorscheme
   vim.cmd[[colorscheme gruvbox-flat]]
+  vim.cmd[[hi Folded guibg=#32302f]]
 end
 
 return config

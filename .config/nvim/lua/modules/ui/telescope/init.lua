@@ -91,16 +91,24 @@ config.setup = function()
       }
     },
     extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-        }
+      fzy_native = {
+          override_generic_sorter = false,
+          override_file_sorter = true,
+      },
+      file_browser = {
+        --cwd = utils.buffer_dir(),
+        layout_config = {
+          preview_width = 0.6
+        },
+      },
+
     }
   }
   require('telescope').load_extension('fzy_native')
   --require('telescope').load_extension('dotfiles')
   require('telescope').load_extension('dap')
   require('telescope').load_extension('frecency')
+  require("telescope").load_extension('file_browser')
 end
 
 return config
