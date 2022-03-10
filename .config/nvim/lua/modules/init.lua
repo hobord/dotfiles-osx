@@ -357,21 +357,25 @@ require('packer').startup(function(use)
   -- Debugger
   use {
     'mfussenegger/nvim-dap',
+    requires = {
+      {'rcarriga/nvim-dap-ui'},
+      {'theHamsta/nvim-dap-virtual-text'},
+    },
     config = require('modules.dap').setup,
   }
-  use {
-    'leoluz/nvim-dap-go',
-    requires = {{'mfussenegger/nvim-dap'}},
-    config = function ()
-      require('dap-go').setup()
-    end
-  }
-  use {'theHamsta/nvim-dap-virtual-text'}
-  use {
-    'rcarriga/nvim-dap-ui',
-    requires = {{'mfussenegger/nvim-dap'}},
-    config = require('modules.dap.ui').setup,
-  }
+  -- use {
+  --   'leoluz/nvim-dap-go',
+  --   requires = {{'mfussenegger/nvim-dap'}},
+  --   config = function ()
+  --     require('dap-go').setup()
+  --   end
+  -- }
+  -- use {'theHamsta/nvim-dap-virtual-text'}
+  -- use {
+  --   'rcarriga/nvim-dap-ui',
+  --   requires = {{'mfussenegger/nvim-dap'}},
+  --   config = require('modules.dap.ui').setup,
+  -- }
   use {
     "Pocco81/DAPInstall.nvim",
     requires = {{'mfussenegger/nvim-dap'}},

@@ -11,6 +11,8 @@ config.setup = function()
   -- Load the colorscheme
   vim.cmd[[colorscheme gruvbox-flat]]
   vim.cmd[[hi Folded guibg=#32302f]]
+  vim.cmd[[hi DebuggerBreakpoint guifg=#ff0000]]
+  vim.cmd[[hi DebuggerBreakpointCondition guifg=#ffa500]]
 end
 
 return config
