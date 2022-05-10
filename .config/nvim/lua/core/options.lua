@@ -81,7 +81,6 @@ local function load_options()
     cmdheight      = 1;
     cmdwinheight   = 5;
     equalalways    = false;
-    laststatus     = 2;
     display        = "lastline";
     showbreak      = "↳  ";
     listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
@@ -94,11 +93,13 @@ local function load_options()
     wrap           = false;
     fdc            = '1'; -- 4
     matchpairs     = "(:),{:},[:],<:>";
+    -- laststatus     = 2;
+    laststatus     = 3;
   }
   --t_ZH           = "^[[3m";
   --t_ZR           = "^[[23m";
 
-  local bw_local  = {
+  local bw_local   = {
     synmaxcol      = 2500;
     formatoptions  = "1jcroql";
     textwidth      = 80;
@@ -118,6 +119,7 @@ local function load_options()
     signcolumn     = "yes";
     conceallevel   = 2;
     concealcursor  = "niv";
+    laststatus     = 3;
   }
 
   vim.g.copilot_no_tab_map = true;

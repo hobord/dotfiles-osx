@@ -45,8 +45,8 @@ local plug_map = {
     --["n|<Leader>cw"]      = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     --["n|<Leader>j"]         = map_cu('Telescope jumplist'):with_noremap():with_silent(),
     -- Plugin nvim-tree
-    ["n|<Leader>e"]         = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
-    -- ["n|<Leader>F"]         = map_cr('NvimTreeFindFile'):with_noremap():with_silent(),
+    ["n|<C-e>"]         = map_cr('Neotree reveal toggle left focus'):with_noremap():with_silent(),
+    -- ["n|<Leader>e"]         = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
     -- Plugin Telescope
     ["n|<Leader>b"]         = map_cu('Telescope buffers'):with_noremap():with_silent(),
     ["n|<Leader><Leader>z"] = map_cu("ZenMode"):with_noremap():with_silent(),
@@ -89,33 +89,6 @@ local plug_map = {
     ["n|F"]                 = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
     ["x|F"]                 = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
     ["o|F"]                 = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
-    --["n|<Leader>fw"]      = map_cu('Telescope grep_string'):with_noremap():with_silent(),
-    --["n|<Leader>fd"]      = map_cu('Telescope dotfiles path='..os.getenv("HOME")..'/.dotfiles'):with_noremap():with_silent(),
-    --["n|<Leader>fs"]      = map_cu('Telescope gosource'):with_noremap():with_silent(),
-    --["n|<Leader>vdc"]     = map_cu("lua vim.lsp.buf.declaration()"):with_noremap():with_silent(),
-    --["n|<Leader>vd"]      = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
-    --["n|<Leader>vtd"]     = map_cu("lua vim.lsp.buf.type_definition()"):with_noremap():with_silent(),
-    --["n|<Leader>vi"]      = map_cu("lua vim.lsp.buf.implementation()"):with_noremap():with_silent(),
-    --["n|<Leader>vsh"]     = map_cu("lua vim.lsp.buf.signature_help()"):with_noremap():with_silent(),
-    --["n|<Leader>vrr"]     = map_cu("lua vim.lsp.buf.references()"):with_noremap():with_silent(),
-    --["n|<Leader>vrn"]     = map_cu("lua vim.lsp.buf.rename()"):with_noremap():with_silent(),
-    --["n|<Leader>vh"]      = map_cu("lua vim.lsp.buf.hover()"):with_noremap():with_silent(),
-    --["n|<Leader>vds"]     = map_cu("lua vim.lsp.buf.document_symbol()"):with_noremap():with_silent(),
-    --["n|<Leader>vws"]     = map_cu("lua vim.lsp.buf.workspace_symbol()"):with_noremap():with_silent(),
-    --["n|<Leader>vca"]     = map_cu("lua vim.lsp.buf.code_action()"):with_noremap():with_silent(),
-    --["n|<Leader>vsd"]     = map_cu("lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()"):with_noremap():with_silent(),
-    -- Far.vim
-    --["n|<Leader>fz"]      = map_cr('Farf'):with_noremap():with_silent();
-    --["v|<Leader>fz"]      = map_cr('Farf'):with_noremap():with_silent();
-    -- prodoc
-    --["n|gcc"]             = map_cu('ProComment'):with_noremap():with_silent(),
-    --["x|gcc"]             = map_cr('ProComment'),
-    --["n|gcj"]             = map_cu('ProDoc'):with_silent():with_silent(),
-    -- Plugin MarkdownPreview
-    --["n|<Leader>md"]      = map_cu('MarkdownPreview'):with_noremap():with_silent(),
-    -- Plugin DadbodUI
-    --["n|<Leader>od"]      = map_cr('DBUIToggle'):with_noremap():with_silent(),
-    -- Plugin Floaterm
     -- Plugin vim-operator-surround
     --["n|sa"]              = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
     --["n|sd"]              = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),

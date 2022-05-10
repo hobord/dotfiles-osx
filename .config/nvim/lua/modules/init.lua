@@ -46,14 +46,6 @@ require('packer').startup(function(use)
     config = require('modules.ui.bufferline').setup,
   }
 
-  -- conext info in footer
-  -- use {
-  --   "SmiteshP/nvim-gps",
-  --   opt = false,
-  --   requires = {'nvim-treesitter/nvim-treesitter'},
-  --   config = require('modules.ui.gps').setup,
-  -- }
-
   use {
     'romgrk/nvim-treesitter-context',
     requires = {'nvim-treesitter/nvim-treesitter'},
@@ -64,14 +56,39 @@ require('packer').startup(function(use)
   }
   --
   -- Footer line with info
-  use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
+  -- use {
+  --   'glepnir/galaxyline.nvim',
+  --   branch = 'main',
+  --   requires = {
+  --     {'kyazdani42/nvim-web-devicons'},
+  --     -- {"SmiteshP/nvim-gps"},
+  --   },
+  --   config = require('modules.ui.galaxyline').setup,
+  -- }
+
+  -- use {
+  --   'feline-nvim/feline.nvim',
+  --   requires = {
+  --     'kyazdani42/nvim-web-devicons',
+  --     "SmiteshP/nvim-gps",
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  --   config = require('modules.ui.feline').setup,
+  -- }
+  use { "SmiteshP/nvim-gps",
     requires = {
-      {'kyazdani42/nvim-web-devicons'},
-      -- {"SmiteshP/nvim-gps"},
+      { 'nvim-treesitter/nvim-treesitter' },
     },
-    config = require('modules.ui.galaxyline').setup,
+    config = require('modules.ui.gps').setup,
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      { 'kyazdani42/nvim-web-devicons', opt = true },
+      -- { "SmiteshP/nvim-gps" },
+    },
+    config = require('modules.ui.lualine').setup,
   }
 
 
@@ -92,7 +109,7 @@ require('packer').startup(function(use)
 
   use {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "v1.x",
+    branch = "v2.x",
     requires = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -143,9 +160,10 @@ require('packer').startup(function(use)
     'folke/twilight.nvim',
     config = function()
       require("twilight").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
+        dimming = {
+          inactive = true,
+        },
+        context = 15,
       }
     end
   }
@@ -289,7 +307,7 @@ require('packer').startup(function(use)
   use {
     'github/copilot.vim',
     config = function()
-      vim.cmd('unmap! <Tab>')
+      -- vim.cmd('unmap! <Tab>')
     end
   }
 
@@ -324,7 +342,8 @@ require('packer').startup(function(use)
     'andymass/vim-matchup',
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
-  use { 
+
+  use {
     'mfussenegger/nvim-treehopper',
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
@@ -351,7 +370,7 @@ require('packer').startup(function(use)
             }
         }
       }
-      require('pretty-fold.preview').setup_keybinding()
+      -- require('pretty-fold.preview').setup_keybinding()
     end
   }
   -- Debugger
@@ -380,11 +399,11 @@ require('packer').startup(function(use)
     "Pocco81/DAPInstall.nvim",
     requires = {{'mfussenegger/nvim-dap'}},
     config = function ()
-      local dap_install = require("dap-install")
-
-      dap_install.setup({
-        installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-      })
+      -- local dap_install = require("dap-install")
+      --
+      -- dap_install.setup({
+      --   installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+      -- })
     end
   }
 

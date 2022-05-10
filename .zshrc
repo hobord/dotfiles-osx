@@ -136,10 +136,10 @@ alias drmi="docker rmi \$(docker images | grep \"<none>\" | awk '{print \$3}')"
 alias drm="docker rm \$(docker ps -a|grep Exited| awk '{print \$1}')" 
 alias dps='docker ps --format "table {{.ID}} {{.Status}} {{.Names}}"'
 
-alias node='docker run -it --rm -w=/workspace -v $(pwd):/workspace node bash'
-alias node12='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:12 bash'
-alias node10='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:10 bash'
-alias golang='docker run -it --rm -w=/workspace -v $(pwd):/workspace -v ~/.vimrc:/home/gropher/.vimrc hobord/golang-dev:vim'
+# alias node='docker run -it --rm -w=/workspace -v $(pwd):/workspace node bash'
+# alias node12='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:12 bash'
+# alias node10='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:10 bash'
+# alias golang='docker run -it --rm -w=/workspace -v $(pwd):/workspace -v ~/.vimrc:/home/gropher/.vimrc hobord/golang-dev:vim'
 alias mysql='docker run -it --rm -w=/workspace -v $(pwd):/workspace mysql:5.7 bash'
 alias rust='docker run -it --rm -w=/workspace -v $(pwd):/workspace rust bash'
 alias composer="php /usr/local/bin/composer.phar"

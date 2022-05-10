@@ -47,7 +47,7 @@ config.setup = function()
       }),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 
-      ['<c-j>'] = cmp.mapping(function(fallback)
+      ['<c-h>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.confirm({
             -- behavior = cmp.ConfirmBehavior.Insert,
@@ -59,7 +59,7 @@ config.setup = function()
         end
       end, {"i", "s"}),
 
-      ["<C-n>"] = cmp.mapping(function(fallback)
+      ["<C-j>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -71,7 +71,7 @@ config.setup = function()
         end
       end, { "i", "s" }),
 
-      ["<C-m>"] = cmp.mapping(function(fallback)
+      ["<C-k>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -96,9 +96,10 @@ config.setup = function()
       ghost_text = true,
     },
 
-    documentation = {
-      border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
-    },
+    -- window.documentation= "native"
+    -- documentation = {
+    --   border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+    -- },
   })
 
 end

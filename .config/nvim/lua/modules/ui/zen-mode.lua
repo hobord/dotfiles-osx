@@ -6,6 +6,7 @@ config.setup = function()
       options = {
         list = false,
         wrap = false,
+        relativenumber = false,
       }
     },
     plugins = {
@@ -18,6 +19,7 @@ config.setup = function()
         colorcolumn = 0,
       },
       gitsigns = { enabled = true },
+      twilight = { enabled = false },
     }
   }
 end

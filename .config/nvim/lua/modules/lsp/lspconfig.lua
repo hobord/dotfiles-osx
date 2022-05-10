@@ -73,8 +73,8 @@ config.setup = function()
   local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
   local open_floating_preview_custom = function(contents, syntax, opts, ...)
     opts = opts or {}
-    -- Ideally I would like to retrieve severity here, to use that border array or another one. 
-    opts.border = "rounded" 
+    -- Ideally I would like to retrieve severity here, to use that border array or another one.
+    opts.border = "rounded"
     opts.max_width = 60
     opts.max_height = 20
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
@@ -127,7 +127,8 @@ config.setup = function()
   })
   lspconfig.sumneko_lua.setup {
     cmd = {
-      global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
+      -- global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
+      global.data_dir.."../lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
     };
     settings = {
       Lua = {
