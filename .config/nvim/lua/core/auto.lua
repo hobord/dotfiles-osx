@@ -61,9 +61,9 @@ function autocmd.load_autocmds()
       {"CursorHold,CursorHoldI", "*", [[lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]};
     };
 
-    go = {
-      {"BufWritePre", "*.go", "lua require('go.format').goimport()"};
-    };
+    -- go = {
+    --   {"BufWritePre", "*.go", "lua require('go.format').goimport()"};
+    -- };
 
     yank = {
       {"TextYankPost", [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]]};

@@ -163,7 +163,7 @@ eval "$(gh completion -s zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
 
-export CLOUDSDK_PYTHON=python2.7
+export CLOUDSDK_PYTHON=python3
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/balazs/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/balazs/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 

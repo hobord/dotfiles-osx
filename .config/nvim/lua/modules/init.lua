@@ -75,13 +75,13 @@ require('packer').startup(function(use)
   --   },
   --   config = require('modules.ui.feline').setup,
   -- }
-  use { "SmiteshP/nvim-gps",
-    requires = {
-      { 'nvim-treesitter/nvim-treesitter' },
-    },
-    config = require('modules.ui.gps').setup,
-  }
-
+  -- use { "SmiteshP/nvim-gps",
+  --   requires = {
+  --     { 'nvim-treesitter/nvim-treesitter' },
+  --   },
+  --   config = require('modules.ui.gps').setup,
+  -- }
+  --
   use {
     'nvim-lualine/lualine.nvim',
     requires = {
@@ -407,12 +407,12 @@ require('packer').startup(function(use)
     end
   }
 
-  use {
-    'ray-x/go.nvim',
-    config = function()
-      require('go').setup()
-    end
-  }
+  -- use {
+  --   'ray-x/go.nvim',
+  --   config = function()
+  --     require('go').setup()
+  --   end
+  -- }
 
   --
   -- Tools

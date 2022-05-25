@@ -34,7 +34,7 @@ local plug_map = {
     ["n|[d"]                = map_cu('lua vim.diagnostic.goto_prev()'):with_noremap():with_silent(),
     ["n|]d"]                = map_cu('lua vim.diagnostic.goto_next()'):with_noremap():with_silent(),
     ["n|H"]                 = map_cr("lua vim.lsp.buf.hover({border='single'; max_width=60; max_heigt=20})"):with_noremap():with_silent(),
-    ["n|<Leader>a"]         = map_cr("Telescope lsp_code_actions"):with_noremap():with_silent(),
+    ["n|<Leader>a"]         = map_cr("lua vim.lsp.buf.code_action()"):with_noremap():with_silent(),
     --["n|gD"]              = map_cu("lua require('goto-preview').goto_preview_definition()"):with_noremap():with_silent(),
     ["n|gd"]                = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
     ["n|<Leader>fs"]        = map_cr('Telescope lsp_dynamic_workspace_symbols'):with_noremap():with_silent(),
