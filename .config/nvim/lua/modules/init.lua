@@ -244,6 +244,8 @@ require('packer').startup(function(use)
     'nvim-lua/lsp-status.nvim',
     config = require('modules.lsp.lsp-status').setup,
   }
+
+    use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   --
   -- EDITOR
   --

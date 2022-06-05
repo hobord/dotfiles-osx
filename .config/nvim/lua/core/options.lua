@@ -86,7 +86,7 @@ local function load_options()
     listchars      = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←";
     pumblend       = 10;
     winblend       = 10;
-    foldmethod     = "expr";
+    foldmethod     = "syntax";
     foldcolumn     = "2";
     foldlevelstart = 99;
     foldlevel      = 99;

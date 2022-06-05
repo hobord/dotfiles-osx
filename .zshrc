@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/balazs/.oh-my-zsh"
@@ -164,12 +164,6 @@ eval "$(gh completion -s zsh)"
 alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
 
 export CLOUDSDK_PYTHON=python3
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/balazs/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/balazs/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/balazs/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/balazs/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
@@ -177,3 +171,16 @@ export LC_CTYPE=en_US.UTF-8
 [[ ! -f ~/.aliases_ssh.zsh ]] || source ~/.aliases_ssh.zsh
 
 export PATH="/usr/local/opt/curl/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/balazs/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/balazs/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/balazs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/balazs/google-cloud-sdk/completion.zsh.inc'; fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+
+# export PATH="/usr/local/opt/openjdk/bin:$PATH"
+# export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+
