@@ -16,11 +16,17 @@ M.setup = function()
       "neo-tree",
     },
     globalstatus = true,
-   --  sections = {
-			-- -- lualine_c = {
+    sections = {
+      lualine_c = {
+        {
+          'filename',
+          path = 1,
+        }
+      },
+      -- lualine_c = {
 			-- -- 	{ gps.get_location, cond = gps.is_available },
 			-- -- }
-   --  }
+    }
   }
 
   vim.cmd('set laststatus=3')

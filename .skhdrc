@@ -99,6 +99,9 @@ shift + alt - l : yabai -m window --swap next || yabai -m window --swap first
 shift + alt - j : yabai -m window --warp prev || yabai -m window --warp last 
 shift + alt - k : yabai -m window --warp next || yabai -m window --warp first
 
+alt + shift + ctrl - k : yabai -m window --space next
+alt + shift + ctrl - j : yabai -m window --space prev
+
 # send window to desktop and follow focus
 alt + shift + ctrl - down : yabai -m window --display  next; yabai -m display --focus next
 alt + shift + ctrl - up : yabai -m window --display  prev; yabai -m display --focus pref

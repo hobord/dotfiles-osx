@@ -183,4 +183,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # export PATH="/usr/local/opt/openjdk/bin:$PATH"
 # export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export PATH="/opt/homebrew/opt/java/bin/:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/java/"
+
 
