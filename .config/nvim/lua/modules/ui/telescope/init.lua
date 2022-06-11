@@ -101,7 +101,9 @@ config.setup = function()
           preview_width = 0.6
         },
       },
-
+      cder = {
+        dir_command = { 'fd', '--hidden', '--type=d', '.', os.getenv('HOME')..'/code' },
+      },
     }
   }
   require('telescope').load_extension('fzy_native')
@@ -109,6 +111,7 @@ config.setup = function()
   require('telescope').load_extension('dap')
   require('telescope').load_extension('frecency')
   require("telescope").load_extension('file_browser')
+  require('telescope').load_extension('cder')
 end
 
 return config

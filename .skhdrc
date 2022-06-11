@@ -105,16 +105,16 @@ alt + shift + ctrl - j : yabai -m window --space prev
 # send window to desktop and follow focus
 alt + shift + ctrl - down : yabai -m window --display  next; yabai -m display --focus next
 alt + shift + ctrl - up : yabai -m window --display  prev; yabai -m display --focus pref
-alt + shift + ctrl + cmd - 3: yabai -m window --display  1; yabai -m display --focus 1
-alt + shift + ctrl + cmd - 1: yabai -m window --display  2; yabai -m display --focus 2
-alt + shift + ctrl + cmd - 2: yabai -m window --display  3; yabai -m display --focus 3
+alt + shift + ctrl + cmd - 1: yabai -m window --display  1; yabai -m display --focus 1
+alt + shift + ctrl + cmd - 2: yabai -m window --display  2; yabai -m display --focus 2
+# alt + shift + ctrl + cmd - 3: yabai -m window --display  3; yabai -m display --focus 3
 
 # focus monitor
 alt + shift + ctrl - left : yabai -m display --focus prev
 alt + shift + ctrl - right : yabai -m display --focus next
-alt + shift + ctrl - 3  : yabai -m display --focus 1
-alt + shift + ctrl - 1  : yabai -m display --focus 2
-alt + shift + ctrl - 2  : yabai -m display --focus 3
+alt + shift + ctrl - 1  : yabai -m display --focus 1
+alt + shift + ctrl - 2  : yabai -m display --focus 2
+# alt + shift + ctrl - 3  : yabai -m display --focus 3
 
 # toggle window zoom
 alt - d : yabai -m window --toggle zoom-parent

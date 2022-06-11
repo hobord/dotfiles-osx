@@ -181,6 +181,7 @@ require('packer').startup(function(use)
       {'nvim-telescope/telescope-fzy-native.nvim'},
       {'nvim-telescope/telescope-frecency.nvim'},
       {'tami5/sqlite.lua'},
+      {'zane-/cder.nvim'},
       {'nvim-telescope/telescope-file-browser.nvim'},
       {'nvim-telescope/telescope-dap.nvim'},
     },
