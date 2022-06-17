@@ -353,7 +353,7 @@ require('packer').startup(function(use)
 
 
   use {
-    'https://github.com/booperlv/nvim-gomove',
+    'booperlv/nvim-gomove',
     config = function()
       require("gomove").setup {}
     end
@@ -427,9 +427,17 @@ require('packer').startup(function(use)
     config = require('modules.tools.fterm').setup,
   }
 
-  use 'tpope/vim-git'
-  use 'motemen/git-vim'
-  use 'tpope/vim-fugitive'
+  -- use 'tpope/vim-git'
+  -- use 'motemen/git-vim'
+  -- use 'tpope/vim-fugitive'
+  use { 
+    'TimUntersberger/neogit',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim'
+    },
+    config = require('modules.tools.neogit').setup,
+  }
   use {'pwntester/octo.nvim', config=function()
     require"octo".setup()
   end}
