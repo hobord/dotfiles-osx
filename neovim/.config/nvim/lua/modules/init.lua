@@ -100,12 +100,12 @@ require('packer').startup(function(use)
   }
 
   -- Tree file manager
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {'kyazdani42/nvim-web-devicons'},
-    config = require('modules.ui.nvim-tree').setup,
-    cmd = {'NvimTreeToggle','NvimTreeOpen'},
-  }
+  -- use {
+  --   'kyazdani42/nvim-tree.lua',
+  --   requires = {'kyazdani42/nvim-web-devicons'},
+  --   config = require('modules.ui.nvim-tree').setup,
+  --   cmd = {'NvimTreeToggle','NvimTreeOpen'},
+  -- }
 
   use {
     "nvim-neo-tree/neo-tree.nvim",
@@ -430,6 +430,12 @@ require('packer').startup(function(use)
   -- use 'tpope/vim-git'
   -- use 'motemen/git-vim'
   -- use 'tpope/vim-fugitive'
+  use {
+    'sindrets/diffview.nvim',
+    config = require('modules.tools.diffview').setup
+  }
+
+
   use { 
     'TimUntersberger/neogit',
     requires = {
@@ -455,11 +461,6 @@ require('packer').startup(function(use)
     config = function ()
       vim.g['far#source'] = 'rg'
     end
-  }
-
-  use {
-    'sindrets/diffview.nvim',
-    config = require('modules.tools.diffview').setup
   }
 
   use {

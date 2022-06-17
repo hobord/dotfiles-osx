@@ -11,25 +11,27 @@ config.setup = function()
       edit   = "e",
       repl   = "r",
     },
-    sidebar = {
-      elements = {
-         -- Provide as ID strings or tables with "id" and "size" keys
-        { id = "scopes",      size = 0.25 },
-        { id = "watches",     size = 0.25 },
-        { id = "stacks",      size = 0.25 },
-        { id = "breakpoints", size = 0.25 },
+    layouts = {
+      {
+        elements = {
+          -- Provide as ID strings or tables with "id" and "size" keys
+          { id = "scopes",      size = 0.25 },
+          { id = "watches",     size = 0.25 },
+          { id = "stacks",      size = 0.25 },
+          { id = "breakpoints", size = 0.25 },
+        },
+        --width = 80,
+        size = 40,
+        position = "right", -- Can be "left" or "right"
       },
-      --width = 80,
-      size = 40,
-      position = "right", -- Can be "left" or "right"
-    },
-    tray = {
-      -- open_on_start = true,
-      elements = {
-        "repl"
+      {
+        -- open_on_start = true,
+        elements = {
+          "repl"
+        },
+        size = 10,
+        position = "bottom" -- Can be "bottom" or "top"
       },
-      size = 10,
-      position = "bottom" -- Can be "bottom" or "top"
     },
     floating = {
       max_height = nil, -- These can be integers or a float between 0 and 1.

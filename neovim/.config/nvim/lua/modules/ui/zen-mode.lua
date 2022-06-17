@@ -3,6 +3,7 @@ local config = {}
 config.setup = function()
   require("zen-mode").setup {
     window = {
+      width = 150,
       options = {
         list = false,
         wrap = false,
