@@ -51,6 +51,7 @@ local def_map = {
   -- ["n|<Leader>sl"]        = map_cu('SessionLoad'):with_noremap(),
   ["n|<Leader>m"]         = map_cr('noh'),
   ["n|<Leader><Leader>r"] = map_cr('set relativenumber!'),
+  ["n|<Leader><Leader>w"] = map_cr('set wrap!'),
   --["i|<C-@>"]           = map_cmd('<ESC>'),
   ["i|<C-w>"]             = map_cmd('<C-[>diwa'):with_noremap(),
   ["i|<C-u>"]             = map_cmd('<C-O>u'):with_noremap(),
