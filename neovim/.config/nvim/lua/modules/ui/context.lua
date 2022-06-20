@@ -1,4 +1,4 @@
-config = {}
+local config = {}
 
 config.setup = function()
   require'treesitter-context'.setup{
