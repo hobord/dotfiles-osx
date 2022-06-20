@@ -28,6 +28,8 @@ local plug_map = {
     ["n|<Leader><Leader>a"] = map_cu('lua require("harpoon.mark").add_file()'):with_silent():with_noremap(),
     ["n|<Leader>n"]         = map_cu('lua require("harpoon.ui").toggle_quick_menu()'):with_silent():with_noremap(),
     ["n|<Leader><Leader>g"] = map_cu('Neogit'):with_silent():with_noremap(),
+    ["n|<Leader><Leader>h"] = map_cu('DiffviewFileHistory %'):with_silent():with_noremap(),
+    ["n|<Leader><Leader>H"] = map_cu('DiffviewFileHistory'):with_silent():with_noremap(),
     -- Plugin symbols_outline
     ["n|<C-f>"]             = map_cu('SymbolsOutline'):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
