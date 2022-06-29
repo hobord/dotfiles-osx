@@ -25,7 +25,7 @@ config.setup = function()
 
   ---- You can also use lazy loading so you only get in memory snippets of languages you use
   -- print(snippets_path)
-  -- require("luasnip/loaders/from_vscode").lazy_load({ paths = snippets_path }) 
+  require("luasnip/loaders/from_vscode").lazy_load({ paths = snippets_path })
   
   require'luasnip'.filetype_extend("go", {"go"})
 
