@@ -75,15 +75,23 @@ require('packer').startup(function(use)
   --   },
   --   config = require('modules.ui.feline').setup,
   -- }
-  -- use { "SmiteshP/nvim-gps",
-  --   requires = {
-  --     { 'nvim-treesitter/nvim-treesitter' },
-  --   },
+  -- use {
+  --   "SmiteshP/nvim-gps",
+  --   after = 'nvim-treesitter',
+  --   requires =  'nvim-treesitter/nvim-treesitter',
   --   config = require('modules.ui.gps').setup,
   -- }
-  --
+
+  use {
+    "SmiteshP/nvim-navic",
+    -- after = 'nvim-lspconfig',
+    requires = "neovim/nvim-lspconfig",
+    config = require('modules.ui.navic').setup,
+  }
+
   use {
     'nvim-lualine/lualine.nvim',
+    -- after = 'nvim-gps',
     requires = {
       { 'kyazdani42/nvim-web-devicons', opt = true },
       -- { "SmiteshP/nvim-gps" },

@@ -20,15 +20,24 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
-local enhance_attach = function(client, bufnr)
-  client.request("textDocument/formatting", {} , nil, vim.api.nvim_get_current_buf())
-  api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.o["foldmethod"]="expr"
-end
+
 
 config.setup = function()
   local global = require 'core.global'
   local lspconfig = require 'lspconfig'
+
+
+  local enhance_attach = function(client, bufnr)
+    vim.o["foldmethod"]="expr"
+    local navic = require("nvim-navic")
+    navic.attach(client, bufnr)
+
+    -- if client then
+    --   client.request("textDocument/formatting", {} , nil, vim.api.nvim_get_current_buf())
+    -- end
+    --
+    -- api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  end
 
   function _G.reload_lsp()
     vim.lsp.stop_client(vim.lsp.get_active_clients())
@@ -82,7 +91,7 @@ config.setup = function()
   vim.lsp.util.open_floating_preview = open_floating_preview_custom
 
   lspconfig.gopls.setup {
-    cmd = {"gopls","--remote=auto"},
+    cmd = {"gopls", "--remote=auto"},
     filetypes = {'go', 'gomod'},
     root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
     on_attach = enhance_attach,
@@ -145,6 +154,7 @@ config.setup = function()
       -- global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
       global.data_dir.."../lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
     };
+    on_attach = enhance_attach;
     settings = {
       Lua = {
         diagnostics = {
