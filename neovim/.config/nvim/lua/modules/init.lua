@@ -54,33 +54,6 @@ require('packer').startup(function(use)
       require('modules.ui.context').setup()
     end,
   }
-  --
-  -- Footer line with info
-  -- use {
-  --   'glepnir/galaxyline.nvim',
-  --   branch = 'main',
-  --   requires = {
-  --     {'kyazdani42/nvim-web-devicons'},
-  --     -- {"SmiteshP/nvim-gps"},
-  --   },
-  --   config = require('modules.ui.galaxyline').setup,
-  -- }
-
-  -- use {
-  --   'feline-nvim/feline.nvim',
-  --   requires = {
-  --     'kyazdani42/nvim-web-devicons',
-  --     "SmiteshP/nvim-gps",
-  --     'nvim-treesitter/nvim-treesitter',
-  --   },
-  --   config = require('modules.ui.feline').setup,
-  -- }
-  -- use {
-  --   "SmiteshP/nvim-gps",
-  --   after = 'nvim-treesitter',
-  --   requires =  'nvim-treesitter/nvim-treesitter',
-  --   config = require('modules.ui.gps').setup,
-  -- }
 
   use {
     "SmiteshP/nvim-navic",
@@ -91,10 +64,8 @@ require('packer').startup(function(use)
 
   use {
     'nvim-lualine/lualine.nvim',
-    -- after = 'nvim-gps',
     requires = {
       { 'kyazdani42/nvim-web-devicons', opt = true },
-      -- { "SmiteshP/nvim-gps" },
     },
     config = require('modules.ui.lualine').setup,
   }
@@ -132,6 +103,7 @@ require('packer').startup(function(use)
     'ThePrimeagen/harpoon',
     requires = {'nvim-lua/plenary.nvim'},
   }
+
   -- Guide lines for ident
   use {
     'glepnir/indent-guides.nvim',
