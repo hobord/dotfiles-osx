@@ -95,6 +95,7 @@ local function load_options()
     matchpairs     = "(:),{:},[:],<:>";
     -- laststatus     = 2;
     laststatus     = 3;
+    winbar = "%{%v:lua.require'modules.ui.winbar'.statusline()%}"
   }
   --t_ZH           = "^[[3m";
   --t_ZR           = "^[[23m";

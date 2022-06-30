@@ -70,7 +70,6 @@ require('packer').startup(function(use)
     config = require('modules.ui.lualine').setup,
   }
 
-
   use {
     'petertriho/nvim-scrollbar',
     config = function()
