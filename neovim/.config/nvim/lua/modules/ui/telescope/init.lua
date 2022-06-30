@@ -61,10 +61,21 @@ config.setup = function()
           preview_width = 0.6
         },
       },
+      lsp_document_symbols = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          preview_height = 0.6,
+          vertical = {
+            mirror = true,
+          }
+        },
+      },
       lsp_references = {
         layout_strategy = "vertical",
         layout_config = {
           prompt_position = "top",
+          preview_height = 0.7,
           vertical = {
             mirror = true,
           }
@@ -74,6 +85,7 @@ config.setup = function()
         layout_strategy = "vertical",
         layout_config = {
           prompt_position = "top",
+          preview_height = 0.7,
           vertical = {
             mirror = true,
           }
@@ -82,6 +94,16 @@ config.setup = function()
       frecency = {
         layout_config = {
           preview_width = 0.5
+        },
+      },
+      diagnostics = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          preview_height = 0.7,
+          vertical = {
+            mirror = true,
+          }
         },
       },
       git_bcommits = {
