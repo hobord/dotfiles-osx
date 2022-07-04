@@ -8,6 +8,14 @@ local M = {}
 -- end
 
 
+local is_current = function()
+  local winid = vim.g.actual_curwin
+  if isempty(winid) then
+    return false
+  else
+    return winid == tostring(vim.api.nvim_get_current_win())
+  end
+end
 
 local function isempty(s)
   return s == nil or s == ""
@@ -109,7 +117,7 @@ function M.statusline()
 
   return ""
     -- .. M.navic()
-    .. "        "
+    .. "         "
     .. "%="
     -- .. "%#WinBarSeparator#"
     -- .. ""
