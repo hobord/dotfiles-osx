@@ -68,6 +68,17 @@ function autocmd.load_autocmds()
     yank = {
       {"TextYankPost", [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=400})]]};
     };
+
+    large_file = {
+      {"BufReadPre", "*", "let f=expand(\"<afile>\") | \
+        if getfsize(f) > 10485760 | \
+         set eventignore+=FileType | \
+         setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | \
+        else | \
+          set eventignore-=FileType | \
+        endif \
+      "}
+    };
   }
 
   autocmd.nvim_create_augroups(definitions)

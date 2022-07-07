@@ -109,11 +109,18 @@ config.setup = function()
       completeUnimported = true,
     }
   }
-
+  lspconfig.golangci_lint_ls.setup {
+    cmd = {'golangci-lint-langserver'},
+    root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
+    filetypes = {'go','gomod'},
+    init_options = {
+        command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json" };
+    }
+	}
   lspconfig.rust_analyzer.setup({
     capabilities=capabilities,
     -- on_attach is a callback called when the language server attachs to the buffer
-    on_attach = on_attach,
+    on_attach = enhance_attach,
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc

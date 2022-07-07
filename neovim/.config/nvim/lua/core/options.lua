@@ -93,10 +93,10 @@ local function load_options()
     wrap           = false;
     fdc            = '1'; -- 4
     matchpairs     = "(:),{:},[:],<:>";
-    -- laststatus     = 2;
     laststatus     = 3;
-    winbar = "%{%v:lua.require'modules.ui.winbar'.statusline()%}"
+    winbar = "%{%v:lua.require'modules.ui.winbar'.statusline()%}";
   }
+  vim.g.markdown_fenced_languages = {'python', 'cpp', 'go', 'typescript', 'sql', 'html', 'javascript', 'rust', 'vim', 'lua'}
   --t_ZH           = "^[[3m";
   --t_ZR           = "^[[23m";
 

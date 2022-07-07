@@ -8,6 +8,9 @@ config.setup = function()
     ensure_installed = { "c", "lua", "rust", "go", "javascript", "typescript", "html", "yaml", "tsx", "graphql", "json5" },
     ident = {
       enable = false,
+      disable = function(lang, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 50000
+      end
     },
     highlight = {
       enable = true,
@@ -23,10 +26,16 @@ config.setup = function()
         scope_incremental = "grc",
         node_decremental = "grm",
       },
+      disable = function(lang, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 50000
+      end
     },
     textobjects = {
       select = {
         enable = true,
+        disable = function(lang, bufnr)
+            return vim.api.nvim_buf_line_count(bufnr) > 50000
+        end,
         -- Automatically jump forward to textobj, similar to targets.vim
         lookahead = true,
         keymaps = {
@@ -42,6 +51,9 @@ config.setup = function()
       },
       move = {
         enable = true,
+        disable = function(lang, bufnr)
+            return vim.api.nvim_buf_line_count(bufnr) > 50000
+        end,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
           ["]]"] = "@function.outer",

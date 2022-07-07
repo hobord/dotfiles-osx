@@ -1,5 +1,5 @@
 local config = {}
-hi = {
+local hi = {
   PmenuSel = { guibg = "#282C34", guifg = "NONE" },
   Pmenu = { guifg = "#C5CDD9", guibg = "#22252A" },
 
