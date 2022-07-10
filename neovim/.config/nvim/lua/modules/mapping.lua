@@ -78,8 +78,8 @@ local plug_map = {
     ["n|<Leader><Leader>c"] = map_cu("lua require'dap'.continue()"):with_noremap():with_nowait():with_silent(),
     ["n|<F5>"]              = map_cu("lua require'dap'.continue()"):with_noremap():with_nowait():with_silent(),
     ["n|<F10>"]             = map_cu("lua require'dap'.step_over()"):with_noremap():with_nowait():with_silent(),
-    ["n|<F9>"]              = map_cu("lua require'dap'.step_into()"):with_noremap():with_nowait():with_silent(),
-    ["n|<F8>"]              = map_cu("lua require'dap'.step_out()"):with_noremap():with_nowait():with_silent(),
+    ["n|<F11>"]              = map_cu("lua require'dap'.step_into()"):with_noremap():with_nowait():with_silent(),
+    ["n|<F9>"]              = map_cu("lua require'dap'.step_out()"):with_noremap():with_nowait():with_silent(),
     ["n|<F12>"]             = map_cu("lua require'dap'.disconnect()"):with_noremap():with_nowait():with_silent(),
     -- Plugin acceleratedjk
     ["n|j"]                 = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),

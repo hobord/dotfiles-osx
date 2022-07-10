@@ -203,7 +203,7 @@ require('packer').startup(function(use)
     config = require('modules.lsp.symbols-outline').setup,
   }
 
-  use {'stevearc/aerial.nvim'}
+  -- use {'stevearc/aerial.nvim'}
 
   use {
     'rmagatti/goto-preview',
@@ -304,21 +304,11 @@ require('packer').startup(function(use)
       { 'L3MON4D3/LuaSnip' },
       { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
       {'tzachar/cmp-tabnine',     after = 'nvim-cmp'},
-      --{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
-      --{ "quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp" },
     },
     config = require('modules.editor.cmp').setup,
   }
 
   use { 'saadparwaiz1/cmp_luasnip' }
-
-  -- use {
-  --   'romgrk/nvim-treesitter-context',
-  --   requires = {'nvim-treesitter/nvim-treesitter'},
-  --   config = function ()
-  --     require'treesitter-context'.setup{enable = true,}
-  --   end
-  -- }
 
   use {
     'andymass/vim-matchup',
@@ -364,19 +354,7 @@ require('packer').startup(function(use)
     },
     config = require('modules.dap').setup,
   }
-  -- use {
-  --   'leoluz/nvim-dap-go',
-  --   requires = {{'mfussenegger/nvim-dap'}},
-  --   config = function ()
-  --     require('dap-go').setup()
-  --   end
-  -- }
-  -- use {'theHamsta/nvim-dap-virtual-text'}
-  -- use {
-  --   'rcarriga/nvim-dap-ui',
-  --   requires = {{'mfussenegger/nvim-dap'}},
-  --   config = require('modules.dap.ui').setup,
-  -- }
+
   use {
     "Pocco81/DAPInstall.nvim",
     requires = {{'mfussenegger/nvim-dap'}},
@@ -388,13 +366,6 @@ require('packer').startup(function(use)
       -- })
     end
   }
-
-  -- use {
-  --   'ray-x/go.nvim',
-  --   config = function()
-  --     require('go').setup()
-  --   end
-  -- }
 
   --
   -- Tools
@@ -414,7 +385,6 @@ require('packer').startup(function(use)
     config = require('modules.tools.diffview').setup
   }
 
-
   use { 
     'TimUntersberger/neogit',
     requires = {
@@ -423,6 +393,7 @@ require('packer').startup(function(use)
     },
     config = require('modules.tools.neogit').setup,
   }
+
   use {'pwntester/octo.nvim', config=function()
     require"octo".setup()
   end}
@@ -451,6 +422,13 @@ require('packer').startup(function(use)
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       }
+    end
+  }
+
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup()
     end
   }
 
