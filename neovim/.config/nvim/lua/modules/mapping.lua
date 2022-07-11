@@ -49,6 +49,7 @@ local plug_map = {
     ["n|gt"]                = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
     -- Plugin nvim-tree
     ["n|<C-e>"]         = map_cr('Neotree reveal toggle left focus'):with_noremap():with_silent(),
+    ["n|<C-S-E>"]         = map_cr('Neotree left git_status'):with_noremap():with_silent(),
     -- ["n|<Leader>e"]         = map_cr('NvimTreeToggle'):with_noremap():with_silent(),
     -- Plugin Telescope
     ["n|<Leader>b"]         = map_cu('Telescope buffers'):with_noremap():with_silent(),
