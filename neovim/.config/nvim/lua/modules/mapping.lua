@@ -14,7 +14,9 @@ local plug_map = {
     ["n|<leader>pc"]        = map_cr("PackerCompile"):with_silent():with_noremap():with_nowait(),
     ["n|<M-p>"]             = map_cr("Telescope neoclip unnamed"):with_silent():with_noremap():with_nowait(),
     -- Plugin Floaterm
-    ["n|<Leader>t"]         = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
+    -- ["n|<Leader>t"]         = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
+    ["n|<Leader>t"]         = map_cu('ToggleTerm size=20'):with_noremap():with_silent(),
+    ["n|<Leader>T"]         = map_cu('ToggleTerm direction=float'):with_noremap():with_silent(),
     --["n|<Leader>t"]       = map_cu('FloatermToggle'):with_noremap():with_silent(),
     ["n|tt"]                = map_cr('FloatermNew --width=0.8 --height=0.8 --name=unitest --autoclose=1 make test'):with_noremap():with_silent(),
     ["n|<C-S-PageUp>"]      = map_cu('BufferLineMovePrev'),

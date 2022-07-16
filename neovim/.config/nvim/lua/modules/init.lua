@@ -328,23 +328,29 @@ require('packer').startup(function(use)
     end
   }
 
-  use{ 'anuvyklack/pretty-fold.nvim',
-    config = function()
-      require('pretty-fold').setup{
-        keep_indentation = false,
-        fill_char = '━',
-        sections = {
-            left = {
-              '━ ', function() return string.rep('*', vim.v.foldlevel) end, ' ━┫', 'content', '┣'
-            },
-            right = {
-              '┫ ', 'number_of_folded_lines', ': ', 'percentage', ' ┣━━',
-            }
-        }
-      }
-      -- require('pretty-fold.preview').setup_keybinding()
-    end
+  -- use{ 'anuvyklack/pretty-fold.nvim',
+  --   config = function()
+  --     require('pretty-fold').setup{
+  --       keep_indentation = false,
+  --       fill_char = '━',
+  --       sections = {
+  --           left = {
+  --             '━ ', function() return string.rep('*', vim.v.foldlevel) end, ' ━┫', 'content', '┣'
+  --           },
+  --           right = {
+  --             '┫ ', 'number_of_folded_lines', ': ', 'percentage', ' ┣━━',
+  --           }
+  --       }
+  --     }
+  --     -- require('pretty-fold.preview').setup_keybinding()
+  --   end
+  -- }
+  use {
+    'kevinhwang91/nvim-ufo',
+    requires = 'kevinhwang91/promise-async',
+    config = require('modules.editor.nvim-ufo').setup,
   }
+
   -- Debugger
   use {
     'mfussenegger/nvim-dap',
@@ -371,10 +377,17 @@ require('packer').startup(function(use)
   -- Tools
   --
 
-  use 'voldikss/vim-floaterm'
+  -- use 'voldikss/vim-floaterm'
+  -- use {
+  --   'numtostr/FTerm.nvim',
+  --   config = require('modules.tools.fterm').setup,
+  -- }
   use {
-    'numtostr/FTerm.nvim',
-    config = require('modules.tools.fterm').setup,
+    'akinsho/toggleterm.nvim',
+    tag = 'v2.*',
+    config = function()
+      require("toggleterm").setup()
+    end
   }
 
   -- use 'tpope/vim-git'
