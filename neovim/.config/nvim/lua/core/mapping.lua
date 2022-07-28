@@ -13,9 +13,9 @@ vim.api.nvim_set_keymap('x',' ','',{noremap = true})
 local def_map = {
   -- Vim map
   ["n|zi"]                = map_cmd('zi:let &l:fdc=&l:fen*&g:fdc<CR>'):with_noremap():with_silent(),
-  ["n|d"]                 = map_cmd('"dd'):with_noremap():with_silent(),
-  ["n|dp"]                = map_cmd('"dp'):with_noremap():with_silent(),
-  ["n|dP"]                = map_cmd('"dP'):with_noremap():with_silent(),
+  -- ["n|d"]                 = map_cmd('"dd'):with_noremap():with_silent(),
+  -- ["n|dp"]                = map_cmd('"dp'):with_noremap():with_silent(),
+  -- ["n|dP"]                = map_cmd('"dP'):with_noremap():with_silent(),
   ["n|Y"]                 = map_cmd('y$'),
   ["n|<C-x>k"]            = map_cr('bdelete'):with_noremap():with_silent(),
   ["n|<C-s>"]             = map_cr('write'):with_noremap():with_silent(),

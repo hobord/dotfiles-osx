@@ -398,7 +398,7 @@ require('packer').startup(function(use)
     config = require('modules.tools.diffview').setup
   }
 
-  use { 
+  use {
     'TimUntersberger/neogit',
     requires = {
       'nvim-lua/plenary.nvim',

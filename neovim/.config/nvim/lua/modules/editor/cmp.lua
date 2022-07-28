@@ -1,49 +1,49 @@
 local config = {}
 local hi = {
-  PmenuSel = { guibg = "#282C34", guifg = "NONE" },
-  Pmenu = { guifg = "#C5CDD9", guibg = "#22252A" },
+  PmenuSel = { bg = "#282C34", fg = "NONE" },
+  Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
 
-  CmpItemAbbrDeprecated = { guifg = "#7E8294", guibg = "NONE", gui = "strikethrough" },
-  CmpItemAbbrMatch = { guifg = "#82AAFF", guibg = "NONE", gui = "bold" },
-  CmpItemAbbrMatchFuzzy = { guifg = "#82AAFF", guibg = "NONE", gui = "bold" },
-  CmpItemMenu = { guifg = "#C792EA", guibg = "NONE", gui = "italic" },
+  CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE",  strikethrough=true },
+  CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", bold=true },
+  CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", bold=true },
+  CmpItemMenu = { fg = "#C792EA", bg = "NONE", italic=true },
 
-  CmpItemKindField = { guifg = "#EED8DA", guibg = "#B5585F" },
-  CmpItemKindProperty = { guifg = "#EED8DA", guibg = "#B5585F" },
-  CmpItemKindEvent = { guifg = "#EED8DA", guibg = "#B5585F" },
+  CmpItemKindField = { fg = "#EED8DA", bg = "#B5585F" },
+  CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
+  CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
 
-  CmpItemKindText = { guifg = "#C3E88D", guibg = "#9FBD73" },
-  CmpItemKindEnum = { guifg = "#C3E88D", guibg = "#9FBD73" },
-  CmpItemKindKeyword = { guifg = "#C3E88D", guibg = "#9FBD73" },
+  CmpItemKindText = { fg = "#C3E88D", bg = "#9FBD73" },
+  CmpItemKindEnum = { fg = "#C3E88D", bg = "#9FBD73" },
+  CmpItemKindKeyword = { fg = "#C3E88D", bg = "#9FBD73" },
 
-  CmpItemKindConstant = { guifg = "#FFE082", guibg = "#D4BB6C" },
-  CmpItemKindConstructor = { guifg = "#FFE082", guibg = "#D4BB6C" },
-  CmpItemKindReference = { guifg = "#FFE082", guibg = "#D4BB6C" },
+  CmpItemKindConstant = { fg = "#FFE082", bg = "#D4BB6C" },
+  CmpItemKindConstructor = { fg = "#FFE082", bg = "#D4BB6C" },
+  CmpItemKindReference = { fg = "#FFE082", bg = "#D4BB6C" },
 
-  CmpItemKindFunction = { guifg = "#EADFF0", guibg = "#A377BF" },
-  CmpItemKindStruct = { guifg = "#EADFF0", guibg = "#A377BF" },
-  CmpItemKindClass = { guifg = "#EADFF0", guibg = "#A377BF" },
-  CmpItemKindModule = { guifg = "#EADFF0", guibg = "#A377BF" },
-  CmpItemKindOperator = { guifg = "#EADFF0", guibg = "#A377BF" },
+  CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindStruct = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindClass = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindModule = { fg = "#EADFF0", bg = "#A377BF" },
+  CmpItemKindOperator = { fg = "#EADFF0", bg = "#A377BF" },
 
-  CmpItemKindVariable = { guifg = "#C5CDD9", guibg = "#7E8294" },
-  CmpItemKindFile = { guifg = "#C5CDD9", guibg = "#7E8294" },
+  CmpItemKindVariable = { fg = "#C5CDD9", bg = "#7E8294" },
+  CmpItemKindFile = { fg = "#C5CDD9", bg = "#7E8294" },
 
-  CmpItemKindUnit = { guifg = "#F5EBD9", guibg = "#D4A959" },
-  CmpItemKindSnippet = { guifg = "#F5EBD9", guibg = "#D4A959" },
-  CmpItemKindFolder = { guifg = "#F5EBD9", guibg = "#D4A959" },
+  CmpItemKindUnit = { fg = "#F5EBD9", bg = "#D4A959" },
+  CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#D4A959" },
+  CmpItemKindFolder = { fg = "#F5EBD9", bg = "#D4A959" },
 
-  CmpItemKindMethod = { guifg = "#DDE5F5", guibg = "#6C8ED4" },
-  CmpItemKindValue = { guifg = "#DDE5F5", guibg = "#6C8ED4" },
-  CmpItemKindEnumMember = { guifg = "#DDE5F5", guibg = "#6C8ED4" },
+  CmpItemKindMethod = { fg = "#DDE5F5", bg = "#6C8ED4" },
+  CmpItemKindValue = { fg = "#DDE5F5", bg = "#6C8ED4" },
+  CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#6C8ED4" },
 
-  CmpItemKindInterface = { guifg = "#D8EEEB", guibg = "#58B5A8" },
-  CmpItemKindColor = { guifg = "#D8EEEB", guibg = "#58B5A8" },
-  CmpItemKindTypeParameter = { guifg = "#D8EEEB", guibg = "#58B5A8" },
+  CmpItemKindInterface = { fg = "#D8EEEB", bg = "#58B5A8" },
+  CmpItemKindColor = { fg = "#D8EEEB", bg = "#58B5A8" },
+  CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
 }
 
 for k, v in pairs(hi) do
-  vim.highlight.create(k, v)
+  vim.api.nvim_set_hl(0, k, v)
 end
 
 config.setup = function()
