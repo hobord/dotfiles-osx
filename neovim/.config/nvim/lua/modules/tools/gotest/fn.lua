@@ -1,9 +1,10 @@
 local M = {}
 
 local lastRun = {
-  testname = testname,
-  return_val = return_val,
-  result = result,
+  testname = "",
+  return_val = 0,
+  result = {},
+  path = "",
 }
 
 local ts_utils = require'nvim-treesitter.ts_utils'
@@ -38,27 +39,27 @@ M.getTestFnName = function ()
 end
 
 
-local function run(testname)
+local function run(testname, path)
   local Job = require'plenary.job'
   local notify = require("notify")
   local async = require("plenary.async")
 
-  async.run(function()
-    notify({ "Start" }, "info", {
-      title = testname,
-      timeout = 1000,
-    })
-  end)
+  -- async.run(function()
+  --   notify({ "Start" }, "info", {
+  --     title = testname,
+  --     timeout = 100,
+  --   })
+  -- end)
 
   -- go test -count=1 -timeout 5m -run -v  "^NameOfTest$" ./path
   Job:new({
     command = 'go',
-    args = { 'test', '-count=1', '-v', '-run', '^' .. testname .. '$', vim.fn.expand('%:p:h')},
+    args = { 'test', '-count=1', '-v', '-run', '^' .. testname .. '$', path},
     cwd = vim.fn.expand('%:p:h'),
     -- env = { ['a'] = 'b' },
     on_exit = function(j, return_val)
       -- print(vim.inspect.inspect(j:result()))
-      result = j:result()
+      -- result = j:result()
 
       local title = "info"
       if return_val == 0 then
@@ -68,7 +69,7 @@ local function run(testname)
       end
 
       async.run(function()
-        notify({ "End", title }, title, {
+        notify({ title }, title, {
           title = testname,
           timeout = 5000,
         })
@@ -88,17 +89,20 @@ M.RunLastTest = function ()
   if lastRun.testname == "" then
     return
   end
-  run(lastRun.testname)
+  run(lastRun.testname, lastRun.path)
 end
 
 M.RunTest = function ()
   local testname = getFnName()
+  local path = vim.fn.expand('%:p:h')
 
   if testname == "" then
     return
   end
 
-  run(testname)
+  run(testname, path)
+
+  lastRun.path = path
 end
 
 M.ShowLastTestReults = function ()
