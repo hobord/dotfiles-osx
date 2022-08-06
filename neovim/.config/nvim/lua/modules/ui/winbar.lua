@@ -6,7 +6,9 @@ local M = {}
 -- if not status_gps_ok then
 --   return
 -- end
-
+local function isempty(s)
+  return s == nil or s == ""
+end
 
 local is_current = function()
   local winid = vim.g.actual_curwin
@@ -15,10 +17,6 @@ local is_current = function()
   else
     return winid == tostring(vim.api.nvim_get_current_win())
   end
-end
-
-local function isempty(s)
-  return s == nil or s == ""
 end
 
 function M.filename()

@@ -9,7 +9,7 @@ config.setup = function()
   vim.g.gruvbox_colors = { hint = "orange", error = "#ff0000" }
 
   -- Load the colorscheme
-  vim.cmd[[colorscheme gruvbox-flat]]
+  -- vim.cmd[[colorscheme gruvbox-flat]]
   vim.cmd[[hi Folded guibg=#32302f]]
   vim.cmd[[hi DebuggerBreakpoint guifg=#ff0000]]
   vim.cmd[[hi DebuggerBreakpointCondition guifg=#ffa500]]

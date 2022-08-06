@@ -32,6 +32,11 @@ require('packer').startup(function(use)
     'eddyekofo94/gruvbox-flat.nvim',
     config = require('modules.ui.gruvbox-flat').setup,
   }
+
+  use {
+    'luisiacc/gruvbox-baby',
+    config = require('modules.ui.gruvbox-baby').setup,
+  }
   --use 'rmehri01/onenord.nvim'
   --'glepnir/zephyr-nvim'
   --'gruvbox-community/gruvbox'
@@ -198,10 +203,10 @@ require('packer').startup(function(use)
     --after = 'glepnir/lspsaga.nvim',
   }
 
-  use {
-    'simrat39/symbols-outline.nvim',
-    config = require('modules.lsp.symbols-outline').setup,
-  }
+  -- use {
+  --   'simrat39/symbols-outline.nvim',
+  --   config = require('modules.lsp.symbols-outline').setup,
+  -- }
 
   -- use {'stevearc/aerial.nvim'}
 

@@ -2,8 +2,6 @@ local M={}
 
 
 M.setup = function()
-  -- require("modules.ui.gps").setup()
-  -- local gps = require("nvim-gps")
   local navic = require("nvim-navic")
   local autosession = require("auto-session-library")
 
@@ -21,7 +19,8 @@ M.setup = function()
 
   require('lualine').setup {
     options ={
-      theme = 'gruvbox'
+      -- theme = 'gruvbox'
+      theme = 'gruvbox-baby'
     },
     disabled_filetypes = {
       "NvimTree",
@@ -41,7 +40,6 @@ M.setup = function()
           path = 1,
         },
         { navic.get_location, cond = navic.is_available },
-        -- { gps.get_location, cond = gps.is_available },
       },
       lualine_y = {
         { search_count },
