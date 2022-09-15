@@ -127,7 +127,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 #complete -F __start_config config 
 alias lzg='lazygit'
 alias gui='gitui'
-alias gch='git checkout '
+alias gitch='git checkout '
 alias dotenv='export $(cat .env | xargs)'
 
 alias k='kubectl'

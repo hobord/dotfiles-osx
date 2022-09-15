@@ -43,6 +43,10 @@ require('packer').startup(function(use)
   --'folke/tokyonight.nvim'
   --'EdenEast/nightfox.nvim'
   --'Murtaza-Udaipurwala/gruvqueen'
+  use {
+    'olimorris/onedarkpro.nvim',
+    config = require('modules.ui.onedarkpro').setup,
+  }
 
   -- Buffer line
   use {
@@ -240,6 +244,16 @@ require('packer').startup(function(use)
     'numToStr/Comment.nvim',
     config = function()
         require('Comment').setup()
+    end
+  }
+  use {
+    'woosaaahh/sj.nvim',
+    config = function()
+      local sj = require("sj")
+      sj.setup({
+        auto_jump = true,
+      })
+      vim.keymap.set("n", "s", sj.run)
     end
   }
   use 'junegunn/vim-easy-align'
