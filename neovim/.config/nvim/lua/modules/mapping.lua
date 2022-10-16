@@ -17,9 +17,9 @@ local plug_map = {
     -- ["n|<Leader>t"]         = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
     ["n|<Leader>t"]         = map_cu('ToggleTerm size=20'):with_noremap():with_silent(),
     ["n|<Leader>T"]         = map_cu('ToggleTerm direction=float'):with_noremap():with_silent(),
-    ["n|<Leader><Leader>t"] = map_cu('lua require"modules.tools.gotest.run_test".RunTest()'):with_silent():with_noremap():with_nowait(),
-    ["n|<Leader><Leader>tr"] = map_cu('lua require"modules.tools.gotest.run_test".ShowLastTestReults()'):with_silent():with_noremap():with_nowait(),
-    ["n|<Leader><Leader>tt"] = map_cu('lua require"modules.tools.gotest.run_test".RunLastTest()'):with_silent():with_noremap():with_nowait(),
+    ["n|<Leader><Leader>t"] = map_cu('lua require"modules.tools.gotest".RunTest()'):with_silent():with_noremap():with_nowait(),
+    ["n|<Leader><Leader>tr"] = map_cu('lua require"modules.tools.gotest".ShowLastTestReults()'):with_silent():with_noremap():with_nowait(),
+    ["n|<Leader><Leader>tt"] = map_cu('lua require"modules.tools.gotest".RunLastTest()'):with_silent():with_noremap():with_nowait(),
     --["n|<Leader>t"]       = map_cu('FloatermToggle'):with_noremap():with_silent(),
     ["n|tt"]                = map_cr('FloatermNew --width=0.8 --height=0.8 --name=unitest --autoclose=1 make test'):with_noremap():with_silent(),
     ["n|<C-S-PageUp>"]      = map_cu('BufferLineMovePrev'),
@@ -36,7 +36,8 @@ local plug_map = {
     ["n|<Leader><Leader>h"] = map_cu('DiffviewFileHistory %'):with_silent():with_noremap(),
     ["n|<Leader><Leader>H"] = map_cu('DiffviewFileHistory'):with_silent():with_noremap(),
     -- Plugin symbols_outline
-    ["n|<C-f>"]             = map_cu('SymbolsOutline'):with_noremap():with_silent(),
+    ["n|<C-f>"]             = map_cu('AerialToggle!'):with_noremap():with_silent(),
+    ["n|<Leader>fv"]        = map_cu('Telescope aerial'):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
     ["n|<leader>xx"]        = map_cr("TroubleToggle"):with_noremap():with_silent():with_nowait(),
     ["n|[d"]                = map_cu('lua vim.diagnostic.goto_prev()'):with_noremap():with_silent(),

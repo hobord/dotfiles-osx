@@ -41,47 +41,67 @@ function M.filename()
 
     local hl_group = "FileIconColor" .. extension
 
-    vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
+    vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color, bg = "#171819" })
     if file_icon == nil then
       file_icon = default_file_icon
       file_icon_color = default_file_icon_color
     end
 
-    return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#LineNr#" .. filename .. "%*"
+    -- return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#LineNr#" .. filename .. "%*"
+    return "%#WinBarContent#" .. "  %*" .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. "%#WinBarContent# " .. filename  .. "  " .. "%*"
   end
 end
 
--- function M.gps()
---   local status_ok, gps_location = pcall(gps.get_location, {})
---   if not status_ok then
---     return
---   end
---
---   local icons = require "config.icons"
---
---   if not gps.is_available() then -- Returns boolean value indicating whether a output can be provided
---     return
---   end
---
---   local retval = M.filename()
---
---   if gps_location == "error" then
---     return ""
---   else
---     if not isempty(gps_location) then
---       return retval .. " " .. icons.ui.ChevronRight .. " " .. gps_location
---     else
---       return retval
---     end
---   end
--- end
-
 function M.navic()
   local navic = require "nvim-navic"
-  local location = navic.get_location()
+  local location =  navic.get_location()
 
   return location
 end
+
+function M.right()
+  local result = {}
+
+  local s = '  '
+  local buf_ft = vim.api.nvim_buf_get_option(0,'filetype')
+  local clients = vim.lsp.get_active_clients()
+
+  for _,client in ipairs(clients) do
+    local filetypes = client.config.filetypes
+    if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+      s = '  ' -- client.name
+    end
+  end
+
+  table.insert(result,{text=s, guifg="#7EA9A7"})
+  local error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  local warning = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+  local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+  local hint = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+
+  if error ~= 0 then
+    table.insert(result, {text = "  " .. error, guifg = "#EC5241"})
+  end
+
+  if warning ~= 0 then
+    table.insert(result, {text = "  " .. warning, guifg = "#EFB839"})
+  end
+
+  if hint ~= 0 then
+    table.insert(result, {text = "  " .. hint, guifg = "#A3BA5E"})
+  end
+
+  if info ~= 0 then
+    table.insert(result, {text = "  " .. info, guifg = "#7EA9A7"})
+  end
+
+  -- for _, v in ipairs(result) do
+  --   vim.api.nvim_command("hi WinBarRight" .. v.text .. " guifg=" .. v.guifg)
+  -- end
+  -- return result
+  return ""
+end
+
 
 vim.api.nvim_set_hl(0, "WinBarNC", {fg="#1e2021", bg = "#1e2021" })
 vim.api.nvim_set_hl(0, "WinBar", {  fg="#d5be97", bg = "#171819" })
@@ -102,6 +122,7 @@ local winbar_filetype_exclude = {
   "Outline",
   "spectre_panel",
   "toggleterm",
+  "aerial",
 }
 
 function M.statusline()
@@ -114,14 +135,16 @@ function M.statusline()
   end
 
   return ""
-    -- .. M.navic()
-    .. "         "
+    .. M.filename()
+    .. M.navic()
+    -- .. "         "
     .. "%="
+    .. M.right()
     -- .. "%#WinBarSeparator#"
     -- .. ""
-    .. "%#WinBarContent#"
-    .. " %-m "
-    .. "%t "
+    -- .. "%#WinBarContent#"
+    -- .. " %-m "
+    -- .. "%t "
 end
 
 return M

@@ -20,4 +20,4 @@ M.getFnName = function ()
   return (ts_utils.get_node_text(expr:child(1)))[1]
 end
 
-
+return M

@@ -67,7 +67,7 @@ local function load_options()
     jumpoptions    = "stack";
     showmode       = false;
     shortmess      = "aoOTIcF";
-    scrolloff      = 999;
+    scrolloff      = 5; -- 999;
     sidescrolloff  = 5;
     ruler          = false;
     list           = false; -- show/hide spaces,tabs
@@ -78,7 +78,7 @@ local function load_options()
     helpheight     = 12;
     previewheight  = 12;
     showcmd        = false;
-    cmdheight      = 1;
+    cmdheight      = 0;
     cmdwinheight   = 5;
     equalalways    = false;
     display        = "lastline";
@@ -95,6 +95,7 @@ local function load_options()
     matchpairs     = "(:),{:},[:],<:>";
     laststatus     = 3;
     winbar = "%{%v:lua.require'modules.ui.winbar'.statusline()%}";
+    showtabline    = 0;
   }
   vim.g.markdown_fenced_languages = {'python', 'cpp', 'go', 'typescript', 'sql', 'html', 'javascript', 'rust', 'vim', 'lua'}
   --t_ZH           = "^[[3m";

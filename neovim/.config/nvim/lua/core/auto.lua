@@ -54,7 +54,7 @@ function autocmd.load_autocmds()
     };
 
     lsp = {
-      {"BufWritePre", "*.go", "lua vim.lsp.buf.formatting()"};
+      {"BufWritePre", "*.go", "lua vim.lsp.buf.format()"};
     };
 
     diag = {

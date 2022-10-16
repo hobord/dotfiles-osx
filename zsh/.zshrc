@@ -76,7 +76,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose fzf golang history kubectl terraform gcloud)
+plugins=(git docker docker-compose fzf golang history kubectl terraform gcloud gh)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -125,8 +125,6 @@ alias vim='nvim'
 alias vims='nvim -S Session.vim'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
 #complete -F __start_config config 
-alias lzg='lazygit'
-alias gui='gitui'
 alias gitch='git checkout '
 alias dotenv='export $(cat .env | xargs)'
 

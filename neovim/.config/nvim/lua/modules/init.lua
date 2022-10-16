@@ -48,12 +48,14 @@ require('packer').startup(function(use)
     config = require('modules.ui.onedarkpro').setup,
   }
 
+  use 'kyazdani42/nvim-web-devicons'
+
   -- Buffer line
-  use {
-    'akinsho/nvim-bufferline.lua',
-    requires = {'kyazdani42/nvim-web-devicons'},
-    config = require('modules.ui.bufferline').setup,
-  }
+  -- use {
+  --   'akinsho/nvim-bufferline.lua',
+  --   requires = {'kyazdani42/nvim-web-devicons'},
+  --   config = require('modules.ui.bufferline').setup,
+  -- }
 
   use {
     'romgrk/nvim-treesitter-context',
@@ -212,7 +214,13 @@ require('packer').startup(function(use)
   --   config = require('modules.lsp.symbols-outline').setup,
   -- }
 
-  -- use {'stevearc/aerial.nvim'}
+  use {
+      'stevearc/aerial.nvim',
+      config = function() 
+        require('aerial').setup()
+        require('telescope').load_extension('aerial')
+      end
+  }
 
   use {
     'rmagatti/goto-preview',
@@ -256,7 +264,13 @@ require('packer').startup(function(use)
       vim.keymap.set("n", "s", sj.run)
     end
   }
-  use 'junegunn/vim-easy-align'
+  -- use 'junegunn/vim-easy-align'
+  use {
+    'echasnovski/mini.nvim',
+    config = function()
+      require('mini.align').setup()
+    end
+  }
   use 'mg979/vim-visual-multi'
   use 'tpope/vim-surround'
   use {

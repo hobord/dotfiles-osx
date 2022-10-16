@@ -1,5 +1,5 @@
 local M = {}
 
-local parser = require "parser"
+local parser = require "modules.tools.gotest.parser"
 
 
