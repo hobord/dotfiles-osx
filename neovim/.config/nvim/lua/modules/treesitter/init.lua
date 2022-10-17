@@ -82,6 +82,7 @@ config.setup = function()
 
   require'nvim-treesitter.utils'
   require'nvim-treesitter.query'
+  vim.bo.syntax = 'on'
 end
 
 return config

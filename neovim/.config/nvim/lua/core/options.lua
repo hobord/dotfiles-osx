@@ -113,7 +113,7 @@ local function load_options()
     breakindentopt = "shift:2,min:20";
     linebreak      = true;
     number         = true;
-    relativenumber = true;
+    relativenumber = false;
     colorcolumn    = "0";
     foldenable     = true;
     foldlevelstart = 99;

@@ -130,7 +130,7 @@ config.setup = function()
     },
 
     sources = {
-      -- { name = 'copilot', keyword_length = 2 },
+      { name = 'copilot', keyword_length = 2 },
       { name = 'luasnip', keyword_length = 2 },
       { name = 'nvim_lsp', keyword_length = 2 },
       { name = 'cmp_tabnine', keyword_length = 3 },

@@ -3,11 +3,12 @@ local config = {}
 config.setup = function()
   require("zen-mode").setup {
     window = {
-      width = 150,
+      width = 0.70,
       options = {
         list = false,
         wrap = false,
         relativenumber = false,
+        foldcolumn = "0",
       }
     },
     plugins = {
@@ -19,9 +20,16 @@ config.setup = function()
         showcmd = false, -- disables the command in the last line of the screen
         colorcolumn = 0,
       },
-      gitsigns = { enabled = true },
       twilight = { enabled = false },
-    }
+      diagnostics = { enabled = true },
+    },
+    on_open = function(_win)
+      require('gitsigns').detach()
+    end,
+
+    on_close = function(_win)
+      require('gitsigns').attach()
+    end,
   }
 end
 

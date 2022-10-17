@@ -125,12 +125,21 @@ local winbar_filetype_exclude = {
   "aerial",
 }
 
+local winbar_filename_excluded = {
+  "leftpad",
+  "rightpad",
+}
+
 function M.statusline()
   -- if vim.api.nvim_eval_statusline("%f", {})["str"] == "[No Name]" then
   --   return ""
   -- end
 
   if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
+    return ""
+  end
+
+  if vim.tbl_contains(winbar_filename_excluded, vim.fn.expand "%:t") then
     return ""
   end
 

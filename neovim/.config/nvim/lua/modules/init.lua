@@ -162,6 +162,8 @@ require('packer').startup(function(use)
     config = require('modules.ui.zen-mode').setup,
   }
 
+  use { 'smithbm2316/centerpad.nvim' }
+
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -319,13 +321,72 @@ require('packer').startup(function(use)
   }
 
   use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+
   use {
     'github/copilot.vim',
     config = function()
-      -- vim.cmd('unmap! <Tab>')
     end
   }
 
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   event = "InsertEnter",
+  --   config = function ()
+  --     vim.schedule(function()
+  --   -- event = "VimEnter",
+  --   -- config = function()
+  --   --   vim.defer_fn(function()
+  --       require("copilot").setup({
+  --         panel = {
+  --           enabled = true,
+  --           auto_refresh = true,
+  --           keymap = {
+  --             jump_prev = "[[",
+  --             jump_next = "]]",
+  --             accept = "<CR>",
+  --             refresh = "gr",
+  --             open = "<M-CR>"
+  --           },
+  --         },
+  --         suggestion = {
+  --           enabled = true,
+  --           auto_trigger = true,
+  --           debounce = 75,
+  --           keymap = {
+  --           accept = "<C-CR>",
+  --           next = "<M-]>",
+  --           prev = "<M-[>",
+  --           dismiss = "<C-]>",
+  --           },
+  --         },
+  --         filetypes = {
+  --           yaml = false,
+  --           markdown = false,
+  --           help = false,
+  --           gitcommit = false,
+  --           gitrebase = false,
+  --           hgcommit = false,
+  --           svn = false,
+  --           cvs = false,
+  --           ["."] = false,
+  --           -- ["*"] = true,
+  --         },
+  --         copilot_node_command = 'node', -- Node version must be < 18
+  --         plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
+  --         server_opts_overrides = {},
+  --       })
+  --     end)
+  --   end,
+  -- }
+  --
+  -- use {
+  --   "zbirenbaum/copilot-cmp",
+  --   after = { "copilot.lua" },
+  --   config = function ()
+  --     require("copilot_cmp").setup()
+  --   end
+  -- }
+  --
   use {
     'hrsh7th/nvim-cmp',
     requires = {
