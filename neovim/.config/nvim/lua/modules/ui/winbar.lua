@@ -10,7 +10,7 @@ vim.api.nvim_set_hl(0, "WinBarNC", { fg = bg_inactive, bg = bg_inactive }) -- Wi
 vim.api.nvim_set_hl(0, "WinBar", { fg = fg_active, bg = bg_active }) -- Window bar of current window.
 vim.api.nvim_set_hl(0, "WinBarContent", { bg = bg_active })
 vim.api.nvim_set_hl(0, "WinBarInverse", { fg = bg_active, bg = fg_active })
-vim.api.nvim_set_hl(0, "WinBarInverseNC", { fg = bg_active, bg = fg_inactive })
+vim.api.nvim_set_hl(0, "WinBarInverseNC", { fg = bg_active })
 
 local winbar_filetype_exclude = {
   "help",
@@ -85,7 +85,7 @@ function M.filename()
 
   if not isempty(filename) then
 
-    local res = "%#WinBarContent#" .. " %m %*" ..
+    local res = "%#WinBarContent#" .. "%m" .. "%*" ..
         "%#WinBarContent# " .. filename .. " %*"
 
     if is_current() then
