@@ -71,7 +71,6 @@ local function load_options()
     sidescrolloff  = 5;
     ruler          = false;
     list           = false; -- show/hide spaces,tabs
-    showtabline    = 2;
     winwidth       = 30;
     winminwidth    = 10;
     pumheight      = 15;
@@ -87,21 +86,23 @@ local function load_options()
     pumblend       = 10;
     winblend       = 10;
     foldmethod     = "syntax";
-    foldcolumn     = "2";
     foldlevelstart = 99;
     foldlevel      = 99;
     wrap           = false;
     fdc            = '1'; -- 4
     matchpairs     = "(:),{:},[:],<:>";
     laststatus     = 3;
-    winbar = "%{%v:lua.require'modules.ui.winbar'.statusline()%}";
+    winbar         = "%{%v:lua.require'modules.ui.winbar'.statusline()%}";
     showtabline    = 0;
+    foldcolumn     = "0";
+    syntax         = "ON"
   }
-  vim.g.markdown_fenced_languages = {'python', 'cpp', 'go', 'typescript', 'sql', 'html', 'javascript', 'rust', 'vim', 'lua'}
+  vim.g.markdown_fenced_languages = { 'python', 'cpp', 'go', 'typescript', 'sql', 'html', 'javascript', 'rust', 'vim',
+    'lua' }
   --t_ZH           = "^[[3m";
   --t_ZR           = "^[[23m";
 
-  local bw_local   = {
+  local bw_local = {
     synmaxcol      = 2500;
     formatoptions  = "1jcroql";
     textwidth      = 80;
@@ -124,7 +125,7 @@ local function load_options()
     laststatus     = 3;
   }
 
-  vim.g.copilot_no_tab_map = true;
+  -- vim.g.copilot_no_tab_map = true;
 
 
   if global.is_mac then
@@ -153,4 +154,3 @@ end
 
 load_options()
 vim.cmd('')
-

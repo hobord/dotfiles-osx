@@ -1,0 +1,2 @@
+
+setlocal foldcolumn=4

@@ -43,7 +43,7 @@ end
 
 
 M.setup = function()
-  local navic = require("nvim-navic")
+  -- local navic = require("nvim-navic")
   local autosession = require("auto-session-library")
 
   -- local function search_count()

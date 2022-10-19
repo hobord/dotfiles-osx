@@ -2,8 +2,8 @@
 vim.cmd [[packadd packer.nvim]]
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 --vim._update_package_paths()
-require'packer'.init({
-  max_jobs=50
+require 'packer'.init({
+  max_jobs = 50
 })
 
 require('packer').startup(function(use)
@@ -59,7 +59,7 @@ require('packer').startup(function(use)
 
   use {
     'romgrk/nvim-treesitter-context',
-    requires = {'nvim-treesitter/nvim-treesitter'},
+    requires = { 'nvim-treesitter/nvim-treesitter' },
     after = 'nvim-treesitter',
     config = function()
       require('modules.ui.context').setup()
@@ -104,14 +104,14 @@ require('packer').startup(function(use)
       "MunifTanjim/nui.nvim",
       "kyazdani42/nvim-web-devicons",
     },
-    config = function ()
+    config = function()
       require("neo-tree").setup()
     end
   }
 
   use {
     'ThePrimeagen/harpoon',
-    requires = {'nvim-lua/plenary.nvim'},
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   -- Guide lines for ident
@@ -123,7 +123,7 @@ require('packer').startup(function(use)
   -- Git signals right side
   use {
     'lewis6991/gitsigns.nvim',
-    requires = {'nvim-lua/plenary.nvim', opt=true},
+    requires = { 'nvim-lua/plenary.nvim', opt = true },
     config = require('modules.ui.gitsigns').setup,
   }
 
@@ -168,14 +168,14 @@ require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
-      {'nvim-lua/popup.nvim'},
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-fzy-native.nvim'},
-      {'nvim-telescope/telescope-frecency.nvim'},
-      {'tami5/sqlite.lua'},
-      {'zane-/cder.nvim'},
-      {'nvim-telescope/telescope-file-browser.nvim'},
-      {'nvim-telescope/telescope-dap.nvim'},
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzy-native.nvim' },
+      { 'nvim-telescope/telescope-frecency.nvim' },
+      { 'tami5/sqlite.lua' },
+      { 'zane-/cder.nvim' },
+      { 'nvim-telescope/telescope-file-browser.nvim' },
+      { 'nvim-telescope/telescope-dap.nvim' },
     },
     config = require('modules.ui.telescope').setup,
   }
@@ -192,7 +192,7 @@ require('packer').startup(function(use)
 
   use {
     'williamboman/nvim-lsp-installer',
-    requires = { {'neovim/nvim-lspconfig'} }
+    requires = { { 'neovim/nvim-lspconfig' } }
   }
 
   use {
@@ -217,11 +217,11 @@ require('packer').startup(function(use)
   -- }
 
   use {
-      'stevearc/aerial.nvim',
-      config = function() 
-        require('aerial').setup()
-        require('telescope').load_extension('aerial')
-      end
+    'stevearc/aerial.nvim',
+    config = function()
+      require('aerial').setup()
+      require('telescope').load_extension('aerial')
+    end
   }
 
   use {
@@ -230,7 +230,7 @@ require('packer').startup(function(use)
       require('goto-preview').setup {
         width = 120; -- Width of the floating window
         height = 15; -- Height of the floating window
-        border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"}; -- Border characters of the floating window
+        border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" }; -- Border characters of the floating window
         default_mappings = false; -- Bind default mappings
         debug = false; -- Print debug information
         opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
@@ -244,7 +244,7 @@ require('packer').startup(function(use)
     config = require('modules.lsp.lsp-status').setup,
   }
 
-    use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
   --
   -- EDITOR
   --
@@ -253,7 +253,7 @@ require('packer').startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+      require('Comment').setup()
     end
   }
   use {
@@ -293,13 +293,13 @@ require('packer').startup(function(use)
     as = 'hop',
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'asdfghjkl' }
+      require 'hop'.setup { keys = 'asdfghjkl' }
     end
   }
 
   use {
     'itchyny/vim-cursorword',
-    event = {'BufReadPre','BufNewFile'},
+    event = { 'BufReadPre', 'BufNewFile' },
     config = require('modules.editor.cursorword').setup,
   }
 
@@ -320,8 +320,9 @@ require('packer').startup(function(use)
     config = require('modules.editor.luasnip').setup,
   }
 
-  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
 
+  vim.g.copilot_no_tab_map = true;
   use {
     'github/copilot.vim',
     config = function()
@@ -378,7 +379,7 @@ require('packer').startup(function(use)
   --     end)
   --   end,
   -- }
-  --
+
   -- use {
   --   "zbirenbaum/copilot-cmp",
   --   after = { "copilot.lua" },
@@ -386,18 +387,19 @@ require('packer').startup(function(use)
   --     require("copilot_cmp").setup()
   --   end
   -- }
-  --
+
   use {
     'hrsh7th/nvim-cmp',
     requires = {
-      { "hrsh7th/cmp-nvim-lsp",   after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
       --{ "f3fora/cmp-spell",     after = "nvim-cmp" },
-      { "hrsh7th/cmp-path",       after = "nvim-cmp" },
-      { "hrsh7th/cmp-buffer",     after = "nvim-cmp" },
+      { "hrsh7th/cmp-path", after = "nvim-cmp" },
+      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       { "onsails/lspkind-nvim" },
       { 'L3MON4D3/LuaSnip' },
       { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
-      {'tzachar/cmp-tabnine',     after = 'nvim-cmp'},
+      { 'tzachar/cmp-tabnine', after = 'nvim-cmp' },
+      { "zbirenbaum/copilot-cmp", after = "nvim-cmp" },
     },
     config = require('modules.editor.cmp').setup,
   }
@@ -406,12 +408,12 @@ require('packer').startup(function(use)
 
   use {
     'andymass/vim-matchup',
-    requires = {'nvim-treesitter/nvim-treesitter'},
+    requires = { 'nvim-treesitter/nvim-treesitter' },
   }
 
   use {
     'mfussenegger/nvim-treehopper',
-    requires = {'nvim-treesitter/nvim-treesitter'},
+    requires = { 'nvim-treesitter/nvim-treesitter' },
   }
 
 
@@ -449,16 +451,16 @@ require('packer').startup(function(use)
   use {
     'mfussenegger/nvim-dap',
     requires = {
-      {'rcarriga/nvim-dap-ui'},
-      {'theHamsta/nvim-dap-virtual-text'},
+      { 'rcarriga/nvim-dap-ui' },
+      { 'theHamsta/nvim-dap-virtual-text' },
     },
     config = require('modules.dap').setup,
   }
 
   use {
     "Pocco81/DAPInstall.nvim",
-    requires = {{'mfussenegger/nvim-dap'}},
-    config = function ()
+    requires = { { 'mfussenegger/nvim-dap' } },
+    config = function()
       -- local dap_install = require("dap-install")
       --
       -- dap_install.setup({
@@ -487,6 +489,16 @@ require('packer').startup(function(use)
   -- use 'tpope/vim-git'
   -- use 'motemen/git-vim'
   -- use 'tpope/vim-fugitive'
+
+  -- use {
+  --   'ldelossa/gh.nvim',
+  --   requires = { { 'ldelossa/litee.nvim' } },
+  --   config = function()
+  --     require('litee.lib').setup()
+  --     require('litee.gh').setup()
+  --   end
+  -- }
+
   use {
     'sindrets/diffview.nvim',
     config = require('modules.tools.diffview').setup
@@ -501,9 +513,9 @@ require('packer').startup(function(use)
     config = require('modules.tools.neogit').setup,
   }
 
-  use {'pwntester/octo.nvim', config=function()
-    require"octo".setup()
-  end}
+  use { 'pwntester/octo.nvim', config = function()
+    require "octo".setup()
+  end }
 
   use 'vim-test/vim-test'
 
@@ -514,8 +526,8 @@ require('packer').startup(function(use)
 
   use {
     'brooth/far.vim',
-    cmd = {'Far','Farp'},
-    config = function ()
+    cmd = { 'Far', 'Farp' },
+    config = function()
       vim.g['far#source'] = 'rg'
     end
   }
@@ -540,10 +552,11 @@ require('packer').startup(function(use)
   }
 
   local function file_exists(name)
-    local f=io.open(name,"r")
-    if f~=nil then io.close(f) return true else return false end
+    local f = io.open(name, "r")
+    if f ~= nil then io.close(f) return true else return false end
   end
-  if not file_exists(vim.fn.stdpath('config').."/plugin/packer_compiled.lua") then
+
+  if not file_exists(vim.fn.stdpath('config') .. "/plugin/packer_compiled.lua") then
     require('packer').sync()
   end
 
