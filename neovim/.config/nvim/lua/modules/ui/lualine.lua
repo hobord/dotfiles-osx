@@ -1,4 +1,4 @@
-local M={}
+local M = {}
 
 function GetCurrentDiagnostic()
   bufnr = 0
@@ -13,8 +13,7 @@ function GetCurrentDiagnostic()
   local best_diagnostic = nil
 
   for _, diagnostic in ipairs(line_diagnostics) do
-    if
-      best_diagnostic == nil or diagnostic.severity < best_diagnostic.severity
+    if best_diagnostic == nil or diagnostic.severity < best_diagnostic.severity
     then
       best_diagnostic = diagnostic
     end
@@ -40,26 +39,12 @@ function GetCurrentDiagnosticString()
   end
 end
 
-
-
 M.setup = function()
   -- local navic = require("nvim-navic")
   local autosession = require("auto-session-library")
 
-  -- local function search_count()
-  --   local search = vim.fn.searchcount({maxcount=0})
-  --   local searchCurrent = search.current
-  --   local searchTotal = search.total
-  --
-  --   if searchCurrent == 0 then
-  --     return ""
-  --   end
-  --
-  --   return string.format("%d/%d", searchCurrent, searchTotal)
-  -- end
-
   require('lualine').setup {
-    options ={
+    options = {
       -- theme = 'gruvbox'
       theme = 'gruvbox-baby'
     },
@@ -73,10 +58,10 @@ M.setup = function()
     globalstatus = true,
     sections = {
       lualine_a = { 'mode' },
-      lualine_b = { 'branch', 'diff'},
+      lualine_b = { 'branch', 'diff' },
       lualine_c = {
         {
-            autosession.current_session_name
+          autosession.current_session_name
         },
         {
           'filename',
@@ -90,8 +75,8 @@ M.setup = function()
         'encoding', 'fileformat', 'filetype'
       },
       lualine_y = {
-        -- { search_count },
-        { 'progress' },
+        "searchcount",
+        'progress',
       },
     }
   }
@@ -101,5 +86,3 @@ M.setup = function()
 end
 
 return M
-
-
