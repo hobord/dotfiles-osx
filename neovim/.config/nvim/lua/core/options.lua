@@ -115,6 +115,7 @@ local function load_options()
     linebreak      = true;
     number         = true;
     relativenumber = false;
+    nornu          = true;
     colorcolumn    = "0";
     foldenable     = true;
     foldlevelstart = 99;

@@ -1,11 +1,11 @@
-local M = {}
+local M           = {}
 --          
 --
 --     wal.go   WalRecord   Data
 local bg_inactive = "#1e2021"
 -- local bg_active = "#171819"
-local bg_active = "#404040"
-local fg_active = "#d5be97"
+local bg_active   = "#404040"
+local fg_active   = "#d5be97"
 
 vim.api.nvim_set_hl(0, "WinBarNC", { fg = bg_inactive, bg = bg_inactive }) -- Window bar of not-current windows.
 vim.api.nvim_set_hl(0, "WinBar", { fg = fg_active, bg = bg_active }) -- Window bar of current window.

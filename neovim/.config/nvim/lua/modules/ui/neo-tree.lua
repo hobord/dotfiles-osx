@@ -6,13 +6,13 @@ M.setup = function()
 
   -- If you want icons for diagnostic errors, you'll need to define them somewhere:
   vim.fn.sign_define("DiagnosticSignError",
-    {text = " ", texthl = "DiagnosticSignError"})
+    { text = " ", texthl = "DiagnosticSignError" })
   vim.fn.sign_define("DiagnosticSignWarn",
-    {text = " ", texthl = "DiagnosticSignWarn"})
+    { text = " ", texthl = "DiagnosticSignWarn" })
   vim.fn.sign_define("DiagnosticSignInfo",
-    {text = " ", texthl = "DiagnosticSignInfo"})
+    { text = " ", texthl = "DiagnosticSignInfo" })
   vim.fn.sign_define("DiagnosticSignHint",
-    {text = "", texthl = "DiagnosticSignHint"})
+    { text = "", texthl = "DiagnosticSignHint" })
   -- NOTE: this is changed from v1.x, which used the old style of highlight groups
   -- in the form "LspDiagnosticsSignWarning"
 
@@ -21,6 +21,10 @@ M.setup = function()
     popup_border_style = "rounded",
     enable_git_status = true,
     enable_diagnostics = true,
+    source_selector = {
+      winbar = true,
+      statusline = false
+    },
     default_component_configs = {
       indent = {
         indent_size = 2,
@@ -106,14 +110,14 @@ M.setup = function()
         },
       },
       follow_current_file = true, -- This will find and focus the file in the active buffer every
-                                    -- time the current file is changed while the tree is open.
+      -- time the current file is changed while the tree is open.
       hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-                                              -- in whatever position is specified in window.position
-                            -- "open_current",  -- netrw disabled, opening a directory opens within the
-                                              -- window like netrw would, regardless of window.position
-                            -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+      -- in whatever position is specified in window.position
+      -- "open_current",  -- netrw disabled, opening a directory opens within the
+      -- window like netrw would, regardless of window.position
+      -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
       use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-                                      -- instead of relying on nvim autocmd events.
+      -- instead of relying on nvim autocmd events.
     },
     buffers = {
       show_unloaded = true,
@@ -141,5 +145,3 @@ M.setup = function()
   -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 end
 return M
-
-

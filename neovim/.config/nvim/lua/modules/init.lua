@@ -105,7 +105,7 @@ require('packer').startup(function(use)
       "kyazdani42/nvim-web-devicons",
     },
     config = function()
-      require("neo-tree").setup()
+      require("modules.ui.neo-tree").setup()
     end
   }
 
