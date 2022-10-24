@@ -257,14 +257,23 @@ require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
+
+  -- use {
+  --   'woosaaahh/sj.nvim',
+  --   config = function()
+  --     local sj = require("sj")
+  --     sj.setup({
+  --       auto_jump = true,
+  --     })
+  --     vim.keymap.set("n", "s", sj.run)
+  --   end
+  -- }
+
   use {
-    'woosaaahh/sj.nvim',
+    'ggandor/leap.nvim',
     config = function()
-      local sj = require("sj")
-      sj.setup({
-        auto_jump = true,
-      })
-      vim.keymap.set("n", "s", sj.run)
+      -- require('leap').leap { target_windows = { vim.fn.win_getid() } }
+      -- require('leap').add_default_mappings()
     end
   }
   -- use 'junegunn/vim-easy-align'

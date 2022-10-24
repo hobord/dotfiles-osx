@@ -6,6 +6,8 @@ local map_cmd = bind.map_cmd
 
 local plug_map = {
   -- EasyAlign
+  ["n|s"]                  = map_cr("lua require('leap').leap { target_windows = { vim.fn.win_getid() } }"):with_noremap()
+      :with_silent(),
   ["x|ga"]                 = map_cmd('<Plug>(EasyAlign)'),
   ["n|<leader>/"]          = map_cr("BufferLinePick"):with_noremap():with_silent(),
   -- Packer
