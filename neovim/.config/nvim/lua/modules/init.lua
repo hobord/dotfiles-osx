@@ -115,10 +115,10 @@ require('packer').startup(function(use)
   }
 
   -- Guide lines for ident
-  use {
-    'glepnir/indent-guides.nvim',
-    event = 'BufRead',
-  }
+  -- use {
+  --   'glepnir/indent-guides.nvim',
+  --   event = 'BufRead',
+  -- }
 
   -- Git signals right side
   use {
@@ -176,6 +176,7 @@ require('packer').startup(function(use)
       { 'zane-/cder.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'nvim-telescope/telescope-dap.nvim' },
+      { 'LukasPietzschmann/telescope-tabs' }
     },
     config = require('modules.ui.telescope').setup,
   }

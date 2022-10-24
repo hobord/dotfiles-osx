@@ -46,7 +46,7 @@ local plug_map = {
   ["n|H"]                  = map_cr("lua vim.lsp.buf.hover({border='single'; max_width=80; max_heigt=40})"):with_noremap()
       :with_silent(),
   ["n|<Leader>a"]          = map_cr("lua vim.lsp.buf.code_action()"):with_noremap():with_silent(),
-  ["n|gD"]                 = map_cu("lua require('goto-preview').goto_preview_definition()"):with_noremap():with_silent(),
+  ["n|gp"]                 = map_cu("lua require('goto-preview').goto_preview_definition()"):with_noremap():with_silent(),
   ["n|gd"]                 = map_cu("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
   ["n|<Leader>fs"]         = map_cr('Telescope lsp_document_symbols'):with_noremap():with_silent(),
   ["n|<Leader>fS"]         = map_cr('Telescope lsp_dynamic_workspace_symbols'):with_noremap():with_silent(),
@@ -55,6 +55,8 @@ local plug_map = {
   ["n|gh"]                 = map_cr('Telescope git_bcommits'):with_noremap():with_silent(),
   ["n|cd"]                 = map_cr('Telescope cder'):with_noremap():with_silent(),
   ["n|gt"]                 = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
+  ["n|<C-t>l"]             = map_cr('Telescope telescope-tabs list_tabs'):with_noremap():with_silent(),
+  ["n|<C-m>"]              = map_cu("lua require('telescope-tabs').go_to_previous()"):with_noremap():with_silent(),
   -- Plugin nvim-tree
   ["n|<C-e>"]              = map_cr('Neotree reveal toggle left focus'):with_noremap():with_silent(),
   ["n|<C-S-E>"]            = map_cr('Neotree left git_status'):with_noremap():with_silent(),

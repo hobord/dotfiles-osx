@@ -22,13 +22,13 @@ config.setup = function()
       },
       selection_caret = " ",
       sorting_strategy = 'ascending',
-      file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-      grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-      qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+      file_previewer = require 'telescope.previewers'.vim_buffer_cat.new,
+      grep_previewer = require 'telescope.previewers'.vim_buffer_vimgrep.new,
+      qflist_previewer = require 'telescope.previewers'.vim_buffer_qflist.new,
       mappings = {
         n = {
-          ["<c-j>"] = require"telescope.actions".preview_scrolling_down,
-          ["<c-k>"] = require"telescope.actions".preview_scrolling_up,
+          ["<c-j>"] = require "telescope.actions".preview_scrolling_down,
+          ["<c-k>"] = require "telescope.actions".preview_scrolling_up,
         },
       },
     },
@@ -114,8 +114,8 @@ config.setup = function()
     },
     extensions = {
       fzy_native = {
-          override_generic_sorter = false,
-          override_file_sorter = true,
+        override_generic_sorter = false,
+        override_file_sorter = true,
       },
       file_browser = {
         --cwd = utils.buffer_dir(),
@@ -124,7 +124,7 @@ config.setup = function()
         },
       },
       cder = {
-        dir_command = { 'fd', '--hidden', '--type=d', '.', os.getenv('HOME')..'/code' },
+        dir_command = { 'fd', '--hidden', '--type=d', '.', os.getenv('HOME') .. '/code' },
       },
     }
   }
@@ -134,6 +134,7 @@ config.setup = function()
   require('telescope').load_extension('frecency')
   require("telescope").load_extension('file_browser')
   require('telescope').load_extension('cder')
+  require('telescope').load_extension('telescope-tabs')
 end
 
 return config
