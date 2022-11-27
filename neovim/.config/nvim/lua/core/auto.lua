@@ -60,7 +60,8 @@ function autocmd.load_autocmds()
     };
 
     diag = {
-      { "CursorHold,CursorHoldI", "*", [[lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]] };
+      -- { "CursorHold,CursorHoldI", "*", [[lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]] };
+      { "CursorHold", "*", [[lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]] };
     };
 
     -- go = {

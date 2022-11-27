@@ -1,59 +1,55 @@
 local config = {}
-local hi = {
-  PmenuSel = { bg = "#282C34", fg = "NONE" },
-  Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
-
-  CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE",  strikethrough=true },
-  CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", bold=true },
-  CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", bold=true },
-  CmpItemMenu = { fg = "#C792EA", bg = "NONE", italic=true },
-
-  CmpItemKindField = { fg = "#EED8DA", bg = "#B5585F" },
-  CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
-  CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
-
-  CmpItemKindText = { fg = "#C3E88D", bg = "#9FBD73" },
-  CmpItemKindEnum = { fg = "#C3E88D", bg = "#9FBD73" },
-  CmpItemKindKeyword = { fg = "#C3E88D", bg = "#9FBD73" },
-
-  CmpItemKindConstant = { fg = "#FFE082", bg = "#D4BB6C" },
-  CmpItemKindConstructor = { fg = "#FFE082", bg = "#D4BB6C" },
-  CmpItemKindReference = { fg = "#FFE082", bg = "#D4BB6C" },
-
-  CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
-  CmpItemKindStruct = { fg = "#EADFF0", bg = "#A377BF" },
-  CmpItemKindClass = { fg = "#EADFF0", bg = "#A377BF" },
-  CmpItemKindModule = { fg = "#EADFF0", bg = "#A377BF" },
-  CmpItemKindOperator = { fg = "#EADFF0", bg = "#A377BF" },
-
-  CmpItemKindVariable = { fg = "#C5CDD9", bg = "#7E8294" },
-  CmpItemKindFile = { fg = "#C5CDD9", bg = "#7E8294" },
-
-  CmpItemKindUnit = { fg = "#F5EBD9", bg = "#D4A959" },
-  CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#D4A959" },
-  CmpItemKindFolder = { fg = "#F5EBD9", bg = "#D4A959" },
-
-  CmpItemKindMethod = { fg = "#DDE5F5", bg = "#6C8ED4" },
-  CmpItemKindValue = { fg = "#DDE5F5", bg = "#6C8ED4" },
-  CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#6C8ED4" },
-
-  CmpItemKindInterface = { fg = "#D8EEEB", bg = "#58B5A8" },
-  CmpItemKindColor = { fg = "#D8EEEB", bg = "#58B5A8" },
-  CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
-}
-
-for k, v in pairs(hi) do
-  vim.api.nvim_set_hl(0, k, v)
-end
-
 config.setup = function()
+  -- local hi = {
+  -- PmenuSel = { bg = "#282C34", fg = "NONE" },
+  -- Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
+  --
+  -- CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE", strikethrough = true },
+  -- CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", bold = true },
+  -- CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", bold = true },
+  -- CmpItemMenu = { fg = "#C792EA", bg = "NONE", italic = true },
+  --
+  -- CmpItemKindField = { fg = "#EED8DA", bg = "#B5585F" },
+  -- CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
+  -- CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
+  --
+  -- CmpItemKindText = { fg = "#C3E88D", bg = "#9FBD73" },
+  -- CmpItemKindEnum = { fg = "#C3E88D", bg = "#9FBD73" },
+  -- CmpItemKindKeyword = { fg = "#C3E88D", bg = "#9FBD73" },
+  --
+  -- CmpItemKindConstant = { fg = "#FFE082", bg = "#D4BB6C" },
+  -- CmpItemKindConstructor = { fg = "#FFE082", bg = "#D4BB6C" },
+  -- CmpItemKindReference = { fg = "#FFE082", bg = "#D4BB6C" },
+  --
+  -- CmpItemKindFunction = { fg = "#EADFF0", bg = "#A377BF" },
+  -- CmpItemKindStruct = { fg = "#EADFF0", bg = "#A377BF" },
+  -- CmpItemKindClass = { fg = "#EADFF0", bg = "#A377BF" },
+  -- CmpItemKindModule = { fg = "#EADFF0", bg = "#A377BF" },
+  -- CmpItemKindOperator = { fg = "#EADFF0", bg = "#A377BF" },
+  --
+  -- CmpItemKindVariable = { fg = "#C5CDD9", bg = "#7E8294" },
+  -- CmpItemKindFile = { fg = "#C5CDD9", bg = "#7E8294" },
+  --
+  -- CmpItemKindUnit = { fg = "#F5EBD9", bg = "#D4A959" },
+  -- CmpItemKindSnippet = { fg = "#F5EBD9", bg = "#D4A959" },
+  -- CmpItemKindFolder = { fg = "#F5EBD9", bg = "#D4A959" },
+  --
+  -- CmpItemKindMethod = { fg = "#DDE5F5", bg = "#6C8ED4" },
+  -- CmpItemKindValue = { fg = "#DDE5F5", bg = "#6C8ED4" },
+  -- CmpItemKindEnumMember = { fg = "#DDE5F5", bg = "#6C8ED4" },
+  --
+  -- CmpItemKindInterface = { fg = "#D8EEEB", bg = "#58B5A8" },
+  -- CmpItemKindColor = { fg = "#D8EEEB", bg = "#58B5A8" },
+  -- CmpItemKindTypeParameter = { fg = "#D8EEEB", bg = "#58B5A8" },
+  -- }
+
   local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
   local luasnip = require("luasnip")
-  local cmp = require'cmp'
+  local cmp = require 'cmp'
 
   cmp.setup({
     preselect = cmp.PreselectMode.None,
@@ -71,9 +67,14 @@ config.setup = function()
     },
 
     formatting = {
-      format = require"lspkind".cmp_format {
-        with_text = true,
-        menu = {
+      fields = { "kind", "abbr", "menu" },
+
+      format = function(entry, vim_item)
+        vim_item.kind = require("lspkind").presets.default[vim_item.kind]
+        -- .. " "
+        -- .. vim_item.kind
+        -- set a name for each source
+        vim_item.menu = ({
           buffer      = "  ",
           nvim_lsp    = "  ",
           nvim_lua    = "  ",
@@ -81,8 +82,29 @@ config.setup = function()
           luasnip     = "  ",
           cmp_tabnine = "  ",
           copilot     = " ﯙ ",
-        },
-      },
+        })[entry.source.name]
+
+        if string.len(vim_item.abbr) > 25 then
+          vim_item.abbr = string.sub(vim_item.abbr, 1, 25) .. "..."
+        end
+
+        return vim_item
+      end,
+      -- format = require "lspkind".cmp_format {
+      --   with_text = false,
+      --   mode = 'symbol',
+      --   maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      --   ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+      --   menu = {
+      --     buffer      = "  ",
+      --     nvim_lsp    = "  ",
+      --     nvim_lua    = "  ",
+      --     path        = "  ",
+      --     luasnip     = "  ",
+      --     cmp_tabnine = "  ",
+      --     copilot     = " ﯙ ",
+      --   },
+      -- },
     },
 
     mapping = {
@@ -94,6 +116,8 @@ config.setup = function()
       }),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 
+      ['<C-Space>'] = cmp.mapping.complete(),
+
       ['<c-h>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.confirm({
@@ -104,7 +128,7 @@ config.setup = function()
         else
           fallback()
         end
-      end, {"i", "s"}),
+      end, { "i", "s" }),
 
       ["<C-j>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -130,7 +154,7 @@ config.setup = function()
     },
 
     sources = {
-      { name = 'copilot', keyword_length = 2 },
+      { name = 'copilot', keyword_length = 1 },
       { name = 'luasnip', keyword_length = 2 },
       { name = 'nvim_lsp', keyword_length = 2 },
       { name = 'cmp_tabnine', keyword_length = 3 },
@@ -138,21 +162,54 @@ config.setup = function()
       { name = 'path', keyword_length = 3 },
     },
 
-    view = {
-      entries = "native",
+    sorting = {
+      priority_weight = 2,
+      comparators = {
+        require("copilot_cmp.comparators").prioritize,
+        require("copilot_cmp.comparators").score,
+
+        -- Below is the default comparitor list and order for nvim-cmp
+        cmp.config.compare.offset,
+        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.recently_used,
+        cmp.config.compare.locality,
+        cmp.config.compare.kind,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+      },
     },
+
+    -- view = {
+    --   entries = "native",
+    -- },
 
     experimental = {
       -- native_menu = true,
-      ghost_text = true,
+      -- ghost_text = true,
     },
 
-    -- window.documentation= "native"
-    -- documentation = {
-    --   border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
-    -- },
+    -- window.documentation= "native",
+    window = {
+      documentation = {
+        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      },
+    },
   })
 
+  -- for k, v in pairs(hi) do
+  --   vim.api.nvim_set_hl(0, k, v)
+  -- end
+  --
+  cmp.event:on("menu_opened", function()
+    vim.b.copilot_suggestion_hidden = true
+  end)
+
+  cmp.event:on("menu_closed", function()
+    vim.b.copilot_suggestion_hidden = false
+  end)
 end
 
 return config

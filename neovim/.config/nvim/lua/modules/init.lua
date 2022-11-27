@@ -145,6 +145,13 @@ require('packer').startup(function(use)
     end
   }
 
+  use {
+    'stevearc/dressing.nvim',
+    config = function()
+      require('dressing').setup()
+    end
+  }
+
   -- Zen mode
   use {
     'folke/twilight.nvim',
@@ -258,6 +265,29 @@ require('packer').startup(function(use)
     end
   }
 
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup({
+        '*';
+      }, {
+        RGB      = true; -- #RGB hex codes
+        RRGGBB   = true; -- #RRGGBB hex codes
+        names    = true; -- "Name" codes like Blue
+        RRGGBBAA = true; -- #RRGGBBAA hex codes
+        rgb_fn   = true; -- CSS rgb() and rgba() functions
+        hsl_fn   = true; -- CSS hsl() and hsla() functions
+        css      = true; -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn   = true; -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      })
+    end
+  }
+
+  use({ "ziontee113/color-picker.nvim",
+    config = function()
+      require("color-picker")
+    end,
+  })
   -- use {
   --   'woosaaahh/sj.nvim',
   --   config = function()
@@ -307,6 +337,10 @@ require('packer').startup(function(use)
     end
   }
 
+  -- use {
+  --   'drybalka/tree-climber.nvim'
+  -- }
+
   use {
     'itchyny/vim-cursorword',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -332,71 +366,82 @@ require('packer').startup(function(use)
 
   use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
 
-  vim.g.copilot_no_tab_map = true;
-  use {
-    'github/copilot.vim',
-    config = function()
-    end
-  }
-
+  -- vim.g.copilot_no_tab_map = true;
   -- use {
-  --   "zbirenbaum/copilot.lua",
-  --   event = "InsertEnter",
-  --   config = function ()
-  --     vim.schedule(function()
-  --   -- event = "VimEnter",
-  --   -- config = function()
-  --   --   vim.defer_fn(function()
-  --       require("copilot").setup({
-  --         panel = {
-  --           enabled = true,
-  --           auto_refresh = true,
-  --           keymap = {
-  --             jump_prev = "[[",
-  --             jump_next = "]]",
-  --             accept = "<CR>",
-  --             refresh = "gr",
-  --             open = "<M-CR>"
-  --           },
-  --         },
-  --         suggestion = {
-  --           enabled = true,
-  --           auto_trigger = true,
-  --           debounce = 75,
-  --           keymap = {
-  --           accept = "<C-CR>",
-  --           next = "<M-]>",
-  --           prev = "<M-[>",
-  --           dismiss = "<C-]>",
-  --           },
-  --         },
-  --         filetypes = {
-  --           yaml = false,
-  --           markdown = false,
-  --           help = false,
-  --           gitcommit = false,
-  --           gitrebase = false,
-  --           hgcommit = false,
-  --           svn = false,
-  --           cvs = false,
-  --           ["."] = false,
-  --           -- ["*"] = true,
-  --         },
-  --         copilot_node_command = 'node', -- Node version must be < 18
-  --         plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
-  --         server_opts_overrides = {},
-  --       })
-  --     end)
-  --   end,
-  -- }
-
-  -- use {
-  --   "zbirenbaum/copilot-cmp",
-  --   after = { "copilot.lua" },
-  --   config = function ()
-  --     require("copilot_cmp").setup()
+  --   'github/copilot.vim',
+  --   config = function()
   --   end
   -- }
+
+  use {
+    "zbirenbaum/copilot.lua",
+    -- event = "InsertEnter",
+    event = "VimEnter",
+    config = function()
+      -- vim.schedule(function()
+      -- event = "VimEnter",
+      -- config = function()
+      --   vim.defer_fn(function()
+      require("copilot").setup({
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>"
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<C-l>",
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        filetypes = {
+          yaml = false,
+          markdown = false,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
+          -- ["*"] = true,
+        },
+        copilot_node_command = 'node', -- Node version must be < 18
+        plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
+        server_opts_overrides = {
+          settings = {
+            advanced = {
+              listCount = 10, -- #completions for panel
+              inlineSuggestCount = 4, -- #completions for getCompletions
+            }
+          },
+        },
+      })
+      -- end)
+    end,
+  }
+
+  use {
+    "zbirenbaum/copilot-cmp",
+    -- after = { "copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup({
+        -- method = "getCompletionsCycling",
+        method = "getPanelCompletions",
+      })
+    end
+  }
 
   use {
     'hrsh7th/nvim-cmp',
@@ -407,7 +452,7 @@ require('packer').startup(function(use)
       { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       { "onsails/lspkind-nvim" },
       { 'L3MON4D3/LuaSnip' },
-      { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
+      -- { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
       { 'tzachar/cmp-tabnine', after = 'nvim-cmp' },
       { "zbirenbaum/copilot-cmp", after = "nvim-cmp" },
     },
@@ -421,10 +466,19 @@ require('packer').startup(function(use)
     requires = { 'nvim-treesitter/nvim-treesitter' },
   }
 
-  use {
-    'mfussenegger/nvim-treehopper',
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-  }
+  -- use {
+  --   'mfussenegger/nvim-treehopper',
+  --   requires = { 'nvim-treesitter/nvim-treesitter' },
+  -- }
+
+  -- use {
+  --   'ziontee113/syntax-tree-surfer',
+  --   after = { "nvim-treesitter/nvim-treesitter" },
+  --   requires = { 'nvim-treesitter/nvim-treesitter' },
+  --   config = function()
+  --     require('syntax-tree-surfer').setup()
+  --   end
+  -- }
 
 
   use {
@@ -532,6 +586,17 @@ require('packer').startup(function(use)
   use {
     'glepnir/prodoc.nvim',
     event = 'BufReadPre',
+  }
+
+  use {
+    'uga-rosa/translate.nvim',
+    config = function()
+      require('translate').setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      })
+    end
   }
 
   use {
