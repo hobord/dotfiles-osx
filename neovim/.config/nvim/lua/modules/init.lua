@@ -28,6 +28,10 @@ require('packer').startup(function(use)
 
 
   -- Colorschemes
+  -- use 'mhartington/oceanic-next'
+
+  -- use "rebelot/kanagawa.nvim"
+
   use {
     'eddyekofo94/gruvbox-flat.nvim',
     config = require('modules.ui.gruvbox-flat').setup,
@@ -43,10 +47,10 @@ require('packer').startup(function(use)
   --'folke/tokyonight.nvim'
   --'EdenEast/nightfox.nvim'
   --'Murtaza-Udaipurwala/gruvqueen'
-  use {
-    'olimorris/onedarkpro.nvim',
-    config = require('modules.ui.onedarkpro').setup,
-  }
+  -- use {
+  --   'olimorris/onedarkpro.nvim',
+  --   config = require('modules.ui.onedarkpro').setup,
+  -- }
 
   use 'kyazdani42/nvim-web-devicons'
 
@@ -337,9 +341,9 @@ require('packer').startup(function(use)
     end
   }
 
-  -- use {
-  --   'drybalka/tree-climber.nvim'
-  -- }
+  use {
+    'drybalka/tree-climber.nvim'
+  }
 
   use {
     'itchyny/vim-cursorword',

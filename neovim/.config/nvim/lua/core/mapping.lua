@@ -41,10 +41,10 @@ local def_map = {
   ["n|<A-[>"]          = map_cr('vertical resize -5'):with_silent(),
   ["n|<A-]>"]          = map_cr('vertical resize +5'):with_silent(),
 
-  -- ["n|<M-j>"] = map_cr("lua require('tree-climber').goto_next()"):with_noremap():with_silent(),
-  -- ["n|<M-k>"] = map_cr("lua require('tree-climber').goto_prev()"):with_noremap():with_silent(),
-  -- ["n|<M-l>"] = map_cr("lua require('tree-climber').goto_child()"):with_noremap():with_silent(),
-  -- ["n|<M-h>"] = map_cr("lua require('tree-climber').goto_parent()"):with_noremap():with_silent(),
+  ["n|<C-S-j>"] = map_cr("lua require('tree-climber').goto_next()"):with_noremap():with_silent(),
+  ["n|<C-S-k>"] = map_cr("lua require('tree-climber').goto_prev()"):with_noremap():with_silent(),
+  ["n|<C-S-l>"] = map_cr("lua require('tree-climber').goto_child()"):with_noremap():with_silent(),
+  ["n|<C-S-h>"] = map_cr("lua require('tree-climber').goto_parent()"):with_noremap():with_silent(),
 
   -- swap lines up and down
   -- ["n|<M-j>"]             = map_cmd(':m .+1<cr>=='):with_noremap():with_silent(),
