@@ -56,7 +56,6 @@ config.setup = function()
         }
       },
       file_browser = {
-        --cwd = utils.buffer_dir(),
         layout_config = {
           preview_width = 0.6
         },
@@ -72,6 +71,26 @@ config.setup = function()
         },
       },
       lsp_references = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          preview_height = 0.7,
+          vertical = {
+            mirror = true,
+          }
+        },
+      },
+      lsp_outgoing_calls = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          preview_height = 0.7,
+          vertical = {
+            mirror = true,
+          }
+        },
+      },
+      lsp_incoming_calls = {
         layout_strategy = "vertical",
         layout_config = {
           prompt_position = "top",
@@ -121,6 +140,26 @@ config.setup = function()
         --cwd = utils.buffer_dir(),
         layout_config = {
           preview_width = 0.6
+        },
+      },
+      lsp_incoming_calls = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          preview_height = 0.8,
+          vertical = {
+            mirror = true,
+          }
+        },
+      },
+      lsp_outgoing_calls = {
+        layout_strategy = "vertical",
+        layout_config = {
+          prompt_position = "top",
+          preview_height = 0.8,
+          vertical = {
+            mirror = true,
+          }
         },
       },
       cder = {

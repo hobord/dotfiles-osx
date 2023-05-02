@@ -118,6 +118,18 @@ require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
+  use {
+    "AckslD/nvim-neoclip.lua",
+    requires = {
+    -- you'll need at least one of these
+      {'nvim-telescope/telescope.nvim'},
+    -- {'ibhagwan/fzf-lua'},
+      },
+      config = function()
+      require('neoclip').setup()
+--      require('telescope').load_extension('neoclip')
+    end,
+  }
   -- Guide lines for ident
   -- use {
   --   'glepnir/indent-guides.nvim',
@@ -553,7 +565,7 @@ require('packer').startup(function(use)
     },
     config = function()
       require("automaton").setup({
-        debug = false,
+        debug = true,
         saveall = true,
         ignore_ft = {},
 
@@ -679,4 +691,4 @@ require('packer').startup(function(use)
 
 end)
 
-require('modules.mapping')
+require('modules.map')

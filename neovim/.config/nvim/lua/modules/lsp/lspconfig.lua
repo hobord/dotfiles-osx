@@ -11,13 +11,13 @@ capabilities.textDocument.completion.completionItem.deprecatedSupport = true
 capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
 capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentation';
-        'detail';
-        'additionalTextEdits';
-        'tags';
-        'deprecated';
-    }
+  properties = {
+    'documentation';
+    'detail';
+    'additionalTextEdits';
+    'tags';
+    'deprecated';
+  }
 }
 
 
@@ -28,7 +28,7 @@ config.setup = function()
 
 
   local enhance_attach = function(client, bufnr)
-    vim.o["foldmethod"]="expr"
+    vim.o["foldmethod"] = "expr"
     local navic = require("nvim-navic")
     navic.attach(client, bufnr)
 
@@ -54,13 +54,13 @@ config.setup = function()
 
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true,
-      virtual_text = false,
-      signs = {
-        enable   = true,
-        priority = 20
-      },
-      update_in_insert = false,
+    underline = true,
+    virtual_text = false,
+    signs = {
+      enable   = true,
+      priority = 20
+    },
+    update_in_insert = false,
   })
 
   local signs = { Error = "", Warn = "", Hint = "", Info = "" }
@@ -91,13 +91,13 @@ config.setup = function()
   vim.lsp.util.open_floating_preview = open_floating_preview_custom
 
   lspconfig.gopls.setup {
-    cmd = {"gopls", "--remote=auto"},
-    filetypes = {'go', 'gomod'},
+    cmd = { "gopls", "--remote=auto" },
+    filetypes = { 'go', 'gomod' },
     root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
     on_attach = enhance_attach,
     capabilities = capabilities,
     init_options = {
-      analyses = {
+      analyses           = {
         unusedparams   = true,
         fieldalignment = true,
         nilness        = true,
@@ -110,15 +110,15 @@ config.setup = function()
     }
   }
   lspconfig.golangci_lint_ls.setup {
-    cmd = {'golangci-lint-langserver'},
+    cmd = { 'golangci-lint-langserver' },
     root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
-    filetypes = {'go','gomod'},
+    filetypes = { 'go', 'gomod' },
     init_options = {
-        command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json" };
+      command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json" };
     }
-	}
+  }
   lspconfig.rust_analyzer.setup({
-    capabilities=capabilities,
+    capabilities = capabilities,
     -- on_attach is a callback called when the language server attachs to the buffer
     on_attach = enhance_attach,
     settings = {
@@ -133,48 +133,48 @@ config.setup = function()
     }
   })
   -- lspconfig.pylsp.setup{}
-  lspconfig.pyright.setup{}
-  lspconfig.dockerls.setup{}
-  lspconfig.graphql.setup{}
-  lspconfig.intelephense.setup{}
+  lspconfig.pyright.setup {}
+  lspconfig.dockerls.setup {}
+  lspconfig.graphql.setup {}
+  lspconfig.intelephense.setup {}
   lspconfig.tsserver.setup({
     on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-        local ts_utils = require("nvim-lsp-ts-utils")
-        ts_utils.setup({
-            eslint_bin = "eslint_d",
-            eslint_enable_diagnostics = true,
-            eslint_enable_code_actions = true,
-            enable_formatting = true,
-            formatter = "prettier",
-        })
-        ts_utils.setup_client(client)
-        -- buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-        -- buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
-        -- buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-        -- on_attach(client, bufnr)
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+      local ts_utils = require("nvim-lsp-ts-utils")
+      ts_utils.setup({
+        eslint_bin = "eslint_d",
+        eslint_enable_diagnostics = true,
+        eslint_enable_code_actions = true,
+        enable_formatting = true,
+        formatter = "prettier",
+      })
+      ts_utils.setup_client(client)
+      -- buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
+      -- buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
+      -- buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
+      -- on_attach(client, bufnr)
     end,
   })
-  lspconfig.sumneko_lua.setup {
-    cmd = {
-      -- global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
-      global.data_dir.."../lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
-    };
-    on_attach = enhance_attach;
-    settings = {
-      Lua = {
-        diagnostics = {
-          enable = true,
-          globals = {"vim","packer_plugins"}
-        },
-        runtime = {version = "LuaJIT"},
-        workspace = {
-          library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
-        },
-      },
-    }
-  }
+  -- lspconfig.sumneko_lua.setup {
+  --   cmd = {
+  --     -- global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
+  --     global.data_dir.."../lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
+  --   };
+  --   on_attach = enhance_attach;
+  --   settings = {
+  --     Lua = {
+  --       diagnostics = {
+  --         enable = true,
+  --         globals = {"vim","packer_plugins"}
+  --       },
+  --       runtime = {version = "LuaJIT"},
+  --       workspace = {
+  --         library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
+  --       },
+  --     },
+  --   }
+  -- }
 
 
 end
