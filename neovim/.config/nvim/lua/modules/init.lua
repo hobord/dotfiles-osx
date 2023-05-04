@@ -369,11 +369,11 @@ require('packer').startup(function(use)
     config = require('modules.editor.delimimate').setup,
   }
 
-  use {
-    'glepnir/smartinput.nvim',
-    ft = 'go',
-    config = require('modules.editor.smartinput').setup,
-  }
+  -- use {
+  --   'glepnir/nvim',
+  --   ft = 'go',
+  --   config = require('modules.editor.smartinput').setup,
+  -- }
 
   use {
     'L3MON4D3/LuaSnip',
@@ -637,10 +637,10 @@ require('packer').startup(function(use)
 
   use 'vim-test/vim-test'
 
-  use {
-    'glepnir/prodoc.nvim',
-    event = 'BufReadPre',
-  }
+  -- use {
+  --   'glepnir/prodoc.nvim',
+  --   event = 'BufReadPre',
+  -- }
 
   use {
     'uga-rosa/translate.nvim',
