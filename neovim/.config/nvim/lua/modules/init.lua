@@ -675,6 +675,7 @@ require('packer').startup(function(use)
 
   use {
     'rmagatti/auto-session',
+    tag = "v2.*",
     config = function()
       require("auto-session").setup()
     end
