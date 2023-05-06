@@ -75,8 +75,10 @@ map("n", "<C-e>",              cmd('Neotree reveal toggle left focus'), { norema
   -- Plugin Telescope
 map("n", "<Leader>/",          cmd('Telescope resume'), { noremap = true, silent = true, desc="Telescope resume" })
 
-map("n", "<C-t>l",             cmd('Telescope telescope-tabs list_tabs'), { noremap = true, silent = true, desc="List tabs" })
-map("n", "<C-m>",              function() require('telescope-tabs').go_to_previous() end, { noremap = true, silent = true, desc="Go to previous tab" })
+map("n", "<Leader>tl",         cmd('Telescope telescope-tabs list_tabs'), { noremap = true, silent = true, desc="List tabs" })
+map("n", "<Leader>tk",         function() require('telescope-tabs').go_to_previous() end, { noremap = true, silent = true, desc="Go to previous tab" })
+map('n', '<Leader>tn',         cmd('tab split'), { noremap = true, silent = true, desc="New tab" })
+map('n', '<Leader>tc',         cmd('tabclose'), { noremap = true, silent = true, desc="Close tab" })
 
 map("n", "<M-p>",              cmd("Telescope neoclip unnamed"), { noremap = true, silent = true, nowait = true, desc="Telescope neoclip unnamed" })
 
@@ -99,17 +101,19 @@ map("n", "<Leader><Leader>tr", function() require"modules.tools.gotest".ShowLast
 map("n", "<Leader><Leader>tt", function() require"modules.tools.gotest".RunLastTest() end, { noremap = true, silent = true, nowait = true, desc="Go run lastest test again" })
 
 -- DAP
-map("n", "<Leader><Leader>b",  function() require'dap'.toggle_breakpoint() end, { noremap = true, silent = true, nowait = true, desc="Toggle breakpoint" })
-map("n", "<Leader><Leader>B",  function() require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition:')) end, { noremap = true, silent = true, nowait = true, desc="Set breakpoint condition" })
-map("n", "<Leader><Leader>d",  function() require'dapui'.toggle() end, { noremap = true, silent = true, nowait = true, desc="Toggle DAP UI" })
-map("n", "<Leader><Leader>s",  function() require'telescope'.extensions.dap.configurations{} end, { noremap = true, silent = true, nowait = true, desc="DAP configurations" })
-map("n", "<Leader><Leader>c",  function() require'dap'.continue() end, { noremap = true, silent = true, nowait = true, desc="DAP continue <F5>" })
-
-map("n", "<F5>",               function() require'dap'.continue() end, { noremap = true, silent = true, nowait = true, desc="DAP continue" })
-map("n", "<F10>",              function() require'dap'.step_over() end, { noremap = true, silent = true, nowait = true, desc="DAP step over" })
-map("n", "<F11>",              function() require'dap'.step_into() end, { noremap = true, silent = true, nowait = true, desc="DAP step into" })
-map("n", "<F9>",               function() require'dap'.step_out() end, { noremap = true, silent = true, nowait = true, desc="DAP step out" })
-map("n", "<F12>",              function() require'dap'.disconnect() end, { noremap = true, silent = true, nowait = true, desc="DAP disconnect" })
+map("n", "<Leader>rb",  function() require'dap'.toggle_breakpoint() end, { noremap = true, silent = true, nowait = true, desc="Toggle breakpoint" })
+map("n", "<Leader>rB",  function() require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition:')) end, { noremap = true, silent = true, nowait = true, desc="Set breakpoint condition" })
+map("n", "<Leader>rd",  function() require'dapui'.toggle() end, { noremap = true, silent = true, nowait = true, desc="Toggle DAP UI" })
+map("n", "<Leader>rc",  function() require'telescope'.extensions.dap.configurations{} end, { noremap = true, silent = true, nowait = true, desc="DAP configurations" })
+map("n", "<Leader>rr",  function() require'dap'.continue() end, { noremap = true, silent = true, nowait = true, desc="DAP continue <F5>" })
+map("n", "<F5>",        function() require'dap'.continue() end, { noremap = true, silent = true, nowait = true, desc="DAP continue" })
+map("n", "<F10>",       function() require'dap'.step_over() end, { noremap = true, silent = true, nowait = true, desc="DAP step over" })
+map("n", "<Leader>rn",  function() require'dap'.step_over() end, { noremap = true, silent = true, nowait = true, desc="DAP step over <F10>" })
+map("n", "<F11>",       function() require'dap'.step_into() end, { noremap = true, silent = true, nowait = true, desc="DAP step into" })
+map("n", "<Leader>ri",  function() require'dap'.step_into() end, { noremap = true, silent = true, nowait = true, desc="DAP step into <F11>" })
+map("n", "<F9>",        function() require'dap'.step_out() end, { noremap = true, silent = true, nowait = true, desc="DAP step out" })
+map("n", "<Leader>ro",  function() require'dap'.step_out() end, { noremap = true, silent = true, nowait = true, desc="DAP step out <F9>" })
+map("n", "<Leader>re",  function() require'dap'.disconnect() end, { noremap = true, silent = true, nowait = true, desc="DAP disconnect" })
 
   -- Plugin acceleratedjk
 vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
@@ -143,8 +147,14 @@ wk.register({
     f = {
       name = "Find",
     },
+    r = {
+      name = "RUN",
+    },
     l = {
       name = "LSP",
+    },
+    t = {
+      name = "Tabs",
     },
   },
   ["<leader><leader>"] = {
