@@ -240,13 +240,13 @@ require('packer').startup(function(use)
   --   config = require('modules.lsp.symbols-outline').setup,
   -- }
 
-  use {
-    'stevearc/aerial.nvim',
-    config = function()
-      require('aerial').setup()
-      require('telescope').load_extension('aerial')
-    end
-  }
+  -- use {
+  --   'stevearc/aerial.nvim',
+  --   config = function()
+  --     require('aerial').setup()
+  --     require('telescope').load_extension('aerial')
+  --   end
+  -- }
 
   use {
     'rmagatti/goto-preview',
@@ -616,7 +616,15 @@ require('packer').startup(function(use)
   --     require('litee.gh').setup()
   --   end
   -- }
-
+  use {
+    'tanvirtin/vgit.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require('vgit').setup()
+    end
+  }
   use {
     'sindrets/diffview.nvim',
     config = require('modules.tools.diffview').setup
@@ -693,3 +701,4 @@ require('packer').startup(function(use)
 end)
 
 require('modules.map')
+require('modules.mouse')

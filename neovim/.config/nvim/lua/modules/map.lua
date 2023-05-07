@@ -37,17 +37,21 @@ map("n", "<C-g>",              cmd('HopChar1'), { noremap = true, silent = true,
 -- map("n", "<Leader>n",          function() require("harpoon.ui").toggle_quick_menu() end, { noremap = true, silent = true, desc="Harpoon Menu" })
 
 -- Git
-map("n", "<Leader><Leader>g",  cmd("Neogit"), { noremap = true, silent = true, desc="Neogit" })
-map("n", "<Leader><Leader>h",  cmd("DiffviewFileHistory %"), { noremap = true, silent = true, desc="Diffview Current File History" })
-map("n", "<Leader><Leader>H",  cmd("DiffviewFileHistory"), { noremap = true, silent = true, desc="Diffview File History" })
-map("n", "gs",                 cmd("Gitsigns toggle_signs"), { noremap = true, silent = true, desc="Toggle Gitsigns" })
--- map("n", "fgi",                cmd('Telescope git_files'), { noremap = true, silent = true })
-map("n", "<Leader>fc",         cmd('Telescope git_commits'), { noremap = true, silent = true, desc="List Git commits" })
-map("n", "gh",                 cmd('Telescope git_bcommits'), { noremap = true, silent = true, desc="Git commits" })
+map("n", "<Leader>gg",  cmd("Neogit"), { noremap = true, silent = true, desc="Neogit" })
+map("n", "<Leader>gh",  cmd("DiffviewFileHistory %"), { noremap = true, silent = true, desc="Diffview Current File History" })
+map("n", "<Leader>gH",  cmd("DiffviewFileHistory"), { noremap = true, silent = true, desc="Diffview File History" })
+map("n", "<Leader>gs",  cmd("Gitsigns toggle_signs"), { noremap = true, silent = true, desc="Toggle Gitsigns" })
+map("n", "<Leader>gb",  cmd("Gitsigns blame_line"), { noremap = true, silent = true, desc="Blame line" })
+-- map("n", "fgi",      cmd('Telescope git_files'), { noremap = true, silent = true })
+map("n", "<Leader>gC",  cmd('Telescope git_commits'), { noremap = true, silent = true, desc="List Git commits" })
+map("n", "<Leader>gc",  cmd('Telescope git_bcommits'), { noremap = true, silent = true, desc="Git file commits" })
+map("n", "<Leader>gs",  cmd('Telescope git_status'), { noremap = true, silent = true, desc="Git status" })
+map("n", "<Leader>gS",  cmd('Telescope git_stash'), { noremap = true, silent = true, desc="Git stash" })
+map("n", "<Leader>gB",  cmd('Telescope git_branches'), { noremap = true, silent = true, desc="Git branches" })
 
   -- Plugin symbols_outline
-map("n", "<C-f>",              cmd('AerialToggle!'), { noremap = true, silent = true })
-map("n", "<Leader>lv",         cmd('Telescope aerial'), { noremap = true, silent = true })
+-- map("n", "<C-f>",              cmd('AerialToggle!'), { noremap = true, silent = true })
+-- map("n", "<Leader>lv",         cmd('Telescope aerial'), { noremap = true, silent = true })
 
   -- Lsp mapp work when insertenter and lsp start
 -- map("n", "<leader>lx",         cmd("TroubleToggle"), { noremap = true, silent = true, nowait = true, desc="Toggle trouble list" })
@@ -146,6 +150,9 @@ wk.register({
   ["<leader>"] = {
     f = {
       name = "Find",
+    },
+    g = {
+      name = "Git",
     },
     r = {
       name = "RUN",
