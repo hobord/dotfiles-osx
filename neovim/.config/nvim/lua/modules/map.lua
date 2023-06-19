@@ -45,7 +45,7 @@ map("n", "<Leader>gb",  cmd("Gitsigns blame_line"), { noremap = true, silent = t
 -- map("n", "fgi",      cmd('Telescope git_files'), { noremap = true, silent = true })
 map("n", "<Leader>gC",  cmd('Telescope git_commits'), { noremap = true, silent = true, desc="List Git commits" })
 map("n", "<Leader>gc",  cmd('Telescope git_bcommits'), { noremap = true, silent = true, desc="Git file commits" })
-map("n", "<Leader>gs",  cmd('Telescope git_status'), { noremap = true, silent = true, desc="Git status" })
+map("n", "<Leader>gt",  cmd('Telescope git_status'), { noremap = true, silent = true, desc="Git status" })
 map("n", "<Leader>gS",  cmd('Telescope git_stash'), { noremap = true, silent = true, desc="Git stash" })
 map("n", "<Leader>gB",  cmd('Telescope git_branches'), { noremap = true, silent = true, desc="Git branches" })
 
@@ -57,14 +57,13 @@ map("n", "<Leader>gB",  cmd('Telescope git_branches'), { noremap = true, silent 
 -- map("n", "<leader>lx",         cmd("TroubleToggle"), { noremap = true, silent = true, nowait = true, desc="Toggle trouble list" })
 map("n", "<Leader>lx",         cmd('Telescope diagnostics bufnr=0'), { noremap = true, silent = true, desc="Diagnostics" })
 map("n", "<Leader>lX",         cmd('Telescope diagnostics'), { noremap = true, silent = true, desc="Workspace Diagnostics" })
-
 map("n", "[d",                 function() vim.diagnostic.goto_prev() end, { noremap = true, silent = true, desc="Diagnostic prev" })
 map("n", "]d",                 function() vim.diagnostic.goto_next() end, { noremap = true, silent = true, desc="Diagnostic next" })
 map("n", "H",                  function() vim.lsp.buf.hover({border='single'; max_width=80; max_heigt=40}) end, { noremap = true, silent = true, desc="Hover" })
 map("n", "<Leader>la",         function() vim.lsp.buf.code_action() end, { noremap = true, silent = true, desc="Action" })
 map("n", "<Leader>lp",         function() require('goto-preview').goto_preview_definition() end, { noremap = true, silent = true, desc="Preview definition" })
 map("n", "<Leader>ld",         function() vim.lsp.buf.definition() end, { noremap = true, silent = true, desc="Definition" })
-map("n", "<Leader>ls",         cmd('Telescope lsp_document_symbols'), { noremap = true, silent = true, desc="Document symbols" })
+map("n", "<Leader>ls",         function() require('telescope.builtin').lsp_document_symbols({fname_width = 200,symbol_width = 160 }) end, { noremap = true, silent = true, desc="Document symbols" })
 map("n", "<Leader>lS",         cmd('Telescope lsp_dynamic_workspace_symbols'), { noremap = true, silent = true, desc="Workspace symbols" })
 map("n", "<Leader>lr",         function() vim.lsp.buf.rename() end, { noremap = true, silent = true, desc="Rename" })
 map("n", "<Leader>lR",         cmd('Telescope lsp_references'), { noremap = true, silent = true, desc="References" })
@@ -100,8 +99,8 @@ map("n", "<Leader>fl",         cmd('Telescope loclist'), { noremap = true, silen
 map("n", "<Leader>ft",         cmd('Telescope help_tags'), { noremap = true, silent = true, desc="List help tags" })
 
 -- Testing
-map("n", "<Leader><Leader>t",  function() require"modules.tools.gotest".RunTest() end, { noremap = true, silent = true, desc="Go run test" })
-map("n", "<Leader><Leader>tr", function() require"modules.tools.gotest".ShowLastTestReults() end, { noremap = true, silent = true, nowait = true, desc="Go test result" })
+map("n", "<Leader><Leader>tr",  function() require"modules.tools.gotest".RunTest() end, { noremap = true, silent = true, desc="Go run test" })
+map("n", "<Leader><Leader>tR", function() require"modules.tools.gotest".ShowLastTestReults() end, { noremap = true, silent = true, nowait = true, desc="Go test result" })
 map("n", "<Leader><Leader>tt", function() require"modules.tools.gotest".RunLastTest() end, { noremap = true, silent = true, nowait = true, desc="Go run lastest test again" })
 
 -- DAP
@@ -118,6 +117,7 @@ map("n", "<Leader>ri",  function() require'dap'.step_into() end, { noremap = tru
 map("n", "<F9>",        function() require'dap'.step_out() end, { noremap = true, silent = true, nowait = true, desc="DAP step out" })
 map("n", "<Leader>ro",  function() require'dap'.step_out() end, { noremap = true, silent = true, nowait = true, desc="DAP step out <F9>" })
 map("n", "<Leader>re",  function() require'dap'.disconnect() end, { noremap = true, silent = true, nowait = true, desc="DAP disconnect" })
+map("n", "<Leader>rt",  function() require('dap-go').debug_test() end, { noremap = true, silent = true, nowait = true, desc="DAP RunTest" })
 
   -- Plugin acceleratedjk
 vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})
@@ -155,7 +155,7 @@ wk.register({
       name = "Git",
     },
     r = {
-      name = "RUN",
+      name = "Run",
     },
     l = {
       name = "LSP",

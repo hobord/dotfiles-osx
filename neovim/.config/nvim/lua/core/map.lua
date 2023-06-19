@@ -44,8 +44,8 @@ map('n', '<Leader><Leader>w', cmd('set wrap!'), { noremap = true, silent = true,
 map('i', '<C-u>', '<C-O>u', { noremap = true, silent = true })
 map('i', '<C-j>', '<Esc>o', { noremap = true, silent = true })
 map('i', '<C-k>', '<Esc>O', { noremap = true, silent = true })
-map('i', '<C-s>', '<Esc>:w<cr>', { noremap = true, silent = true })
-map('i', '<C-q>', '<Esc>:wq<cr>', { noremap = true, silent = true })
+map('i', '<C-s>', cmd('w'), { noremap = true, silent = true })
+map('i', '<C-q>', cmd('wq'), { noremap = true, silent = true })
 
 map('v', '<C-r>', '"hy:%s/<C-r>h//gc<left><left><left>', { noremap = true })
 

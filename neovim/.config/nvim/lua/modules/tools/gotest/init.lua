@@ -15,8 +15,10 @@ local function run(testname, path)
   local async = require("plenary.async")
 
   Job:new({
-    command = 'go',
-    args = { 'test', '-count=1', '-v', '-run', '^' .. testname .. '$', path},
+    -- command = 'go',
+    -- args = { 'test', '-count=1', '-v', '-run', '^' .. testname .. '$', path},
+    command = 'dlv',
+    args = { 'test', path, '--', '^' .. testname .. '$'},
     cwd = vim.fn.expand('%:p:h'),
     on_exit = function(j, return_val)
       -- print(vim.inspect.inspect(j:result()))

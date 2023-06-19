@@ -61,6 +61,8 @@ config.setup = function()
         },
       },
       lsp_document_symbols = {
+        fname_width = 100,
+        symbol_width = 95,
         layout_strategy = "vertical",
         layout_config = {
           prompt_position = "top",
@@ -141,6 +143,10 @@ config.setup = function()
         layout_config = {
           preview_width = 0.6
         },
+      },
+      lsp_workspace_symbols = {
+        fname_width = 100,
+        symbol_width = 95,
       },
       lsp_incoming_calls = {
         layout_strategy = "vertical",

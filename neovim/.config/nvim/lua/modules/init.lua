@@ -31,6 +31,14 @@ require('packer').startup(function(use)
   -- use 'mhartington/oceanic-next'
 
   -- use "rebelot/kanagawa.nvim"
+  -- use {
+  --   'ribru17/bamboo.vim',
+  -- }
+
+  use {
+    'sainnhe/sonokai',
+    -- config = require('modules.ui.sonokai').setup,
+  }
 
   use {
     'eddyekofo94/gruvbox-flat.nvim',
@@ -274,6 +282,12 @@ require('packer').startup(function(use)
   --
 
   -- use 'scrooloose/nerdcommenter'
+
+  use {
+    'Bekaboo/dropbar.nvim',
+    -- config = require('modules.ui.dropbar').setup
+  }
+
   use {
     'numToStr/Comment.nvim',
     config = function()
@@ -538,6 +552,13 @@ require('packer').startup(function(use)
   }
 
   use {
+    'leoluz/nvim-dap-go',
+    requires = { 'mfussenegger/nvim-dap' },
+    config = function()
+      require('dap-go').setup()
+    end
+  }
+  use {
     "Pocco81/DAPInstall.nvim",
     requires = { { 'mfussenegger/nvim-dap' } },
     config = function()
@@ -553,44 +574,53 @@ require('packer').startup(function(use)
   -- Tools
   --
 
+    use {
+      "stevearc/overseer.nvim",
+      config = function()
+        require("overseer").setup({
+          direction = "bottom",
+        })
+      end
+    }
 
-  use {
-    "Dax89/automaton.nvim",
-    requires = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope.nvim" },
-      { "mfussenegger/nvim-dap" }, -- Debug support for 'launch' configurations (Optional)
-      { "hrsh7th/nvim-cmp" }, -- Autocompletion for automaton workspace files (Optional)
-      { "L3MON4D3/LuaSnip" }, -- Snippet support for automaton workspace files (Optional)
-    },
-    config = function()
-      require("automaton").setup({
-        debug = true,
-        saveall = true,
-        ignore_ft = {},
-
-        integrations = {
-          luasnip = false,
-          cmp = false,
-        },
-
-        icons = {
-          buffer = "",
-          close = "",
-          launch = "",
-          task = "",
-          workspace = "",
-        },
-
-        events = {
-          workspacechanged = function(ws)
-            -- "ws" is the current workspace object (can be nil)
-          end
-        }
-      })
-    end
-  }
-
+  -- use {
+  --   "Dax89/automaton.nvim",
+  --   version = '1.3.0',
+  --   requires = {
+  --     { "nvim-lua/plenary.nvim" },
+  --     { "nvim-telescope/telescope.nvim" },
+  --     { "mfussenegger/nvim-dap" }, -- Debug support for 'launch' configurations (Optional)
+  --     { "hrsh7th/nvim-cmp" }, -- Autocompletion for automaton workspace files (Optional)
+  --     { "L3MON4D3/LuaSnip" }, -- Snippet support for automaton workspace files (Optional)
+  --   },
+  --   config = function()
+  --     require("automaton").setup({
+  --       debug = true,
+  --       saveall = true,
+  --       ignore_ft = {},
+  --
+  --       integrations = {
+  --         luasnip = true,
+  --         cmp = true,
+  --       },
+  --
+  --       icons = {
+  --         buffer = "",
+  --         close = "",
+  --         launch = "",
+  --         task = "",
+  --         workspace = "",
+  --       },
+  --
+  --       events = {
+  --         workspacechanged = function(ws)
+  --           -- "ws" is the current workspace object (can be nil)
+  --         end
+  --       }
+  --     })
+  --   end
+  -- }
+  --
   -- use 'voldikss/vim-floaterm'
   -- use {
   --   'numtostr/FTerm.nvim',

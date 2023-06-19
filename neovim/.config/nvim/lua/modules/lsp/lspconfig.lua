@@ -93,7 +93,7 @@ config.setup = function()
   lspconfig.gopls.setup {
     cmd = { "gopls", "--remote=auto" },
     filetypes = { 'go', 'gomod' },
-    root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+    root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
     on_attach = enhance_attach,
     capabilities = capabilities,
     init_options = {
