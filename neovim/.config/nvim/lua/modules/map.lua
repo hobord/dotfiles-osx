@@ -97,11 +97,7 @@ map("n", "<Leader>fw",         cmd('Telescope grep_string'), { noremap = true, s
 map("n", "<Leader>fz",         cmd('Telescope current_buffer_fuzzy_find'), { noremap = true, silent = true, desc="Current buffer fuzzy find" })
 map("n", "<Leader>fl",         cmd('Telescope loclist'), { noremap = true, silent = true, desc="Loclist" })
 map("n", "<Leader>ft",         cmd('Telescope help_tags'), { noremap = true, silent = true, desc="List help tags" })
-
--- Testing
-map("n", "<Leader><Leader>tr",  function() require"modules.tools.gotest".RunTest() end, { noremap = true, silent = true, desc="Go run test" })
-map("n", "<Leader><Leader>tR", function() require"modules.tools.gotest".ShowLastTestReults() end, { noremap = true, silent = true, nowait = true, desc="Go test result" })
-map("n", "<Leader><Leader>tt", function() require"modules.tools.gotest".RunLastTest() end, { noremap = true, silent = true, nowait = true, desc="Go run lastest test again" })
+map('n', '<Leader>m',          cmd('Telescope marks'), { noremap = true, silent = true, desc = 'List marks' })
 
 -- DAP
 map("n", "<Leader>rb",  function() require'dap'.toggle_breakpoint() end, { noremap = true, silent = true, nowait = true, desc="Toggle breakpoint" })
@@ -116,8 +112,14 @@ map("n", "<F11>",       function() require'dap'.step_into() end, { noremap = tru
 map("n", "<Leader>ri",  function() require'dap'.step_into() end, { noremap = true, silent = true, nowait = true, desc="DAP step into <F11>" })
 map("n", "<F9>",        function() require'dap'.step_out() end, { noremap = true, silent = true, nowait = true, desc="DAP step out" })
 map("n", "<Leader>ro",  function() require'dap'.step_out() end, { noremap = true, silent = true, nowait = true, desc="DAP step out <F9>" })
-map("n", "<Leader>re",  function() require'dap'.disconnect() end, { noremap = true, silent = true, nowait = true, desc="DAP disconnect" })
-map("n", "<Leader>rt",  function() require('dap-go').debug_test() end, { noremap = true, silent = true, nowait = true, desc="DAP RunTest" })
+-- map("n", "<Leader>re",  function() require'dap'.disconnect() end, { noremap = true, silent = true, nowait = true, desc="DAP disconnect" })
+map("n", "<Leader>rt",  function() require('gotest').run_test() end, { noremap = true, silent = true, nowait = true, desc="Run test" })
+map("n", "<Leader>r[",  function() require('gotest').clean_last_run() end, { noremap = true, silent = true, nowait = true, desc="CleanLastRun" })
+map("n", "<Leader>re",  function() require('gotest').show_last_test_result() end, { noremap = true, silent = true, nowait = true, desc="Show test result" })
+map("n", "<Leader>rT",  function() require('dap-go').debug_test() end, { noremap = true, silent = true, nowait = true, desc="DAP Debug test" })
+map("n", "<Leader>rh",  function() require'dap.ui.widgets'.hover() end, { noremap = true, silent = true, nowait = true, desc="DAP Hoover" })
+map("n", "<Leader>rv",  function() require'nvim-dap-virtual-text'.toggle() end, { noremap = true, silent = true, nowait = true, desc="DAP virtual text toggle" })
+map("n", "<Leader>rs",  function() require'dap'.terminate() end, { noremap = true, silent = true, nowait = true, desc="DAP Terminate" })
 
   -- Plugin acceleratedjk
 vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})

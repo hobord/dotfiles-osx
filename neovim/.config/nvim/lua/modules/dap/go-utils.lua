@@ -90,7 +90,7 @@ local function get_closest_test()
     table.insert(test_tree, test_match)
   end
 
-  local subtest_query = vim.treesitter.parse_query(ft, subtests_query)
+  local subtest_query = query.parse_query(ft, subtests_query)
   assert(subtest_query, 'dap-go error: could not parse test query')
   for _, match, _ in subtest_query:iter_matches(root, 0, 0, stop_row) do
     local test_match = {}
@@ -123,9 +123,11 @@ local function get_closest_test()
 end
 
 function M.make_test_args()
-  local args = {"-test.run", get_closest_test()}
+  local args = {"-test.run", "-v", "--log", get_closest_test()}
 
   return args
 end
+
+function M.get_closest_test() return get_closest_test() end
 
 return M
