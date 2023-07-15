@@ -41,8 +41,6 @@ end
 
 M.setup = function()
   -- local navic = require("nvim-navic")
-  local autosession = require("auto-session-library")
-
   require('lualine').setup {
     options = {
       -- theme = 'gruvbox'
@@ -61,7 +59,7 @@ M.setup = function()
       lualine_b = { 'branch', 'diff' },
       lualine_c = {
         {
-          autosession.current_session_name
+          require('auto-session.lib').current_session_name
         },
         {
           'filename',

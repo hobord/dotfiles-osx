@@ -22,10 +22,10 @@ config.setup = function()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
+        init_selection = "<cr>",
+        node_incremental = "<c-j>",
+        node_decremental = "<c-k>",
+        scope_incremental = "<cr>",
       },
       disable = function(lang, bufnr)
           return vim.api.nvim_buf_line_count(bufnr) > 50000
@@ -40,14 +40,14 @@ config.setup = function()
         -- Automatically jump forward to textobj, similar to targets.vim
         lookahead = true,
         keymaps = {
-          -- ["af"] = "@function.outer",
-          -- ["if"] = "@function.inner",
-          -- ["ac"] = "@class.outer",
-          -- ["ic"] = "@class.inner",
-          -- ["ai"] = "@conditional.outer",
-          -- ["ii"] = "@conditional.inner",
-          -- ["al"] = "@loop.outer",
-          -- ["il"] = "@loop.inner",
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+          ["ai"] = "@conditional.outer",
+          ["ii"] = "@conditional.inner",
+          ["al"] = "@loop.outer",
+          ["il"] = "@loop.inner",
         },
       },
       move = {

@@ -22,7 +22,7 @@ config.setup = function()
         },
         --width = 80,
         size = 60,
-        position = "right", -- Can be "left" or "right"
+        position = "left", -- Can be "left" or "right"
       },
       {
         -- open_on_start = true,

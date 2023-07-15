@@ -57,6 +57,7 @@ function autocmd.load_autocmds()
     lsp = {
       { "BufWritePre", "*.go", "lua vim.lsp.buf.format()" };
       { "BufWritePre", "*.lua", "lua vim.lsp.buf.format()" };
+      -- { "BufEnter,CursorHold,InsertLeave", "*", "lua vim.lsp.codelens.refresh()" };
     };
 
     diag = {

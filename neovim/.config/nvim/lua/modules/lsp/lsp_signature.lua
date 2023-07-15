@@ -14,7 +14,7 @@ config.setup = function()
     max_width = 120,
     toggle_key = '<M-x>', -- nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
    -- floating_window_off_x = 5, -- adjust float windows x position.
-   floating_window_off_y = 0, -- adjust float windows y position.
+   floating_window_off_y = -2, -- adjust float windows y position.
  
     handler_opts = {
       border = "single",
