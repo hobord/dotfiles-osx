@@ -92,7 +92,7 @@ local function load_options()
     fdc            = '1'; -- 4
     matchpairs     = "(:),{:},[:],<:>";
     laststatus     = 3;
-    winbar         = "%{%v:lua.require'modules.ui.winbar'.statusline()%}";
+    -- winbar         = "%{%v:lua.require'modules.ui.winbar'.statusline()%}";
     showtabline    = 0;
     foldcolumn     = "0";
     syntax         = "ON"

@@ -41,6 +41,8 @@ require('packer').startup(function(use)
     -- config = require('modules.ui.sonokai').setup,
   }
 
+  use 'navarasu/onedark.nvim'
+
   use {
     'eddyekofo94/gruvbox-flat.nvim',
     config = require('modules.ui.gruvbox-flat').setup,
@@ -126,7 +128,7 @@ require('packer').startup(function(use)
   --   'ThePrimeagen/harpoon',
   --   requires = { 'nvim-lua/plenary.nvim' },
   -- }
-  
+
   use {
     'chentoast/marks.nvim',
     config = function()
@@ -144,13 +146,13 @@ require('packer').startup(function(use)
   use {
     "AckslD/nvim-neoclip.lua",
     requires = {
-    -- you'll need at least one of these
-      {'nvim-telescope/telescope.nvim'},
-    -- {'ibhagwan/fzf-lua'},
-      },
-      config = function()
+      -- you'll need at least one of these
+      { 'nvim-telescope/telescope.nvim' },
+      -- {'ibhagwan/fzf-lua'},
+    },
+    config = function()
       require('neoclip').setup()
---      require('telescope').load_extension('neoclip')
+      --      require('telescope').load_extension('neoclip')
     end,
   }
   -- Guide lines for ident
@@ -167,10 +169,10 @@ require('packer').startup(function(use)
   }
 
   -- Keystrokes/mappings helper
-  use {
-    'folke/which-key.nvim',
-    config = require('modules.ui.which-key').setup,
-  }
+  -- use {
+  --   'folke/which-key.nvim',
+  --   config = require('modules.ui.which-key').setup,
+  -- }
 
   -- use 'junegunn/vim-peekaboo'
   -- use 'Yilin-Yang/vim-markbar'
@@ -262,7 +264,7 @@ require('packer').startup(function(use)
   -- use {
   --   'simrat39/symbols-outline.nvim',
   --   config = require('modules.lsp.symbols-outline').setup,
-  -- }
+  --
 
   -- use {
   --   'stevearc/aerial.nvim',
@@ -276,12 +278,12 @@ require('packer').startup(function(use)
     'rmagatti/goto-preview',
     config = function()
       require('goto-preview').setup {
-        width = 120; -- Width of the floating window
-        height = 15; -- Height of the floating window
-        border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" }; -- Border characters of the floating window
-        default_mappings = false; -- Bind default mappings
-        debug = false; -- Print debug information
-        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        width = 120, -- Width of the floating window
+        height = 15, -- Height of the floating window
+        border = { "↖", "─", "┐", "│", "┘", "─", "└", "│" }, -- Border characters of the floating window
+        default_mappings = false, -- Bind default mappings
+        debug = false, -- Print debug information
+        opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
         post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
       }
     end
@@ -292,7 +294,56 @@ require('packer').startup(function(use)
     config = require('modules.lsp.lsp-status').setup,
   }
 
-  -- use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use({
+    "dnlhc/glance.nvim",
+    config = function()
+      local glance = require('glance')
+      local actions = glance.actions
+
+      require('glance').setup({
+        border = {
+          enable = true, -- Show window borders. Only horizontal borders allowed
+          top_char = '─',
+          bottom_char = '─',
+        },
+        theme = {         -- This feature might not work properly in nvim-0.7.2
+          enable = false, -- Will generate colors for the plugin based on your current colorscheme
+          mode = 'auto',  -- 'brighten'|'darken'|'auto', 'auto' will set mode based on the brightness of your colorscheme
+        },
+        mappings = {
+          list = {
+            ['j'] = actions.next,     -- Bring the cursor to the next item in the list
+            ['k'] = actions.previous, -- Bring the cursor to the previous item in the list
+            ['<Down>'] = actions.next,
+            ['<Up>'] = actions.previous,
+            ['<C-j>'] = actions.next_location,     -- Bring the cursor to the next location skipping groups in the list
+            ['<C-k>'] = actions.previous_location, -- Bring the cursor to the previous location skipping groups in the list
+            ['<C-u>'] = actions.preview_scroll_win(5),
+            ['<C-d>'] = actions.preview_scroll_win(-5),
+            ['v'] = actions.jump_vsplit,
+            ['s'] = actions.jump_split,
+            ['t'] = actions.jump_tab,
+            ['<CR>'] = actions.jump,
+            ['o'] = actions.jump,
+            ['l'] = actions.open_fold,
+            ['h'] = actions.close_fold,
+            ['<C-h>'] = actions.enter_win('preview'), -- Focus preview window
+            ['q'] = actions.close,
+            ['Q'] = actions.close,
+            ['<Esc>'] = actions.close,
+            ['<C-q>'] = actions.quickfix,
+            -- ['<Esc>'] = false -- disable a mapping
+          },
+          preview = {
+            ['Q'] = actions.close,
+            ['<C-j>'] = actions.next_location,
+            ['<C-k'] = actions.previous_location,
+            ['<C-l>'] = actions.enter_win('list'), -- Focus list window
+          },
+        },
+      })
+    end,
+  }) -- use 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
   --
   -- EDITOR
@@ -317,16 +368,16 @@ require('packer').startup(function(use)
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup({
-        '*';
+        '*',
       }, {
-        RGB      = true; -- #RGB hex codes
-        RRGGBB   = true; -- #RRGGBB hex codes
-        names    = true; -- "Name" codes like Blue
-        RRGGBBAA = true; -- #RRGGBBAA hex codes
-        rgb_fn   = true; -- CSS rgb() and rgba() functions
-        hsl_fn   = true; -- CSS hsl() and hsla() functions
-        css      = true; -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn   = true; -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        RGB      = true, -- #RGB hex codes
+        RRGGBB   = true, -- #RRGGBB hex codes
+        names    = true, -- "Name" codes like Blue
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        rgb_fn   = true, -- CSS rgb() and rgba() functions
+        hsl_fn   = true, -- CSS hsl() and hsla() functions
+        css      = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn   = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
       })
     end
   }
@@ -362,6 +413,70 @@ require('packer').startup(function(use)
       require('mini.align').setup()
     end
   }
+  use {
+    'echasnovski/mini.clue',
+    config = function()
+      local miniclue = require('mini.clue')
+      miniclue.setup({
+        triggers = {
+          -- Leader triggers
+          { mode = 'n', keys = '<Leader>' },
+          { mode = 'x', keys = '<Leader>' },
+
+
+          -- Built-in completion
+          { mode = 'i', keys = '<C-x>' },
+
+          -- `g` key
+          { mode = 'n', keys = 'g' },
+          { mode = 'x', keys = 'g' },
+
+          -- Marks
+          { mode = 'n', keys = "'" },
+          { mode = 'n', keys = '`' },
+          { mode = 'x', keys = "'" },
+          { mode = 'x', keys = '`' },
+
+          -- Registers
+          { mode = 'n', keys = '"' },
+          { mode = 'x', keys = '"' },
+          { mode = 'i', keys = '<C-r>' },
+          { mode = 'c', keys = '<C-r>' },
+
+          -- Window commands
+          { mode = 'n', keys = '<C-w>' },
+
+          -- `z` key
+          { mode = 'n', keys = 'z' },
+          { mode = 'x', keys = 'z' },
+        },
+
+        clues = {
+          { mode = 'n', keys = '<Leader>f', desc = 'Find' },
+          { mode = 'n', keys = '<Leader>g', desc = 'Glance' },
+          { mode = 'n', keys = '<Leader>G', desc = 'Git' },
+          { mode = 'n', keys = '<Leader>l', desc = 'LSP' },
+          { mode = 'n', keys = '<Leader>r', desc = 'Run' },
+          { mode = 'n', keys = '<Leader>t', desc = 'Tabs' },
+          -- Enhance this by adding descriptions for <Leader> mapping groups
+          miniclue.gen_clues.builtin_completion(),
+          miniclue.gen_clues.g(),
+          miniclue.gen_clues.marks(),
+          miniclue.gen_clues.registers(),
+          miniclue.gen_clues.windows(),
+          miniclue.gen_clues.z(),
+        },
+
+        window = {
+          delay = 300,
+          config = {
+            width = 'auto',
+          },
+        }
+      })
+    end
+  }
+
   use 'mg979/vim-visual-multi'
   use 'tpope/vim-surround'
   use {
@@ -471,7 +586,7 @@ require('packer').startup(function(use)
         server_opts_overrides = {
           settings = {
             advanced = {
-              listCount = 10, -- #completions for panel
+              listCount = 10,         -- #completions for panel
               inlineSuggestCount = 4, -- #completions for getCompletions
             }
           },
@@ -495,14 +610,14 @@ require('packer').startup(function(use)
   use {
     'hrsh7th/nvim-cmp',
     requires = {
-      { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lsp",   after = "nvim-cmp" },
       --{ "f3fora/cmp-spell",     after = "nvim-cmp" },
-      { "hrsh7th/cmp-path", after = "nvim-cmp" },
-      { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+      { "hrsh7th/cmp-path",       after = "nvim-cmp" },
+      { "hrsh7th/cmp-buffer",     after = "nvim-cmp" },
       { "onsails/lspkind-nvim" },
       { 'L3MON4D3/LuaSnip' },
       -- { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
-      { 'tzachar/cmp-tabnine', after = 'nvim-cmp' },
+      { 'tzachar/cmp-tabnine',    after = 'nvim-cmp' },
       { "zbirenbaum/copilot-cmp", after = "nvim-cmp" },
     },
     config = require('modules.editor.cmp').setup,
@@ -593,27 +708,27 @@ require('packer').startup(function(use)
   -- Tools
   --
 
-    use {
-      '~/code/hobord/nvim/gotest.nvim',
-      -- 'hobord/gotest.nvim',
-      requires = { 
-        'nvim-lua/plenary.nvim',
-        'nvim-treesitter/nvim-treesitter',
-        'nvim-lua/popup.nvim',
-      },
-      config = function()
-        -- require('gotest').setup()
-      end
-    }
+  use {
+    '~/code/hobord/nvim/gotest.nvim',
+    -- 'hobord/gotest.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-lua/popup.nvim',
+    },
+    config = function()
+      -- require('gotest').setup()
+    end
+  }
 
-    use {
-      "stevearc/overseer.nvim",
-      config = function()
-        require("overseer").setup({
-          direction = "bottom",
-        })
-      end
-    }
+  use {
+    "stevearc/overseer.nvim",
+    config = function()
+      require("overseer").setup({
+        direction = "bottom",
+      })
+    end
+  }
 
   -- use {
   --   "Dax89/automaton.nvim",
@@ -724,6 +839,50 @@ require('packer').startup(function(use)
     end
   }
 
+  use({
+    "gbprod/yanky.nvim",
+    requires = { "kkharji/sqlite.lua" },
+    config = function()
+      local utils = require("yanky.utils")
+      local mapping = require("yanky.telescope.mapping")
+      require("telescope").load_extension("yank_history")
+      require("yanky").setup({
+        preserve_cursor_position = {
+          enabled = true,
+        },
+        highlight = {
+          on_put = true,
+          on_yank = true,
+          timer = 500,
+        },
+        picker = {
+          select = {
+            action = nil, -- nil to use default put action
+          },
+          telescope = {
+            mappings = {
+              default = mapping.put("p"),
+              i = {
+                ["<c-p>"] = mapping.put("p"),
+                ["<c-k>"] = mapping.put("P"),
+                ["<c-x>"] = mapping.delete(),
+                ["<c-r>"] = mapping.set_register(utils.get_default_register()),
+              },
+              n = {
+                p = mapping.put("p"),
+                P = mapping.put("P"),
+                d = mapping.delete(),
+                r = mapping.set_register(utils.get_default_register())
+              },
+            },
+          },
+        },
+      })
+
+      vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
+    end
+  })
+
   use {
     'brooth/far.vim',
     cmd = { 'Far', 'Farp' },
@@ -754,13 +913,15 @@ require('packer').startup(function(use)
 
   local function file_exists(name)
     local f = io.open(name, "r")
-    if f ~= nil then io.close(f) return true else return false end
+    if f ~= nil then
+      io.close(f)
+      return true
+    else
+      return false
+    end
   end
 
   if not file_exists(vim.fn.stdpath('config') .. "/plugin/packer_compiled.lua") then
     require('packer').sync()
   end
-
 end)
-
-
