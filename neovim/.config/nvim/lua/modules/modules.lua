@@ -97,6 +97,13 @@ require('packer').startup(function(use)
   }
 
   use {
+    "folke/neodev.nvim",
+    config = function()
+      require("neodev").setup()
+    end
+  }
+
+  use {
     'petertriho/nvim-scrollbar',
     config = function()
       require("scrollbar").setup()
@@ -816,6 +823,22 @@ require('packer').startup(function(use)
     },
     config = require('modules.tools.neogit').setup,
   }
+
+  use({
+    'jakewvincent/mkdnflow.nvim',
+    rocks = 'luautf8', -- Ensures optional luautf8 dependency is installed
+    config = function()
+      require('mkdnflow').setup({
+        to_do = {
+          symbols = { ' ', '-', 'X' },
+          update_parents = true,
+          not_started = ' ',
+          in_progress = '-',
+          complete = 'X'
+        },
+      })
+    end
+  })
 
   use { 'pwntester/octo.nvim', config = function()
     require "octo".setup()

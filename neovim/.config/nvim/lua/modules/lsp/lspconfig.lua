@@ -1,6 +1,7 @@
 local api = vim.api
 local global = require 'core.global'
 local config = {}
+require("nvim-lsp-installer").setup {}
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -12,11 +13,11 @@ capabilities.textDocument.completion.completionItem.commitCharactersSupport = tr
 capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
-    'documentation';
-    'detail';
-    'additionalTextEdits';
-    'tags';
-    'deprecated';
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+    'tags',
+    'deprecated',
   }
 }
 
@@ -54,14 +55,14 @@ config.setup = function()
 
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = false,
-    signs = {
-      enable   = true,
-      priority = 20
-    },
-    update_in_insert = false,
-  })
+      underline = true,
+      virtual_text = false,
+      signs = {
+        enable   = true,
+        priority = 20
+      },
+      update_in_insert = false,
+    })
 
   local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
@@ -90,6 +91,67 @@ config.setup = function()
   end
   vim.lsp.util.open_floating_preview = open_floating_preview_custom
 
+
+  local configs = require 'lspconfig.configs'
+  if not configs.htmx then
+    configs.htmx = {
+      default_config = {
+        name = "htmx",
+        cmd = { "htmx-lsp" },
+        filetypes = { 'html', 'htm', 'htmx', 'php', 'tpl' },
+        root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+        settings = {},
+      },
+    }
+  end
+
+  lspconfig.htmx.setup {
+    on_attach = enhance_attach,
+    capabilities = capabilities,
+  }
+
+  lspconfig.html.setup {
+    on_attach = enhance_attach,
+    capabilities = capabilities,
+    -- cmd = {
+    --   global.data_dir ..
+    --   "../lsp_servers/html/node_modules/vscode-langservers-extracted/bin/" .. "vscode-html-language-server", "--stdio"
+    -- },
+
+    init_options = {
+      configurationSection = { "html", "css", "javascript" },
+      embeddedLanguages = {
+        css = true,
+        javascript = true
+      },
+      provideFormatter = true
+    }
+  }
+
+  lspconfig.cssls.setup {
+    on_attach = enhance_attach,
+    capabilities = capabilities,
+    cmd = {
+      global.data_dir ..
+      "../lsp_servers/html/node_modules/vscode-langservers-extracted/bin/" .. "vscode-css-language-server", "--stdio"
+    },
+  }
+
+  lspconfig.eslint.setup {
+    on_attach = enhance_attach,
+    capabilities = capabilities,
+    -- cmd = {
+    --   global.data_dir ..
+    --   "../lsp_servers/html/node_modules/vscode-langservers-extracted/bin/" .. "vscode-eslint-language-server", "--stdio"
+    -- },
+    root_dir = function(fname)
+      return lspconfig.util.root_pattern 'tsconfig.json' (fname)
+          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+    end,
+  }
+
+
+
   lspconfig.gopls.setup {
     cmd = { "gopls", "--remote=auto" },
     filetypes = { 'go', 'gomod' },
@@ -114,7 +176,7 @@ config.setup = function()
     root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
     filetypes = { 'go', 'gomod' },
     init_options = {
-      command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json" };
+      command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json" },
     }
   }
   lspconfig.rust_analyzer.setup({
@@ -138,6 +200,8 @@ config.setup = function()
   lspconfig.graphql.setup {}
   lspconfig.intelephense.setup {}
   lspconfig.tsserver.setup({
+    --
+    -- cmd = { "typescript-language-server", "--stdio" },
     on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = false
       client.resolved_capabilities.document_range_formatting = false
@@ -155,7 +219,12 @@ config.setup = function()
       -- buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
       -- on_attach(client, bufnr)
     end,
+    root_dir = function(fname)
+      return lspconfig.util.root_pattern 'tsconfig.json' (fname)
+          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+    end,
   })
+
   -- lspconfig.sumneko_lua.setup {
   --   cmd = {
   --     -- global.home.."/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
@@ -175,16 +244,19 @@ config.setup = function()
   --     },
   --   }
   -- }
-  require'lspconfig'.lua_ls.setup {
+  require 'lspconfig'.lua_ls.setup {
     settings = {
       Lua = {
+        completion = {
+          callSnippet = "Replace"
+        },
         runtime = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = 'LuaJIT',
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -198,6 +270,14 @@ config.setup = function()
     },
   }
 
+
+
+  -- vim.lsp.start({
+  --   cmd = { "command" },
+  --   root_dir = vim.fn.getcwd(), -- Use PWD as project root dir.
+  -- })
+
+  -- vim.lsp.start({ cmd = { "htmx-lsp" }, root_dir = vim.fn.getcwd() })
 end
 
 return config
