@@ -93,6 +93,7 @@ config.setup = function()
 
 
   local configs = require 'lspconfig.configs'
+
   if not configs.htmx then
     configs.htmx = {
       default_config = {
@@ -126,6 +127,26 @@ config.setup = function()
       },
       provideFormatter = true
     }
+  }
+
+  if not configs.templ then
+    configs.templ = {
+      default_config = {
+        name = "templ",
+        cmd = { "templ", "lsp" },
+        filetypes = { 'templ' },
+        root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+        settings = {},
+      },
+    }
+  end
+
+  lspconfig.templ.setup {
+    on_attach = enhance_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
   }
 
   lspconfig.cssls.setup {

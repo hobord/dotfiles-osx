@@ -21,7 +21,8 @@ map("n", "<leader><leader>Pc", cmd("PackerCompile"),
   { noremap = true, silent = true, nowait = true, desc = "Packer Compile" })
 
 -- Terminal
-map("n", "<Leader>`", cmd("ToggleTerm size=20"), { noremap = true, silent = true, desc = "Terminal" })
+map("n", "<Leader>`", cmd("ToggleTerm direction=horizontal size=20"),
+  { noremap = true, silent = true, desc = "Terminal" })
 map("n", "<Leader>~", cmd("ToggleTerm direction=float"), { noremap = true, silent = true, desc = "Terminal float" })
 
 -- Buffer navigation
@@ -95,6 +96,7 @@ map("n", "<C-e>", cmd('Neotree reveal toggle left focus'), { noremap = true, sil
 map("n", "<Leader>/", cmd('Telescope resume'), { noremap = true, silent = true, desc = "Telescope resume" })
 
 map("n", "<Leader>tl", cmd('Telescope telescope-tabs list_tabs'), { noremap = true, silent = true, desc = "List tabs" })
+map("n", "<Leader>tj", cmd('tabNext'), { noremap = true, silent = true, desc = "Go to Next tab" })
 map("n", "<Leader>tk", function() require('telescope-tabs').go_to_previous() end,
   { noremap = true, silent = true, desc = "Go to previous tab" })
 map('n', '<Leader>tn', cmd('tab split'), { noremap = true, silent = true, desc = "New tab" })
@@ -163,6 +165,10 @@ map("n", "<Leader>rv", function() require 'nvim-dap-virtual-text'.toggle() end,
   { noremap = true, silent = true, nowait = true, desc = "DAP virtual text toggle" })
 map("n", "<Leader>rs", function() require 'dap'.terminate() end,
   { noremap = true, silent = true, nowait = true, desc = "DAP Terminate" })
+
+
+vim.keymap.set('v', '<leader><leader>g', ':Gen<CR>', { noremap = true, silent = true, desc = "AI Gen" })
+vim.keymap.set('n', '<leader><leader>g', ':Gen<CR>', { noremap = true, silent = true, desc = "AI Gen" })
 
 -- Plugin acceleratedjk
 vim.api.nvim_set_keymap('n', 'j', '<Plug>(accelerated_jk_gj)', {})

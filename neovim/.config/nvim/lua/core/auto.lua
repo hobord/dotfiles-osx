@@ -65,6 +65,10 @@ function autocmd.load_autocmds()
       { "CursorHold", "*", [[lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]] },
     },
 
+    terminal = {
+      { "BufWinEnter,WinEnter", "term://*", "startinsert" },
+    },
+
     -- go = {
     --   {"BufWritePre", "*.go", "lua require('go.format').goimport()"};
     -- };

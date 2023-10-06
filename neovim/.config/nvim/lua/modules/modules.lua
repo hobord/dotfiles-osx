@@ -72,6 +72,8 @@ require('packer').startup(function(use)
   --   config = require('modules.ui.bufferline').setup,
   -- }
 
+  use 'vrischmann/tree-sitter-templ'
+
   use {
     'romgrk/nvim-treesitter-context',
     requires = { 'nvim-treesitter/nvim-treesitter' },
@@ -926,6 +928,12 @@ require('packer').startup(function(use)
     end
   }
 
+  use {
+    'David-Kunz/gen.nvim',
+    config = function()
+      -- require('gen')
+    end
+  }
   use {
     'rmagatti/auto-session',
     tag = "v2.*",
