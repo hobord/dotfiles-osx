@@ -1,15 +1,15 @@
 local config = {}
 
 config.setup = function()
-  if not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
-  end
+  -- if not packer_plugins['plenary.nvim'].loaded then
+  --   vim.cmd [[packadd plenary.nvim]]
+  -- end
 
   require('gitsigns').setup {
     current_line_blame = false,
     signcolumn         = false,
 
-    signs = {
+    signs              = {
       add          = { hl = 'GitGutterAdd', text = '▋' },
       change       = { hl = 'GitGutterChange', text = '▋' },
       delete       = { hl = 'GitGutterDelete', text = '▋' },
@@ -35,7 +35,6 @@ config.setup = function()
     --   ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
     -- },
   }
-
 end
 
 return config

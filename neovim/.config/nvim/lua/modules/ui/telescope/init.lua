@@ -1,11 +1,11 @@
 local config = {}
 
 config.setup = function()
-  if not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
-    vim.cmd [[packadd popup.nvim]]
-    vim.cmd [[packadd telescope-fzy-native.nvim]]
-  end
+  -- if not packer_plugins['plenary.nvim'].loaded then
+  --   vim.cmd [[packadd plenary.nvim]]
+  --   vim.cmd [[packadd popup.nvim]]
+  --   vim.cmd [[packadd telescope-fzy-native.nvim]]
+  -- end
   --local utils = require "telescope.utils"
 
   require('telescope').setup {

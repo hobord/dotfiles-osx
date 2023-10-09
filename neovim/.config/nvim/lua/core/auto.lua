@@ -15,9 +15,9 @@ end
 
 function autocmd.load_autocmds()
   local definitions = {
-    packer = {
-      { "BufWritePost", "*.lua", "PackerCompile" },
-    },
+    -- packer = {
+    --   { "BufWritePost", "*.lua", "PackerCompile" },
+    -- },
     bufs = {
       -- Reload vim config automatically
       { "BufWritePost", [[$VIM_PATH/{*.vim,*.yaml,vimrc} nested source $MYVIMRC | redraw]] },
