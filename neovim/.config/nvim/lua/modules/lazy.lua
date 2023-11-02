@@ -552,7 +552,7 @@ require("lazy").setup({
     config = require('modules.editor.luasnip').setup,
   },
 
-  { 'tzachar/cmp-tabnine',     run = './install.sh', dependencies = 'hrsh7th/nvim-cmp' },
+  -- { 'tzachar/cmp-tabnine',     run = './install.sh', dependencies = 'hrsh7th/nvim-cmp' },
 
   -- vim.g.copilot_no_tab_map = true;
   --  {
@@ -605,7 +605,8 @@ require("lazy").setup({
           ["."] = false,
           -- ["*"] = true,
         },
-        copilot_node_command = 'node', -- Node version must be < 18
+        -- copilot_node_command = 'node', -- Node version must be < 18
+        copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v16.20.2/bin/node", -- Node.js version must be > 16.x
         plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
         server_opts_overrides = {
           settings = {
@@ -641,7 +642,7 @@ require("lazy").setup({
       { "onsails/lspkind-nvim" },
       { 'L3MON4D3/LuaSnip' },
       -- { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
-      { 'tzachar/cmp-tabnine',    after = 'nvim-cmp' },
+      -- { 'tzachar/cmp-tabnine',    after = 'nvim-cmp' },
       { "zbirenbaum/copilot-cmp", after = "nvim-cmp" },
     },
     config = require('modules.editor.cmp').setup,

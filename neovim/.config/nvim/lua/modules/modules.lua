@@ -537,7 +537,7 @@ require('packer').startup(function(use)
     config = require('modules.editor.luasnip').setup,
   }
 
-  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
 
   -- vim.g.copilot_no_tab_map = true;
   -- use {
