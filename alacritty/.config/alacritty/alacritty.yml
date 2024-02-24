@@ -1,0 +1,42 @@
+window:
+  option_as_alt: Both
+  class:
+    instance: Alacritty
+    general: Alacritty
+  opacity: 0.98
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: MonaspaceNeonNerdFont Nerd Font
+    # family: Hack Nerd Font Mono
+    # family: FuraCode Nerd Font Mono
+    style: Regular
+  bold:
+    # family: MonaspaceNeonVar Nerd Font
+    # family: FuraCode Nerd Font Mono
+    # family: Hack Nerd Font Mono
+    family: MonaspaceNeon Nerd Font
+    style: Bold
+  italic:
+    # family: FuraCode Nerd Font Mono
+    # family: MonaspaceRadonVar Nerd Font
+    # family: Hack Nerd Font Mono
+    family: MonaspaceNeonNerdFont Nerd Font
+    style: Italic
+  bold_italic:
+    # family: MonaspaceRadonVar Nerd Font
+    # family: FuraCode Nerd Font Mono
+    # family: Hack Nerd Font Mono
+    family: MonaspaceNeon Nerd Font
+    style: Bold Italic
+  size: 20.0
+selection:
+  # This string contains all characters that are used as separators for
+  # "semantic words" in Alacritty.
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true

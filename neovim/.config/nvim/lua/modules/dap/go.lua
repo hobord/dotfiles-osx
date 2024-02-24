@@ -1,7 +1,7 @@
 local dap = require "dap"
 -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
 dap.configurations.go = {
-  -- works with go.mod packages and sub packages 
+  -- works with go.mod packages and sub packages
   {
     type = "go",
     name = "Debug test (go.mod)",
@@ -53,8 +53,8 @@ dap.adapters.go = function(callback, config)
   local port = config.port or "38697"
   local addr = string.format("%s:%s", host, port)
   local opts = {
-    stdio = {nil, stdout, stderr },
-    args = {"-v", "--log", "dap", "-l", addr, "--log-dest=3"},
+    stdio = { nil, stdout, stderr },
+    args = { "-v", "--log", "dap", "-l", addr, "--log-dest=3" },
     detached = true
   }
 
@@ -91,7 +91,7 @@ dap.adapters.go = function(callback, config)
   -- Wait for delve to start
   vim.defer_fn(
     function()
-      callback({type = "server", host = host, port = port})
+      callback({ type = "server", host = host, port = port })
     end,
     100)
 end

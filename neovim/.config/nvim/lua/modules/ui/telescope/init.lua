@@ -1,11 +1,11 @@
 local config = {}
 
 config.setup = function()
-  if not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
-    vim.cmd [[packadd popup.nvim]]
-    vim.cmd [[packadd telescope-fzy-native.nvim]]
-  end
+  -- if not packer_plugins['plenary.nvim'].loaded then
+  --   vim.cmd [[packadd plenary.nvim]]
+  --   vim.cmd [[packadd popup.nvim]]
+  --   vim.cmd [[packadd telescope-fzy-native.nvim]]
+  -- end
   --local utils = require "telescope.utils"
 
   require('telescope').setup {
@@ -171,6 +171,25 @@ config.setup = function()
       cder = {
         dir_command = { 'fd', '--hidden', '--type=d', '.', os.getenv('HOME') .. '/code' },
       },
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown {
+          -- even more opts
+        }
+
+        -- pseudo code / specification for writing custom displays, like the one
+        -- for "codeactions"
+        -- specific_opts = {
+        --   [kind] = {
+        --     make_indexed = function(items) -> indexed_items, width,
+        --     make_displayer = function(widths) -> displayer
+        --     make_display = function(displayer) -> function(e)
+        --     make_ordinal = function(e) -> string
+        --   },
+        --   -- for example to disable the custom builtin "codeactions" display
+        --      do the following
+        --   codeactions = false,
+        -- }
+      }
     }
   }
   require('telescope').load_extension('fzy_native')
@@ -180,6 +199,8 @@ config.setup = function()
   require("telescope").load_extension('file_browser')
   require('telescope').load_extension('cder')
   require('telescope').load_extension('telescope-tabs')
+  require("telescope").load_extension("ui-select")
+  -- require('telescope').load_extension('harpoon')
 end
 
 return config

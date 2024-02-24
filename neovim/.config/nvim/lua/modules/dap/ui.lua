@@ -2,22 +2,13 @@ local config = {}
 
 config.setup = function()
   require("dapui").setup({
-    icons = { expanded = "▾", collapsed = "▸" },
-    mappings = {
-      -- Use a table to apply multiple mappings
-      expand = { "<CR>", "<2-LeftMouse>" },
-      open   = "o",
-      remove = "d",
-      edit   = "e",
-      repl   = "r",
-    },
     layouts = {
       {
         elements = {
           -- Provide as ID strings or tables with "id" and "size" keys
-          { id = "scopes", size = 0.25 },
-          { id = "watches", size = 0.25 },
-          { id = "stacks", size = 0.25 },
+          { id = "scopes",      size = 0.25 },
+          { id = "watches",     size = 0.25 },
+          { id = "stacks",      size = 0.25 },
           { id = "breakpoints", size = 0.25 },
         },
         --width = 80,
@@ -52,11 +43,16 @@ config.setup = function()
     },
     floating = {
       max_height = nil, -- These can be integers or a float between 0 and 1.
-      max_width = nil, -- Floats will be treated as percentage of your screen.
+      max_width = nil,  -- Floats will be treated as percentage of your screen.
       mappings = {
         close = { "q", "<Esc>" },
       },
-    }
+    },
+    render = {
+      max_type_length = 60,
+      max_value_lines = 100, -- Can be integer or nil.
+      indent = 1,
+    },
   })
 
   local dap, dapui = require("dap"), require("dapui")
@@ -73,8 +69,12 @@ config.setup = function()
 
   vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DebuggerBreakpoint', linehl = '', numhl = '' })
   vim.fn.sign_define('DapStopped', { text = '', texthl = 'DebuggerBreakpoint', linehl = '', numhl = '' })
-  vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DebuggerBreakpointCondition', linehl = '',
-    numhl = '' })
+  vim.fn.sign_define('DapBreakpointCondition', {
+    text = '',
+    texthl = 'DebuggerBreakpointCondition',
+    linehl = '',
+    numhl = ''
+  })
 
   vim.cmd("hi DebuggerBreakpoint guifg='#ff0000'")
   vim.cmd("hi DebuggerBreakpointCondition guifg='#ffa500'")

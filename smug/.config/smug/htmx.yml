@@ -1,0 +1,13 @@
+session: htmx
+
+root: ~/code/hobord/poc-htmx-go-todolist
+
+windows:
+  - name: code
+    root: .
+    layout: main-horizontal
+    commands:
+      - nvim
+    panes:
+      - type: vertical
+        root: .

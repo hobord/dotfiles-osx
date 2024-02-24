@@ -32,11 +32,13 @@ map('n', '<C-t>c', cmd('tabclose'), { noremap = true, silent = true, desc = 'Clo
 map('n', '<A-[>', cmd('vertical resize -5'), { noremap = true, silent = true, desc = 'Decrease window' })
 map('n', '<A-]>', cmd('vertical resize +5'), { noremap = true, silent = true, desc = 'Increase window' })
 
-map('n', 'zi','zi:let &l:fdc=&l:fen*&g:fdc<CR>', { noremap = true, silent = true, desc = 'Toggle fold' })
+map('n', 'zi', 'zi:let &l:fdc=&l:fen*&g:fdc<CR>', { noremap = true, silent = true, desc = 'Toggle fold' })
 map('n', 'Y', 'y$', { noremap = true, silent = true })
+map('n', 'yY', '^y$', { noremap = true, silent = true })
 
 map('n', '<Leader>n', cmd('noh'), { noremap = true, silent = true, desc = 'Clear search highlight' })
-map('n', '<Leader><Leader>r', cmd('set relativenumber!'), { noremap = true, silent = true, desc = 'Toggle relative number' })
+map('n', '<Leader><Leader>r', cmd('set relativenumber!'),
+  { noremap = true, silent = true, desc = 'Toggle relative number' })
 map('n', '<Leader><Leader>w', cmd('set wrap!'), { noremap = true, silent = true, desc = 'Toggle wrap' })
 
 map('i', '<C-u>', '<C-O>u', { noremap = true, silent = true, desc = 'Undo' })
@@ -52,4 +54,3 @@ map('c', '<C-e>', '<End>', { noremap = true })
 map('c', '<C-d>', '<Del>', { noremap = true })
 map('c', '<C-h>', '<BS>', { noremap = true })
 map('c', '<C-t>', [[<C-R>=expand("%:p:h") . "/" <CR>]], { noremap = true })
-

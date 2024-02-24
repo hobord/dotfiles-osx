@@ -1,0 +1,14 @@
+session: doit
+
+root: ~/code/doit/cmp-main
+
+windows:
+  - name: cmp-main/dev
+    root: dev
+    layout: main-horizontal
+    commands:
+      - nvim
+    panes:
+      - type: vertical
+        root: .
+    layout: 5843,157x46,0,0[157x39,0,0,41,157x6,0,40,42]
