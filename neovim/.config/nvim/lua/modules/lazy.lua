@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
-    lazypath,
+    lazypath
   })
 end
 vim.opt.rtp:prepend(lazypath)
@@ -43,22 +43,61 @@ require("lazy").setup({
   --   'ribru17/bamboo.vim',
   -- }
 
+  -- {
+  --   'sainnhe/sonokai',
+  --   -- config = require('modules.ui.sonokai').setup,
+  -- },
+
+  -- 'navarasu/onedark.nvim',
   {
-    'sainnhe/sonokai',
-    -- config = require('modules.ui.sonokai').setup,
+    "ellisonleao/gruvbox.nvim",
+    config = function()
+      vim.o.background = "dark" -- or "light" for light mode
+      require("gruvbox").setup({
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        inverse = true,    -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+      vim.cmd([[colorscheme gruvbox]])
+    end
   },
 
-  'navarasu/onedark.nvim',
-
   {
-    'eddyekofo94/gruvbox-flat.nvim',
-    config = require('modules.ui.gruvbox-flat').setup,
+    'sainnhe/gruvbox-material',
+    config = function()
+      vim.g.gruvbox_material_background = 'hard'
+      -- vim.cmd('colorscheme gruvbox-material')
+    end
   },
 
-  {
-    'luisiacc/gruvbox-baby',
-    config = require('modules.ui.gruvbox-baby').setup,
-  },
+  -- {
+  --   'eddyekofo94/gruvbox-flat.nvim',
+  --   config = require('modules.ui.gruvbox-flat').setup,
+  -- },
+  --
+  -- {
+  --   'luisiacc/gruvbox-baby',
+  --   config = require('modules.ui.gruvbox-baby').setup,
+  -- },
   -- 'rmehri01/onenord.nvim',
   --'glepnir/zephyr-nvim',
   --'gruvbox-community/gruvbox',
@@ -81,21 +120,21 @@ require("lazy").setup({
 
   'vrischmann/tree-sitter-templ',
 
-  {
-    'romgrk/nvim-treesitter-context',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    after = 'nvim-treesitter',
-    config = function()
-      require('modules.ui.context').setup()
-    end,
-  },
+  -- {
+  --   'romgrk/nvim-treesitter-context',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  --   after = 'nvim-treesitter',
+  --   config = function()
+  --     require('modules.ui.context').setup()
+  --   end,
+  -- },
 
-  {
-    "SmiteshP/nvim-navic",
-    -- after = 'nvim-lspconfig',
-    dependencies = "neovim/nvim-lspconfig",
-    config = require('modules.ui.navic').setup,
-  },
+  -- {
+  --   "SmiteshP/nvim-navic",
+  --   -- after = 'nvim-lspconfig',
+  --   dependencies = "neovim/nvim-lspconfig",
+  --   config = require('modules.ui.navic').setup,
+  -- },
 
   {
     'nvim-lualine/lualine.nvim',
@@ -146,6 +185,15 @@ require("lazy").setup({
   -- },
 
   {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('modules.ui.harpoon').setup()
+    end,
+  },
+
+  {
     'chentoast/marks.nvim',
     config = function()
       require('marks').setup({
@@ -171,6 +219,7 @@ require("lazy").setup({
       --      require('telescope').load_extension('neoclip')
     end,
   },
+
   -- Guide lines for ident
   --  {
   --   'glepnir/indent-guides.nvim',
@@ -195,20 +244,59 @@ require("lazy").setup({
 
   {
     'rcarriga/nvim-notify',
-    config = function()
-      require("notify").setup({
-        background_colour = "#000000"
-      })
-      vim.notify = require("notify")
-    end
+    -- config = function()
+    --   require("notify").setup({
+    --     background_colour = "#000000"
+    --   })
+    --   vim.notify = require("notify")
+    -- end
   },
 
   {
-    'stevearc/dressing.nvim',
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+      "hrsh7th/nvim-cmp"
+    },
     config = function()
-      require('dressing').setup()
-    end
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+          hover = { enabled = true },
+          signature = { enabled = true },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true,         -- use a classic bottom cmdline for search
+          command_palette = true,       -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = true,        -- add a border to hover docs and signature help
+        },
+      })
+    end,
   },
+
+  -- {
+  --   'stevearc/dressing.nvim',
+  --   config = function()
+  --     require('dressing').setup()
+  --   end
+  -- },
 
   -- Zen mode
   {
@@ -220,6 +308,30 @@ require("lazy").setup({
         },
         context = 15,
       }
+    end
+  },
+
+  {
+    "shortcuts/no-neck-pain.nvim",
+    version = "*",
+    config = function()
+      require("no-neck-pain").setup({
+        width = 150,
+        buffers = {
+          scratchPad = {
+            -- set to `false` to
+            -- disable auto-saving
+            enabled = true,
+            -- set to `nil` to default
+            -- to current working directory
+            location = "~/code/notes/",
+          },
+          bo = {
+            filetype = "md"
+          },
+        },
+
+      })
     end
   },
 
@@ -241,7 +353,9 @@ require("lazy").setup({
       { 'zane-/cder.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'nvim-telescope/telescope-dap.nvim' },
-      { 'LukasPietzschmann/telescope-tabs' }
+      { 'LukasPietzschmann/telescope-tabs' },
+      { 'ThePrimeagen/harpoon' },
+      { 'nvim-telescope/telescope-ui-select.nvim' }
     },
     config = require('modules.ui.telescope').setup,
   },
@@ -250,15 +364,36 @@ require("lazy").setup({
   -- LSP
   -- ---------------------------------------------
 
+  -- {
+  --   'williamboman/nvim-lsp-installer',
+  --   dependencies = { { 'neovim/nvim-lspconfig' } }
+  -- },
+
   {
-    'neovim/nvim-lspconfig',
-    config = require('modules.lsp.lspconfig').setup,
-    --event = 'BufReadPre',
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end
+  },
+
+  { "hrsh7th/cmp-nvim-lsp" },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      { "williamboman/mason.nvim" },
+      { "hrsh7th/cmp-nvim-lsp" },
+    },
+    config = require('modules.lsp.mason-lspconfig').setup,
   },
 
   {
-    'williamboman/nvim-lsp-installer',
-    dependencies = { { 'neovim/nvim-lspconfig' } }
+    'neovim/nvim-lspconfig',
+    -- config = require('modules.lsp.lspconfig').setup,
+    --event = 'BufReadPre',
+    dependencies = {
+      { "williamboman/mason-lspconfig.nvim" },
+    }
   },
 
   {
@@ -271,11 +406,11 @@ require("lazy").setup({
     config = require('modules.lsp.lsp-trouble').setup,
   },
 
-  {
-    'ray-x/lsp_signature.nvim',
-    config = require('modules.lsp.lsp_signature').setup,
-    --after = 'glepnir/lspsaga.nvim',
-  },
+  -- {
+  --   'ray-x/lsp_signature.nvim',
+  --   config = require('modules.lsp.lsp_signature').setup,
+  --   --after = 'glepnir/lspsaga.nvim',
+  -- },
 
   --  {
   --   'simrat39/symbols-outline.nvim',
@@ -317,14 +452,10 @@ require("lazy").setup({
       local actions = glance.actions
 
       require('glance').setup({
-        border = {
-          enable = true, -- Show window borders. Only horizontal borders allowed
-          top_char = '─',
-          bottom_char = '─',
-        },
-        theme = {         -- This feature might not work properly in nvim-0.7.2
-          enable = false, -- Will generate colors for the plugin based on your current colorscheme
-          mode = 'auto',  -- 'brighten'|'darken'|'auto', 'auto' will set mode based on the brightness of your colorscheme
+        detached = true,
+        theme = {          -- This feature might not work properly in nvim-0.7.2
+          enable = true,   -- Will generate colors for the plugin based on your current colorscheme
+          mode = 'darken', -- 'brighten'|'darken'|'auto', 'auto' will set mode based on the brightness of your colorscheme
         },
         mappings = {
           list = {
@@ -370,8 +501,11 @@ require("lazy").setup({
 
   {
     'Bekaboo/dropbar.nvim',
-    version = '*'
+    version = '*',
     -- config = require('modules.ui.dropbar').setup
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim'
+    }
   },
 
   {
@@ -430,6 +564,7 @@ require("lazy").setup({
     'echasnovski/mini.nvim',
     config = function()
       require('mini.align').setup()
+      require('mini.files').setup()
     end
   },
 
@@ -523,6 +658,18 @@ require("lazy").setup({
       -- you can configure Hop the way you like here; see :h hop-config
       require 'hop'.setup { keys = 'asdfghjkl' }
     end
+  },
+
+  {
+    "brenton-leighton/multiple-cursors.nvim",
+    config = true,
+    keys = {
+      { "<C-M-Down>",    "<Cmd>MultipleCursorsAddDown<CR>",        mode = { "n", "i" } },
+      { "<C-M-j>",       "<Cmd>MultipleCursorsAddDown<CR>" },
+      { "<C-M-Up>",      "<Cmd>MultipleCursorsAddUp<CR>",          mode = { "n", "i" } },
+      { "<C-M-k>",       "<Cmd>MultipleCursorsAddUp<CR>" },
+      { "<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = { "n", "i" } },
+    },
   },
 
   {
@@ -864,12 +1011,13 @@ require("lazy").setup({
     end
   },
 
-  {
-    'pwntester/octo.nvim',
-    config = function()
-      require "octo".setup()
-    end
-  },
+
+  -- {
+  --   'pwntester/octo.nvim',
+  --   config = function()
+  --     require "octo".setup()
+  --   end
+  -- },
 
   'vim-test/vim-test',
 
@@ -878,6 +1026,15 @@ require("lazy").setup({
   --   event = 'BufReadPre',
   -- },
 
+  {
+    "luckasRanarison/nvim-devdocs",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {}
+  },
   {
     'uga-rosa/translate.nvim',
     config = function()

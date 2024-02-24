@@ -23,7 +23,7 @@ config.setup = function()
 
     vim.api.nvim_command('augroup lsp_signature')
     vim.api.nvim_command('autocmd!')
-    vim.api.nvim_command('autocmd BufWinEnter * :lua require "lsp_signature".on_attach()')
+--    vim.api.nvim_command('autocmd BufWinEnter * :lua require "lsp_signature".on_attach()')
     vim.api.nvim_command('augroup END')
 end
 

@@ -1,0 +1,17 @@
+session: dotfiles
+
+root: ~/code/hobord/dotfiles-osx
+
+windows:
+  - name: stow
+    root: .
+    layout: main-horizontal
+  - name: nvim
+    root: nvim/.config
+    layout: main-horizontal
+    commands:
+      - nvim
+    panes:
+      - type: horizontal
+        root: .
+    layout: 9949,157x46,0,0[157x41,0,0,34,157x4,0,42,35]

@@ -30,8 +30,8 @@ config.setup = function()
 
   local enhance_attach = function(client, bufnr)
     vim.o["foldmethod"] = "expr"
-    local navic = require("nvim-navic")
-    navic.attach(client, bufnr)
+    -- local navic = require("nvim-navic")
+    -- navic.attach(client, bufnr)
 
     -- if client then
     --   client.request("textDocument/formatting", {} , nil, vim.api.nvim_get_current_buf())
@@ -75,9 +75,9 @@ config.setup = function()
     border = "rounded",
   })
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
+  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  --   border = "rounded",
+  -- })
 
   -- modify open_floating_preview to use the custom borders
   local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -99,7 +99,7 @@ config.setup = function()
       default_config = {
         name = "htmx",
         cmd = { "htmx-lsp" },
-        filetypes = { 'html', 'htm', 'htmx', 'php', 'tpl' },
+        filetypes = { 'html', 'htm', 'htmx', 'php', 'tpl', 'templ' },
         root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
         settings = {},
       },
@@ -152,10 +152,10 @@ config.setup = function()
   lspconfig.cssls.setup {
     on_attach = enhance_attach,
     capabilities = capabilities,
-    cmd = {
-      global.data_dir ..
-      "../lsp_servers/html/node_modules/vscode-langservers-extracted/bin/" .. "vscode-css-language-server", "--stdio"
-    },
+    -- cmd = {
+    --   global.data_dir ..
+    --   "../lsp_servers/html/node_modules/vscode-langservers-extracted/bin/" .. "vscode-css-language-server", "--stdio"
+    -- },
   }
 
   lspconfig.eslint.setup {
@@ -170,8 +170,6 @@ config.setup = function()
           or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
     end,
   }
-
-
 
   lspconfig.gopls.setup {
     cmd = { "gopls", "--remote=auto" },
@@ -192,6 +190,7 @@ config.setup = function()
       completeUnimported = true,
     }
   }
+
   lspconfig.golangci_lint_ls.setup {
     cmd = { 'golangci-lint-langserver' },
     root_dir = lspconfig.util.root_pattern('.git', 'go.mod'),
@@ -216,35 +215,37 @@ config.setup = function()
     }
   })
   -- lspconfig.pylsp.setup{}
-  lspconfig.pyright.setup {}
-  lspconfig.dockerls.setup {}
-  lspconfig.graphql.setup {}
-  lspconfig.intelephense.setup {}
-  lspconfig.tsserver.setup({
-    --
-    -- cmd = { "typescript-language-server", "--stdio" },
-    on_attach = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
-      local ts_utils = require("nvim-lsp-ts-utils")
-      ts_utils.setup({
-        eslint_bin = "eslint_d",
-        eslint_enable_diagnostics = true,
-        eslint_enable_code_actions = true,
-        enable_formatting = true,
-        formatter = "prettier",
-      })
-      ts_utils.setup_client(client)
-      -- buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-      -- buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
-      -- buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-      -- on_attach(client, bufnr)
-    end,
-    root_dir = function(fname)
-      return lspconfig.util.root_pattern 'tsconfig.json' (fname)
-          or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
-    end,
-  })
+  -- lspconfig.pyright.setup {}
+  -- lspconfig.dockerls.setup {}
+  -- lspconfig.graphql.setup {}
+  -- lspconfig.intelephense.setup {}
+  -- lspconfig.tsserver.setup({
+  --
+  -- cmd = { "typescript-language-server", "--stdio" },
+  --   on_attach = function(client, bufnr)
+  --     if client.resolved_capabilities ~= nil then
+  --       client.resolved_capabilities.document_formatting = false
+  --       client.resolved_capabilities.document_range_formatting = false
+  --     end
+  --     -- local ts_utils = require("nvim-lsp-ts-utils")
+  --     -- ts_utils.setup({
+  --     --   eslint_bin = "eslint_d",
+  --     --   eslint_enable_diagnostics = true,
+  --     --   eslint_enable_code_actions = true,
+  --     --   enable_formatting = true,
+  --     --   formatter = "prettier",
+  --     -- })
+  --     -- ts_utils.setup_client(client)
+  --     -- buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
+  --     -- buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
+  --     -- buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
+  --     -- on_attach(client, bufnr)
+  --   end,
+  --   root_dir = function(fname)
+  --     return lspconfig.util.root_pattern 'tsconfig.json' (fname)
+  --         or lspconfig.util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+  --   end,
+  -- })
 
   -- lspconfig.sumneko_lua.setup {
   --   cmd = {

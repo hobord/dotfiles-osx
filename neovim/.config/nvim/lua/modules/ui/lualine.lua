@@ -44,7 +44,8 @@ M.setup = function()
   require('lualine').setup {
     options = {
       -- theme = 'gruvbox'
-      theme = 'gruvbox-baby'
+      -- theme = 'gruvbox-baby'
+      theme = 'gruvbox-material'
     },
     disabled_filetypes = {
       "NvimTree",
@@ -80,7 +81,6 @@ M.setup = function()
   }
 
   vim.cmd('set laststatus=3')
-
 end
 
 return M

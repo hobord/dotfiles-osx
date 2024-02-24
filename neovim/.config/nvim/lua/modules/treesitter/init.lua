@@ -6,7 +6,9 @@ config.setup = function()
   vim.g.ts_highlight_lua = true
   require 'nvim-treesitter.configs'.setup {
     -- ensure_installed = "maintained",
-    ensure_installed = { "c", "lua", "rust", "go", "javascript", "typescript", "html", "yaml", "tsx", "graphql", "json5" },
+    auto_install = true,
+    ensure_installed = { "c", "lua", "rust", "go", "javascript", "typescript", "html", "yaml", "tsx", "graphql",
+      "json5", "sql", "css", "toml", "python", "dockerfile", "cmake", "dot" },
     ident = {
       enable = false,
       disable = function(lang, bufnr)
@@ -22,6 +24,7 @@ config.setup = function()
     },
     incremental_selection = {
       enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
       keymaps = {
         init_selection = "<cr>",
         node_incremental = "<c-j>",
@@ -41,6 +44,8 @@ config.setup = function()
         -- Automatically jump forward to textobj, similar to targets.vim
         lookahead = true,
         keymaps = {
+          ["ib"] = "@block.inner",
+          ["ab"] = "@block.outer",
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
