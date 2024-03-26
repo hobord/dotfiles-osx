@@ -12,9 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- Packer can manage itself
-  'wbthomason/packer.nvim',
-
   {
     'nvim-treesitter/nvim-treesitter',
     event = 'BufRead',
@@ -856,6 +853,13 @@ require("lazy").setup({
       { 'theHamsta/nvim-dap-virtual-text' },
     },
     config = require('modules.dap').setup,
+  },
+
+  {
+    'rcarriga/nvim-dap-ui',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+    },
   },
 
   {
