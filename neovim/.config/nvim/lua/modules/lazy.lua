@@ -365,33 +365,22 @@ require("lazy").setup({
   --   'williamboman/nvim-lsp-installer',
   --   dependencies = { { 'neovim/nvim-lspconfig' } }
   -- },
-
-  {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end
-  },
-
-  { "hrsh7th/cmp-nvim-lsp" },
-
-  {
-    "williamboman/mason-lspconfig.nvim",
+  { -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
     dependencies = {
-      { "williamboman/mason.nvim" },
-      { "hrsh7th/cmp-nvim-lsp" },
+      -- Automatically install LSPs and related tools to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+
+      -- Useful status updates for LSP.
+      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      { 'j-hui/fidget.nvim', opts = {} },
     },
     config = require('modules.lsp.mason-lspconfig').setup,
   },
 
-  {
-    'neovim/nvim-lspconfig',
-    -- config = require('modules.lsp.lspconfig').setup,
-    --event = 'BufReadPre',
-    dependencies = {
-      { "williamboman/mason-lspconfig.nvim" },
-    }
-  },
+  -- { "hrsh7th/cmp-nvim-lsp" },
 
   {
     'onsails/lspkind-nvim',
@@ -403,24 +392,6 @@ require("lazy").setup({
     config = require('modules.lsp.lsp-trouble').setup,
   },
 
-  -- {
-  --   'ray-x/lsp_signature.nvim',
-  --   config = require('modules.lsp.lsp_signature').setup,
-  --   --after = 'glepnir/lspsaga.nvim',
-  -- },
-
-  --  {
-  --   'simrat39/symbols-outline.nvim',
-  --   config = require('modules.lsp.symbols-outline').setup,
-  -- },
-
-  --  {
-  --   'stevearc/aerial.nvim',
-  --   config = function()
-  --     require('aerial').setup()
-  --     require('telescope').load_extension('aerial')
-  --   end
-  -- },
 
   {
     'rmagatti/goto-preview',
