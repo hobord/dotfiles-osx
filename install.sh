@@ -10,7 +10,7 @@ echo '[*] Removing default configurations ...'
 rm -rF ~/.config/nvim
 
 echo '[*] Stowing/Creating simlinks'
-stow -vSt ~ neovim zsh tmux kitty# lazygit moonlander
+stow -vSt ~ neovim zsh tmux smug kitty posh moonlander
 
-echo '[*] Installing/Updating Neovim plugins ...'
-nvim -c ':PlugInstall' -c ':UpdateRemotePlugins' -c ':qall'
+# echo '[*] Installing/Updating Neovim plugins ...'
+# nvim -c ':PlugInstall' -c ':UpdateRemotePlugins' -c ':qall'
