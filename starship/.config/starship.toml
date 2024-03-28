@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](color_orange)\
+[ ](bg:color_orange)\
 $os\
 [](bg:color_yellow fg:color_orange)\
 $directory\
@@ -9,23 +9,28 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:color_aqua bg:color_blue)\
-$python\
-$nodejs\
 [](fg:color_blue bg:color_bg3)\
-$docker_context\
-$conda\
 [](fg:color_bg3 bg:color_bg1)\
 [ ](fg:color_bg1)\
-$line_break$character"""
-
-right_format = """
+$fill\
 [ ](fg:color_bg1)\
 $cmd_duration\
 $time\
+[](fg:color_bg3 bg:color_bg1)\
+[](fg:color_blue bg:color_bg3)\
+$python\
+$nodejs\
+$docker_context\
+$conda\
+$golang\
+[](fg:color_aqua bg:color_blue)\
+[](fg:color_yellow bg:color_aqua)\
 $aws\
 $gcloud\
-[](bg:color_bg1 fg:color_orange)\
+[](bg:color_yellow fg:color_orange)\
 $battery\
+[ ](bg:color_orange)\
+$line_break$character
 """
 
 palette = 'gruvbox_dark'
@@ -114,7 +119,7 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 [golang]
 symbol = ""
 style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[[ $symbol( $version ) ($mod_version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [php]
 symbol = ""
@@ -175,12 +180,12 @@ vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 
 [gcloud]
 symbol = '󰅟 '
-style = "bg:color_bg1"
-format = '[$symbol($profile )(\($project: $region\) )(fg:color_fg0 bg:color_bg1)]($style)'
+style = "fg:color_fg0 bg:color_yellow"
+format = '[$symbol($profile )(\($account@$project:$region\) )(fg:color_fg0 bg:color_yellow)]($style)'
 [aws]
 symbol = ' '
-style = "bg:color_bg1"
-format = '[$symbol($profile )(\($region\) )(fg:color_fg0 bg:color_bg1)]($style)'
+style = "fg:color_fg0 bg:color_yellow"
+format = '[$symbol($profile )(\($region\) )(fg:color_fg0 bg:color_yellow)]($style)'
 
 [battery]
 full_symbol = '🔋 '
