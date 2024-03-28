@@ -1,1 +1,3 @@
 .luarc.json
+tmux/bin/pkl
+tmux/bin/tailwindcss

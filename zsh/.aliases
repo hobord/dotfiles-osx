@@ -1,0 +1,29 @@
+alias ll='ls -G -l'
+alias ta='tmux attach -d -t'
+alias tma='tmux a'
+alias vim='nvim'
+alias vims='nvim -S Session.vim'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
+#complete -F __start_config config 
+alias gitch='git checkout '
+alias dotenv='export $(cat .env | xargs)'
+
+alias k='kubectl'
+# alias ksetns="kubectl config set-context --current --namespace"
+alias d='docker'
+alias dc="docker-compose"
+alias drmi="docker rmi \$(docker images | grep \"<none>\" | awk '{print \$3}')"
+alias drm="docker rm \$(docker ps -a|grep Exited| awk '{print \$1}')" 
+alias dps='docker ps --format "table {{.ID}} {{.Status}} {{.Names}}"'
+
+# alias node='docker run -it --rm -w=/workspace -v $(pwd):/workspace node bash'
+# alias node12='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:12 bash'
+# alias node10='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:10 bash'
+# alias golang='docker run -it --rm -w=/workspace -v $(pwd):/workspace -v ~/.vimrc:/home/gropher/.vimrc hobord/golang-dev:vim'
+alias mysql='docker run -it --rm -w=/workspace -v $(pwd):/workspace mysql:5.7 bash'
+alias rust='docker run -it --rm -w=/workspace -v $(pwd):/workspace rust bash'
+alias gtoken="gcloud auth print-identity-token | tr -d '\n' |pbcopy"
+
+alias gc='gcloud'
+alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
+alias code="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"

@@ -1,22 +1,22 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/go/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/balazs/.oh-my-zsh"
+# export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -53,7 +53,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -76,9 +76,9 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose fzf golang history kubectl terraform gcloud gh)
+# plugins=(git docker docker-compose fzf golang history kubectl terraform gcloud gh)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -106,76 +106,47 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+autoload -Uz compinit
+compinit
 
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 export PATH=~/nvim-osx64/bin/:$PATH
 export PATH=~/Applications/:$PATH
 export PATH=~/go/bin/:$PATH
 export PATH=~/bin/:$PATH
 export PATH=~/.cargo/bin:/$PATH
+export CLOUDSDK_PYTHON=python3
 export PATH=/usr/local/opt/libpq/bin/:$PATH
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 export VISUAL=nvim;
 export EDITOR=nvim;
 
-alias ll='ls -G -l'
-alias ta='tmux attach -d -t'
-alias tma='tmux a'
-alias vim='nvim'
-alias vims='nvim -S Session.vim'
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
-#complete -F __start_config config 
-alias gitch='git checkout '
-alias dotenv='export $(cat .env | xargs)'
-
-alias k='kubectl'
-alias d='docker'
-alias dc="docker-compose"
-alias drmi="docker rmi \$(docker images | grep \"<none>\" | awk '{print \$3}')"
-alias drm="docker rm \$(docker ps -a|grep Exited| awk '{print \$1}')" 
-alias dps='docker ps --format "table {{.ID}} {{.Status}} {{.Names}}"'
-
-# alias node='docker run -it --rm -w=/workspace -v $(pwd):/workspace node bash'
-# alias node12='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:12 bash'
-# alias node10='docker run -it --rm -w=/workspace -v $(pwd):/workspace node:10 bash'
-# alias golang='docker run -it --rm -w=/workspace -v $(pwd):/workspace -v ~/.vimrc:/home/gropher/.vimrc hobord/golang-dev:vim'
-alias mysql='docker run -it --rm -w=/workspace -v $(pwd):/workspace mysql:5.7 bash'
-alias rust='docker run -it --rm -w=/workspace -v $(pwd):/workspace rust bash'
-alias composer="php /usr/local/bin/composer.phar"
+source ~/.aliases
+# ssh aliases
+[[ ! -f ~/.aliases_ssh.zsh ]] || source ~/.aliases_ssh.zsh
 
 function kubesh() { kubectl exec -ti $@ -- sh; }
 function kubebash() { kubectl exec -ti $@ -- bash; }
-alias ksetns="kubectl config set-context --current --namespace"
 source <(kubectl completion zsh)
-complete -F __start_kubectl k
 
-alias gc='gcloud'
-
-setopt complete_aliases
+# setopt complete_aliases
 
 DEFAULT_USER="balazs"
 
 # gists
 eval "$(gh completion -s zsh)"
+fpath=($fpath ~/.zsh/completion)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-alias vscode="/Applications/Visual\ Studio\ Code.app/contents/Resources/app/bin/code"
-
-export CLOUDSDK_PYTHON=python3
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-
-# ssh aliases
-[[ ! -f ~/.aliases_ssh.zsh ]] || source ~/.aliases_ssh.zsh
-
+# curl
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/balazs/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/balazs/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/balazs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/balazs/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -184,5 +155,44 @@ export NVM_DIR="$HOME/.nvm"
 # export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export PATH="/opt/homebrew/opt/java/bin/:$PATH"
 export JAVA_HOME="/opt/homebrew/opt/java/"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE='~/.micromamba/bin/micromamba';
+export MAMBA_ROOT_PREFIX='~/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('~/micromamba/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "~/micromamba/etc/profile.d/conda.sh" ]; then
+        . "~/micromamba/etc/profile.d/conda.sh"
+    else
+        export PATH="~/micromamba/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# Created by `pipx` on 2023-12-06 17:04:11
+export PATH="$PATH:~/Library/Python/3.9/bin"
+
+# Created by `pipx` on 2023-12-06 17:04:15
+export PATH="$PATH:~/.local/bin"
+
+# eval "$(starship init zsh)"
+eval "$(fzf --zsh)"
+eval "$(oh-my-posh init zsh --config ~/.config/posh.toml)"
