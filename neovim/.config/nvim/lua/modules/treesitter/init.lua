@@ -8,7 +8,7 @@ config.setup = function()
     -- ensure_installed = "maintained",
     auto_install = true,
     ensure_installed = { "c", "lua", "rust", "go", "javascript", "typescript", "html", "yaml", "tsx", "graphql",
-      "json5", "sql", "css", "toml", "python", "dockerfile", "cmake", "dot" },
+      "json5", "sql", "css", "toml", "python", "dockerfile", "cmake", "dot", "terraform" },
     ident = {
       enable = false,
       disable = function(lang, bufnr)
