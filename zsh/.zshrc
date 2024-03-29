@@ -9,7 +9,7 @@
 export PATH=$HOME/bin:$HOME/go/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-# export ZSH="~/.oh-my-zsh"
+# export ZSH="/Users/balazs/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -76,7 +76,7 @@ export PATH=$HOME/bin:$HOME/go/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git docker docker-compose fzf golang history kubectl terraform gcloud gh)
+plugins=(git docker docker-compose fzf golang history kubectl terraform gcloud gh)
 
 # source $ZSH/oh-my-zsh.sh
 
@@ -143,10 +143,10 @@ fpath=($fpath ~/.zsh/completion)
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/balazs/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/balazs/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/balazs/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/balazs/google-cloud-sdk/completion.zsh.inc'; fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -160,8 +160,8 @@ export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='~/.micromamba/bin/micromamba';
-export MAMBA_ROOT_PREFIX='~/micromamba';
+export MAMBA_EXE='/Users/balazs/.micromamba/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/Users/balazs/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -173,14 +173,14 @@ unset __mamba_setup
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('~/micromamba/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/balazs/micromamba/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "~/micromamba/etc/profile.d/conda.sh" ]; then
-        . "~/micromamba/etc/profile.d/conda.sh"
+    if [ -f "/Users/balazs/micromamba/etc/profile.d/conda.sh" ]; then
+        . "/Users/balazs/micromamba/etc/profile.d/conda.sh"
     else
-        export PATH="~/micromamba/bin:$PATH"
+        export PATH="/Users/balazs/micromamba/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -188,10 +188,10 @@ unset __conda_setup
 
 
 # Created by `pipx` on 2023-12-06 17:04:11
-export PATH="$PATH:~/Library/Python/3.9/bin"
+export PATH="$PATH:/Users/balazs/Library/Python/3.9/bin"
 
 # Created by `pipx` on 2023-12-06 17:04:15
-export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:/Users/balazs/.local/bin"
 
 # eval "$(starship init zsh)"
 eval "$(fzf --zsh)"

@@ -96,53 +96,46 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   type = 'prompt'
   alignment = 'right'
 
+[[blocks.segments]]
+  type = "text"
+  style = "plain"
+  foreground = "#E06C75"
+  template = ""
+#
 # [[blocks.segments]]
-#     type = 'time'
-#     style = 'diamond'
-#     leading_diamond = '<transparent,background></>'
-#     # leading_diamond = ''
-#     # trailing_diamond = ''
-#     foreground = 'p:orange'
+#     type = 'node'
+#     style = 'plain'
+#     foreground = 'p:green'
 #     background = 'transparent'
-#     template = ' {{ .CurrentDate | date "15:04:05" }}'
+#     template = ' '
 #
 #     [blocks.segments.properties]
-#       always_enabled = true
-
-[[blocks.segments]]
-    type = 'node'
-    style = 'plain'
-    foreground = 'p:green'
-    background = 'transparent'
-    template = ' '
-
-    [blocks.segments.properties]
-      display_mode = 'files'
-      fetch_package_manager = false
-      home_enabled = false
-
-[[blocks.segments]]
-    type = 'go'
-    style = 'plain'
-    foreground = 'p:orange'
-    background = 'transparent'
-    template = ' {{ .Full }}'
-
-    [blocks.segments.properties]
-      fetch_version = true
-
-[[blocks.segments]]
-    type = 'python'
-    style = 'plain'
-    foreground = 'p:yellow'
-    background = 'transparent'
-    template = ' '
-
-    [blocks.segments.properties]
-      display_mode = 'files'
-      fetch_version = false
-      fetch_virtual_env = false
-
+#       display_mode = 'files'
+#       fetch_package_manager = false
+#       home_enabled = false
+#
+# [[blocks.segments]]
+#     type = 'go'
+#     style = 'plain'
+#     foreground = 'p:orange'
+#     background = 'transparent'
+#     template = ' {{ .Full }}'
+#
+#     [blocks.segments.properties]
+#       fetch_version = true
+#
+# [[blocks.segments]]
+#     type = 'python'
+#     style = 'plain'
+#     foreground = 'p:yellow'
+#     background = 'transparent'
+#     template = ' '
+#
+#     [blocks.segments.properties]
+#       display_mode = 'files'
+#       fetch_version = false
+#       fetch_virtual_env = false
+#
 
 [[tooltips]]
   type = 'aws'
