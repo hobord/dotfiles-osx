@@ -9,6 +9,7 @@ alias vims='nvim -S Session.vim'
 
 alias gitch='git checkout '
 alias gitp='git pull'
+alias gp='git fetch; git pull'
 
 alias dotenv='export $(cat .env | xargs)'
 

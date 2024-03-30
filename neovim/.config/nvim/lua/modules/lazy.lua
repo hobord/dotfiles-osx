@@ -232,11 +232,11 @@ require("lazy").setup({
   -- },
 
   -- Git signals right side
-  {
-    'lewis6991/gitsigns.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', opt = true },
-    config = require('modules.ui.gitsigns').setup,
-  },
+  -- {
+  --   'lewis6991/gitsigns.nvim',
+  --   dependencies = { 'nvim-lua/plenary.nvim', opt = true },
+  --   config = require('modules.ui.gitsigns').setup,
+  -- },
 
   -- Keystrokes/mappings helper
   --  {
@@ -536,8 +536,17 @@ require("lazy").setup({
   {
     'echasnovski/mini.nvim',
     config = function()
+      require('mini.ai').setup()
+      require('mini.surround').setup()
+      require('mini.bufremove').setup()
       require('mini.align').setup()
       require('mini.files').setup()
+      require('mini.visits').setup({
+        store = {
+          autowrite = false,
+        }
+      })
+      require('mini.diff').setup()
     end
   },
 
@@ -607,7 +616,7 @@ require("lazy").setup({
 
   'mg979/vim-visual-multi',
 
-  'tpope/vim-surround',
+  -- 'tpope/vim-surround',
 
   {
     'rhysd/accelerated-jk',
@@ -755,20 +764,21 @@ require("lazy").setup({
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
-      { "hrsh7th/cmp-nvim-lsp",   after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lsp",        after = "nvim-cmp" },
       --{ "f3fora/cmp-spell",     after = "nvim-cmp" },
-      { "hrsh7th/cmp-path",       after = "nvim-cmp" },
-      { "hrsh7th/cmp-buffer",     after = "nvim-cmp" },
+      { "hrsh7th/cmp-path",            after = "nvim-cmp" },
+      { "hrsh7th/cmp-buffer",          after = "nvim-cmp" },
       { "onsails/lspkind-nvim" },
       { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'rafamadriz/friendly-snippets' },
       -- { 'hrsh7th/cmp-copilot', after = "nvim-cmp" },
       -- { 'tzachar/cmp-tabnine',    after = 'nvim-cmp' },
-      { "zbirenbaum/copilot-cmp", after = "nvim-cmp" },
+      { "zbirenbaum/copilot-cmp",      after = "nvim-cmp" },
     },
     config = require('modules.editor.cmp').setup,
   },
 
-  { 'saadparwaiz1/cmp_luasnip' },
 
   {
     'andymass/vim-matchup',
@@ -1093,7 +1103,15 @@ require("lazy").setup({
   {
     'David-Kunz/gen.nvim',
     config = function()
-      -- require('gen')
+      require('gen').setup({
+        model = "codellama",
+        display_mode = "split",
+        show_model = true,
+      })
+      require('gen').prompts['Elaborate_Text'] = {
+        prompt = "Elaborate the following text:\n$text",
+        replace = false
+      }
     end
   },
 

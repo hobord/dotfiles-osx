@@ -24,3 +24,4 @@ rm -rf ~/.local/share/nvim
 echo '[*] Stowing/Creating simlinks'
 stow -vSt ~ neovim zsh tmux smug kitty posh moonlander git
 
+echo "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Monaspace.zip"
