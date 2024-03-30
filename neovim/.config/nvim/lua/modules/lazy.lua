@@ -541,7 +541,11 @@ require("lazy").setup({
       require('mini.bufremove').setup()
       require('mini.align').setup()
       require('mini.files').setup()
-      require('mini.visits').setup()
+      require('mini.visits').setup({
+        store = {
+          autowrite = false,
+        }
+      })
       require('mini.diff').setup()
     end
   },

@@ -89,6 +89,8 @@ map("n", "<Leader>gd", cmd('Glance definitions'), { noremap = true, silent = tru
 map("n", "<Leader>gt", cmd('Glance type_definitions'), { noremap = true, silent = true, desc = "Type Definitions" })
 map("n", "<Leader>gi", cmd('Glance implementations'), { noremap = true, silent = true, desc = "Implementations" })
 
+map("n", "<Leader>h", function() MiniVisits.select_path() end, { noremap = true, silent = true, desc = "MiniVisits" })
+
 -- Plugin nvim-tree
 map("n", "<C-e>", cmd('Neotree reveal toggle left focus'), { noremap = true, silent = true, desc = "Neotree toggle" })
 
