@@ -7,6 +7,9 @@ config.setup = function()
 
   local luasnip = require("luasnip")
   local cmp = require 'cmp'
+
+  luasnip.config.setup {}
+
   -- cmp.setup.cmdline('/', {
   --   mapping = cmp.mapping.preset.cmdline(),
   --   sources = {
@@ -36,12 +39,14 @@ config.setup = function()
         --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
 
         -- For `luasnip` user.
-        require('luasnip').lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
 
         -- For `ultisnips` user.
         -- vim.fn["UltiSnips#Anon"](args.body)
       end,
     },
+
+    completion = { completeopt = 'menu,menuone,noinsert' },
 
     formatting = {
       expandable_indicator = true,
@@ -73,7 +78,7 @@ config.setup = function()
     mapping = {
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-e>'] = cmp.mapping({
+      ['<C-h>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
@@ -81,7 +86,7 @@ config.setup = function()
 
       ['<C-Space>'] = cmp.mapping.complete(),
 
-      ['<c-h>'] = cmp.mapping(function(fallback)
+      ['<c-l>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.confirm({
             -- behavior = cmp.ConfirmBehavior.Insert,
