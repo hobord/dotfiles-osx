@@ -46,7 +46,10 @@ config.setup = function()
       end,
     },
 
-    completion = { completeopt = 'menu,menuone,noinsert' },
+    completion = {
+      completeopt = 'menu,menuone,noinsert',
+      autocomplete = false,
+    },
 
     formatting = {
       expandable_indicator = true,
@@ -78,10 +81,16 @@ config.setup = function()
     mapping = {
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
+
       ['<C-h>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
+      ['<esc>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 
       ['<C-Space>'] = cmp.mapping.complete(),
@@ -93,6 +102,8 @@ config.setup = function()
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           })
+        elseif luasnip.choice_active() then
+          luasnip.change_choice(1)
         else
           fallback()
         end
@@ -119,13 +130,13 @@ config.setup = function()
           fallback()
         end
       end, { "i", "s" }),
+
     },
 
     sources = {
       { name = 'copilot',  keyword_length = 1 },
       { name = 'luasnip',  keyword_length = 2 },
       { name = 'nvim_lsp', keyword_length = 2 },
-      -- { name = 'cmp_tabnine', keyword_length = 3 },
       { name = 'buffer',   keyword_length = 3 },
       { name = 'path',     keyword_length = 3 },
     },

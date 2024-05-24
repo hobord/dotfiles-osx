@@ -94,13 +94,14 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 [[blocks]]
   # type = 'rprompt'
   type = 'prompt'
-  alignment = 'right'
+  alignment = 'left'
+  newline = true
 
 [[blocks.segments]]
   type = "text"
   style = "plain"
-  foreground = "#E06C75"
-  template = ""
+  foreground = "p:blue"
+  template = ""
 #
 # [[blocks.segments]]
 #     type = 'node'

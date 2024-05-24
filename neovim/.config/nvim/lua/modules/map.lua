@@ -91,6 +91,9 @@ map("n", "<Leader>gi", cmd('Glance implementations'), { noremap = true, silent =
 
 map("n", "<Leader>h", function() MiniVisits.select_path() end, { noremap = true, silent = true, desc = "MiniVisits" })
 
+map("n", "[j", cmd('cn'), { noremap = true, silent = true, desc = "Next search" })
+map("n", "[k", cmd('cp'), { noremap = true, silent = true, desc = "Prev search" })
+
 -- Plugin nvim-tree
 map("n", "<C-e>", cmd('Neotree reveal toggle left focus'), { noremap = true, silent = true, desc = "Neotree toggle" })
 
@@ -109,8 +112,8 @@ map("n", "<M-p>", cmd("Telescope neoclip unnamed"),
 
 map("n", "<Leader>b", cmd('Telescope buffers'), { noremap = true, silent = true, desc = "List buffers" })
 map("n", "cd", cmd('Telescope cder'), { noremap = true, silent = true, desc = "Cder" })
-map("n", "<Leader>fh", function() require('telescope').extensions.frecency.frecency() end,
-  { noremap = true, silent = true, desc = "Frecency" })
+-- map("n", "<Leader>fh", function() require('telescope').extensions.frecency.frecency() end,
+--   { noremap = true, silent = true, desc = "Frecency" })
 map("n", "<Leader>fb", function() require('telescope').extensions.file_browser.file_browser() end,
   { noremap = true, silent = true, desc = "File browser" })
 map("n", "<Leader>d",

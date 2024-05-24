@@ -109,7 +109,7 @@ local function load_options()
   }
 
   vim.g.markdown_fenced_languages = { 'python', 'cpp', 'go', 'typescript', 'sql', 'html', 'javascript', 'rust', 'vim',
-    'lua' }
+    'lua', 'sh', 'bash', 'toml', 'yaml', 'css', 'json', 'dockerfile' }
   --t_ZH           = "^[[3m";
   --t_ZR           = "^[[23m";
 
