@@ -382,9 +382,49 @@ require("lazy").setup({
   },
 
   {
-    'folke/lsp-trouble.nvim',
-    config = require('modules.lsp.lsp-trouble').setup,
+    'folke/trouble.nvim',
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>ls",
+        "<cmd>Trouble symbols toggle focus=true win.position=bottom<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>ll",
+        "<cmd>Trouble lsp toggle focus=true win.position=bottom<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+    opts = {
+      win = {
+        size = { height = 25 },
+      },
+    }, -- for default options, refer to the configuration section for custom setup.
   },
+  -- {
+  --   'folke/lsp-trouble.nvim',
+  --   config = require('modules.lsp.lsp-trouble').setup,
+  -- },
 
 
   {
