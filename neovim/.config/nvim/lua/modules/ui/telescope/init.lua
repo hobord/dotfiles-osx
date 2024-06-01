@@ -7,6 +7,8 @@ config.setup = function()
   --   vim.cmd [[packadd telescope-fzy-native.nvim]]
   -- end
   --local utils = require "telescope.utils"
+  local open_with_trouble = require("trouble.sources.telescope").open
+  local add_to_trouble = require("trouble.sources.telescope").add
 
   require('telescope').setup {
     defaults = {
@@ -29,6 +31,12 @@ config.setup = function()
         n = {
           ["<c-j>"] = require "telescope.actions".preview_scrolling_down,
           ["<c-k>"] = require "telescope.actions".preview_scrolling_up,
+          ["<c-t>"] = open_with_trouble,
+          ["<c-a>"] = add_to_trouble,
+        },
+        i = {
+          ["<c-t>"] = open_with_trouble,
+          ["<c-a>"] = add_to_trouble,
         },
       },
     },
@@ -195,7 +203,7 @@ config.setup = function()
   require('telescope').load_extension('fzy_native')
   --require('telescope').load_extension('dotfiles')
   require('telescope').load_extension('dap')
-  require('telescope').load_extension('frecency')
+  -- require('telescope').load_extension('frecency')
   require("telescope").load_extension('file_browser')
   require('telescope').load_extension('cder')
   require('telescope').load_extension('telescope-tabs')

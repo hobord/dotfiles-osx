@@ -5,18 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
 
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath
-  })
-end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
@@ -353,7 +342,7 @@ require("lazy").setup({
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzy-native.nvim' },
-      { 'nvim-telescope/telescope-frecency.nvim' },
+      -- { 'nvim-telescope/telescope-frecency.nvim' },
       { 'tami5/sqlite.lua' },
       { 'zane-/cder.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
@@ -393,9 +382,49 @@ require("lazy").setup({
   },
 
   {
-    'folke/lsp-trouble.nvim',
-    config = require('modules.lsp.lsp-trouble').setup,
+    'folke/trouble.nvim',
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>ls",
+        "<cmd>Trouble symbols toggle focus=true win.position=bottom<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>ll",
+        "<cmd>Trouble lsp toggle focus=true win.position=bottom<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+    opts = {
+      win = {
+        size = { height = 25 },
+      },
+    }, -- for default options, refer to the configuration section for custom setup.
   },
+  -- {
+  --   'folke/lsp-trouble.nvim',
+  --   config = require('modules.lsp.lsp-trouble').setup,
+  -- },
 
 
   {
@@ -481,12 +510,12 @@ require("lazy").setup({
     }
   },
 
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  },
+  -- {
+  --   'numToStr/Comment.nvim',
+  --   config = function()
+  --     require('Comment').setup()
+  --   end
+  -- },
 
   {
     'norcalli/nvim-colorizer.lua',
@@ -586,6 +615,12 @@ require("lazy").setup({
           -- `z` key
           { mode = 'n', keys = 'z' },
           { mode = 'x', keys = 'z' },
+
+          -- `[` and `]`
+          { mode = 'n', keys = '[' },
+          { mode = 'n', keys = ']' },
+          { mode = 'x', keys = '[' },
+          { mode = 'x', keys = ']' },
         },
 
         clues = {
@@ -749,7 +784,19 @@ require("lazy").setup({
       -- end)
     end,
   },
-
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+    },
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
   {
     "zbirenbaum/copilot-cmp",
     -- after = { "copilot.lua" },
@@ -759,6 +806,11 @@ require("lazy").setup({
         method = "getPanelCompletions",
       })
     end
+  },
+
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter'
   },
 
   {
@@ -873,7 +925,7 @@ require("lazy").setup({
   --
 
   {
-    dir = '~/code/hobord/nvim/gotest.nvim',
+    dir = '~/code/hobord/gotest.nvim',
     -- 'hobord/gotest.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -881,7 +933,7 @@ require("lazy").setup({
       'nvim-lua/popup.nvim',
     },
     config = function()
-      -- require('gotest').setup()
+      require('gotest').setup()
     end
   },
 
@@ -951,14 +1003,14 @@ require("lazy").setup({
   --  'motemen/git-vim',
   --  'tpope/vim-fugitive',
 
-  --  {
-  --   'ldelossa/gh.nvim',
-  --   dependencies = { { 'ldelossa/litee.nvim' } },
-  --   config = function()
-  --     require('litee.lib').setup()
-  --     require('litee.gh').setup()
-  --   end
-  -- },
+  {
+    'ldelossa/gh.nvim',
+    dependencies = { { 'ldelossa/litee.nvim' } },
+    config = function()
+      require('litee.lib').setup()
+      require('litee.gh').setup()
+    end
+  },
   --
   --  {
   --   'tanvirtin/vgit.nvim',
@@ -1108,6 +1160,10 @@ require("lazy").setup({
         display_mode = "split",
         show_model = true,
       })
+      require('gen').prompts['Execute selected text'] = {
+        prompt = "$text",
+        replace = false
+      }
       require('gen').prompts['Elaborate_Text'] = {
         prompt = "Elaborate the following text:\n$text",
         replace = false
@@ -1122,6 +1178,5 @@ require("lazy").setup({
       require("auto-session").setup()
     end
   },
-
 
 })

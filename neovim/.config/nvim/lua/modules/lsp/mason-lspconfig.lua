@@ -3,8 +3,6 @@
 local M = {}
 
 M.setup = function()
-  local lspconfig = require 'lspconfig'
-
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
     callback = function(event)
@@ -47,7 +45,7 @@ M.setup = function()
   --  - settings (table): Override the default settings passed when initializing the server.
   --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
   function _G.reload_lsp()
-    vim.lsp.stop_client(vim.lsp.get_active_clients())
+    vim.lsp.stop_client(vim.lsp.get_clients())
     vim.cmd [[edit]]
   end
 
@@ -82,12 +80,12 @@ M.setup = function()
     gopls = {
       cmd = { "gopls", "--remote=auto" },
       filetypes = { 'go', 'gomod' },
-      root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+      root_dir = vim.fs.dirname(vim.fs.find({ "go.work", "go.mod", ".git" }, { upward = true })[1]),
     },
     golangci_lint_ls = {
       cmd = { "golangci-lint-langserver" },
       filetypes = { 'go', 'gomod' },
-      root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+      root_dir = vim.fs.dirname(vim.fs.find({ "go.work", "go.mod", ".git" }, { upward = true })[1]),
       init_options = {
         command = { "golangci-lint", "run", "--disable", "lll", "--out-format", "json" },
       },

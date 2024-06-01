@@ -36,7 +36,7 @@ map('n', 'zi', 'zi:let &l:fdc=&l:fen*&g:fdc<CR>', { noremap = true, silent = tru
 map('n', 'Y', 'y$', { noremap = true, silent = true })
 map('n', 'yY', '^y$', { noremap = true, silent = true })
 
-map('n', '<Leader>n', cmd('noh'), { noremap = true, silent = true, desc = 'Clear search highlight' })
+map('n', '<esc>', cmd('noh'), { noremap = true, silent = true, desc = 'Clear search highlight' })
 map('n', '<Leader><Leader>r', cmd('set relativenumber!'),
   { noremap = true, silent = true, desc = 'Toggle relative number' })
 map('n', '<Leader><Leader>w', cmd('set wrap!'), { noremap = true, silent = true, desc = 'Toggle wrap' })
